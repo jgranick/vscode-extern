@@ -19,12 +19,12 @@ when invoking an editor command not all argument types are supported.</p>
 <p>This is a sample that registers a command handler and adds an entry for that command to the palette. First
 register a command handler with the identfier <code>extension.sayHello</code>.</p>
 <pre><code class="prettyprint javascript">commands.registerCommand('extension.sayHello', () =&gt; {
-		window.showInformationMessage('Hello World!');
+	window.showInformationMessage('Hello World!');
 });</code></pre>
 <p>Second, bind the command identfier to a title under which it will show in the palette (<code>package.json</code>).</p>
 <pre><code class="prettyprint json">{
 "contributes": {
-		"commands": [{
+	"commands": [{
 		"command": "extension.sayHello",
 		"title": "Hello World"
 	}]
@@ -33,28 +33,24 @@ by an <a href="#Extension">extension</a>-interface which allows to reflect on th
 <p>Extension writers can provide APIs to other extensions by returning their API public
 surface from the <code>activate</code>-call.</p>
 <pre><code class="prettyprint javascript">export function activate(context: vscode.ExtensionContext) {
-		let api = {
-			sum(a, b) {
-				return a + b;
-			},
-			mul(a, b) {
-				return a * b;
-			}
-		};
-		// 'export' public api-surface
-		return api;
-	* }
-	* ```
-	* When depending on the API of another extension add an `extensionDependency`-entry
-	* to `package.json`, and use the [getExtension](#extensions.getExtension)-function
-	* and the [exports](#Extension.exports)-property, like below:
-	*
-	* ```javascript
-	* let mathExt = extensions.getExtension('genius.math');
-	* let importedApi = mathExt.exports;
-	*
-	* console.log(importedApi.mul(42, 1));
-	* ```</code></pre></div></div><div class="field "><a name="languages"></a><h3><p><code><span class="label">static</span><span class="label">read only</span><a href="./Vscode.html#languages"><span class="identifier">languages</span></a>:<span class="type">Languages</span></code></p></h3><div class="doc"><p>Namespace for participating in language-specific editor <a href="https://code.visualstudio.com/docs/editor/editingevolved">features</a>,
+	let api = {
+		sum(a, b) {
+			return a + b;
+		},
+		mul(a, b) {
+			return a * b;
+		}
+	};
+	// 'export' public api-surface
+	return api;
+}</code></pre>
+<p>When depending on the API of another extension add an <code>extensionDependency</code>-entry
+to <code>package.json</code>, and use the <a href="#extensions.getExtension">getExtension</a>-function
+and the <a href="#Extension.exports">exports</a>-property, like below:</p>
+<pre><code class="prettyprint javascript">let mathExt = extensions.getExtension('genius.math');
+let importedApi = mathExt.exports;
+
+console.log(importedApi.mul(42, 1));</code></pre></div></div><div class="field "><a name="languages"></a><h3><p><code><span class="label">static</span><span class="label">read only</span><a href="./Vscode.html#languages"><span class="identifier">languages</span></a>:<span class="type">Languages</span></code></p></h3><div class="doc"><p>Namespace for participating in language-specific editor <a href="https://code.visualstudio.com/docs/editor/editingevolved">features</a>,
 like IntelliSense, code actions, diagnostics etc.</p>
 <p>Many programming languages exist and there is huge variety in syntaxes, semantics, and paradigms. Despite that, features
 like automatic word-completion, code navigation, or code checking have become popular across different tools for different
@@ -64,9 +60,9 @@ by allowing you to participate by providing data only. For instance, to contribu
 that can be called with a <a href="#TextDocument">TextDocument</a> and a <a href="#Position">Position</a> returning hover info. The rest, like tracking the
 mouse, positioning the hover, keeping the hover stable etc. is taken care of by the editor.</p>
 <pre><code class="prettyprint javascript">languages.registerHoverProvider('javascript', {
-		provideHover(document, position, token) {
-			return new Hover('I am a hover!');
-		}
+	provideHover(document, position, token) {
+		return new Hover('I am a hover!');
+	}
 });</code></pre>
 <p>Registration is done using a <a href="#DocumentSelector">document selector</a> which is either a language id, like <code>javascript</code> or
 a more complex <a href="#DocumentFilter">filter</a> like <code>{ language: 'typescript', scheme: 'file' }</code>. Matching a document against such
