@@ -488,11 +488,11 @@
 			<haxe_doc>* The version of the editor.</haxe_doc>
 		</version>
 		<env public="1" set="null" static="1">
-			<c path="_Vscode.Env"/>
+			<c path="VscodeEnv"/>
 			<haxe_doc>* Namespace describing the environment the editor runs in.</haxe_doc>
 		</env>
 		<commands public="1" set="null" static="1">
-			<c path="_Vscode.Commands"/>
+			<c path="VscodeCommands"/>
 			<haxe_doc><![CDATA[* Namespace for dealing with commands. In short, a command is a function with a
 	* unique identifier. The function is sometimes also called _command handler_.
 	*
@@ -528,13 +528,13 @@
 	* ```]]></haxe_doc>
 		</commands>
 		<window public="1" set="null" static="1">
-			<c path="_Vscode.Window"/>
+			<c path="VscodeWindow"/>
 			<haxe_doc>* Namespace for dealing with the current window of the editor. That is visible
 	* and active editors, as well as, UI elements to show messages, selections, and
 	* asking for user input.</haxe_doc>
 		</window>
 		<workspace public="1" set="null" static="1">
-			<c path="_Vscode.Workspace"/>
+			<c path="VscodeWorkspace"/>
 			<haxe_doc>* Namespace for dealing with the current workspace. A workspace is the representation
 	* of the folder that has been opened. There is no workspace when just a file but not a
 	* folder has been opened.
@@ -544,7 +544,7 @@
 	* the editor-process so that they should be always used instead of nodejs-equivalents.</haxe_doc>
 		</workspace>
 		<languages public="1" set="null" static="1">
-			<c path="_Vscode.Languages"/>
+			<c path="VscodeLanguages"/>
 			<haxe_doc><![CDATA[* Namespace for participating in language-specific editor [features](https://code.visualstudio.com/docs/editor/editingevolved),
 	 * like IntelliSense, code actions, diagnostics etc.
 	 *
@@ -573,7 +573,7 @@
 	 * score is used for determining the order in which providers are asked to participate.]]></haxe_doc>
 		</languages>
 		<extensions public="1" set="null" static="1">
-			<c path="_Vscode.Extensions"/>
+			<c path="VscodeExtensions"/>
 			<haxe_doc>* Namespace for dealing with installed extensions. Extensions are represented
 	 * by an [extension](#Extension)-interface which allows to reflect on them.
 	 *
@@ -608,7 +608,7 @@
 		</extensions>
 		<meta><m n=":jsRequire"><e>"vscode"</e></m></meta>
 	</class>
-	<class path="_Vscode.Env" params="" file="src/Vscode.hx" private="1" module="Vscode" extern="1">
+	<class path="VscodeEnv" params="" file="src/Vscode.hx" module="Vscode" extern="1">
 		<appName public="1" set="null">
 			<c path="String"/>
 			<haxe_doc>* The application name of the editor, like 'VS Code'.
@@ -635,7 +635,7 @@
 	 * @readonly</haxe_doc>
 		</sessionId>
 	</class>
-	<class path="_Vscode.Commands" params="" file="src/Vscode.hx" private="1" module="Vscode" extern="1">
+	<class path="VscodeCommands" params="" file="src/Vscode.hx" module="Vscode" extern="1">
 		<registerCommand public="1" set="method">
 			<f a="command:callback:?thisArg">
 				<c path="String"/>
@@ -709,7 +709,7 @@
 	 * @return Thenable that resolves to a list of command ids.</haxe_doc>
 		</getCommands>
 	</class>
-	<class path="_Vscode.Window" params="" file="src/Vscode.hx" private="1" module="Vscode" extern="1">
+	<class path="VscodeWindow" params="" file="src/Vscode.hx" module="Vscode" extern="1">
 		<activeTextEditor public="1">
 			<t path="vscode.TextEditor"/>
 			<haxe_doc>* The currently active editor or `undefined`. The active editor is the one
@@ -957,7 +957,7 @@
 	 * @return A new status bar item.</haxe_doc>
 		</createStatusBarItem>
 	</class>
-	<class path="_Vscode.Extensions" params="" file="src/Vscode.hx" private="1" module="Vscode" extern="1">
+	<class path="VscodeExtensions" params="" file="src/Vscode.hx" module="Vscode" extern="1">
 		<getExtension public="1" params="T" set="method">
 			<f a="extensionId">
 				<c path="String"/>
@@ -973,7 +973,7 @@
 			<haxe_doc>* All extensions currently known to the system.</haxe_doc>
 		</all>
 	</class>
-	<class path="_Vscode.Languages" params="" file="src/Vscode.hx" private="1" module="Vscode" extern="1">
+	<class path="VscodeLanguages" params="" file="src/Vscode.hx" module="Vscode" extern="1">
 		<getLanguages public="1" set="method">
 			<f a=""><t path="js.Thenable"><c path="Array"><c path="String"/></c></t></f>
 			<haxe_doc>* Return the identifiers of all known languages.
@@ -1279,7 +1279,7 @@
 	 * @return A [disposable](#Disposable) that unsets this configuration.</haxe_doc>
 		</setLanguageConfiguration>
 	</class>
-	<class path="_Vscode.Workspace" params="" file="src/Vscode.hx" private="1" module="Vscode" extern="1">
+	<class path="VscodeWorkspace" params="" file="src/Vscode.hx" module="Vscode" extern="1">
 		<createFileSystemWatcher public="1" set="method">
 			<f a="globPattern:?ignoreCreateEvents:?ignoreChangeEvents:?ignoreDeleteEvents">
 				<c path="String"/>
@@ -3309,8 +3309,8 @@
 	</typedef>
 	<typedef path="vscode.DocumentSelector" params="" file="src/vscode/DocumentSelector.hx">
 		<x path="haxe.extern.EitherType">
-			<t path="vscode._DocumentSelector.DocumentSelectorSimple"/>
-			<c path="Array"><t path="vscode._DocumentSelector.DocumentSelectorSimple"/></c>
+			<t path="vscode.DocumentSelectorSimple"/>
+			<c path="Array"><t path="vscode.DocumentSelectorSimple"/></c>
 		</x>
 		<haxe_doc>* A language selector is the combination of one or many language identifiers
  * and [language filters](#DocumentFilter).
@@ -3318,7 +3318,7 @@
  * @sample `let sel:DocumentSelector = 'typescript'`;
  * @sample `let sel:DocumentSelector = ['typescript', { language: 'json', pattern: '**∕tsconfig.json' }]`;</haxe_doc>
 	</typedef>
-	<typedef path="vscode._DocumentSelector.DocumentSelectorSimple" params="" file="src/vscode/DocumentSelector.hx" private="1" module="vscode.DocumentSelector"><x path="haxe.extern.EitherType">
+	<typedef path="vscode.DocumentSelectorSimple" params="" file="src/vscode/DocumentSelector.hx" module="vscode.DocumentSelector"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<t path="vscode.DocumentFilter"/>
 </x></typedef>
