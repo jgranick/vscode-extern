@@ -849,38 +849,43 @@
 </showErrorMessage></overloads>
 		</showErrorMessage>
 		<showQuickPick public="1" params="T" set="method">
-			<f a="items:?options">
+			<f a="items:?options:?token">
 				<x path="haxe.extern.EitherType">
 					<c path="Array"><c path="showQuickPick.T"/></c>
 					<t path="js.Thenable"><c path="Array"><c path="showQuickPick.T"/></c></t>
 				</x>
 				<t path="vscode.QuickPickOptions"/>
+				<t path="vscode.CancellationToken"/>
 				<t path="js.Thenable"><c path="showQuickPick.T"/></t>
 			</f>
 			<haxe_doc>* Shows a selection list.
 	 *
 	 * @param items An array of strings, or a promise that resolves to an array of strings.
 	 * @param options Configures the behavior of the selection list.
+	 * @param token A token that can be used to signal cancellation.
 	 * @return A promise that resolves to the selection or undefined.</haxe_doc>
 			<overloads><showQuickPick public="1" set="method">
-	<f a="items:?options">
+	<f a="items:?options:?token">
 		<x path="haxe.extern.EitherType">
 			<c path="Array"><c path="String"/></c>
 			<t path="js.Thenable"><c path="Array"><c path="String"/></c></t>
 		</x>
 		<t path="vscode.QuickPickOptions"/>
+		<t path="vscode.CancellationToken"/>
 		<t path="js.Thenable"><c path="String"/></t>
 	</f>
 	<haxe_doc>* Shows a selection list.
 	 *
 	 * @param items An array of strings, or a promise that resolves to an array of strings.
 	 * @param options Configures the behavior of the selection list.
+	 * @param token A token that can be used to signal cancellation.
 	 * @return A promise that resolves to the selection or undefined.</haxe_doc>
 </showQuickPick></overloads>
 		</showQuickPick>
 		<showInputBox public="1" set="method">
-			<f a="?options">
+			<f a="?options:?token">
 				<t path="vscode.InputBoxOptions"/>
+				<t path="vscode.CancellationToken"/>
 				<t path="js.Thenable"><c path="String"/></t>
 			</f>
 			<haxe_doc>* Opens an input box to ask the user for input.
@@ -890,6 +895,7 @@
 	 * anything but dismissed the input box with OK.
 	 *
 	 * @param options Configures the behavior of the input box.
+	 * @param token A token that can be used to signal cancellation.
 	 * @return A promise that resolves to a string the user provided or to `undefined` in case of dismissal.</haxe_doc>
 		</showInputBox>
 		<createOutputChannel public="1" set="method">
@@ -956,6 +962,18 @@
 	 * @param priority The priority of the item. Higher values mean the item should be shown more to the left.
 	 * @return A new status bar item.</haxe_doc>
 		</createStatusBarItem>
+		<createTerminal public="1" set="method">
+			<f a="?name">
+				<c path="String"/>
+				<t path="vscode.Terminal"/>
+			</f>
+			<haxe_doc>* Creates a [Terminal](#Terminal). Note that this will currently force the terminal panel
+	 * to the foreground, this is changing in v1.6 such that it will require an explicit call to
+	 * [Terminal.show](#Terminal.show) in order to show the terminal panel.
+	 *
+	 * @param name Optional human-readable string which will be used to represent the terminal in the UI.
+	 * @return A new Terminal.</haxe_doc>
+		</createTerminal>
 	</class>
 	<class path="VscodeExtensions" params="" file="src/Vscode.hx" module="Vscode" extern="1">
 		<getExtension public="1" params="T" set="method">
@@ -1141,9 +1159,9 @@
 			</f>
 			<haxe_doc>* Register a workspace symbol provider.
 	 *
-	 * Multiple providers can be registered for a language. In that case providers are asked in
-	 * parallel and the results are merged. A failing provider (rejected promise or exception) will
-	 * not cause a failure of the whole operation.
+	 * Multiple providers can be registered. In that case providers are asked in parallel and
+	 * the results are merged. A failing provider (rejected promise or exception) will not cause
+	 * a failure of the whole operation.
 	 *
 	 * @param provider A workspace symbol provider.
 	 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.</haxe_doc>
@@ -2169,9 +2187,21 @@
 	 * this completion. When an edit is provided the value of
 	 * [insertText](#CompletionItem.insertText) is ignored.
 	 *
-	 * The [range](#Range) of the edit must be single-line and one the same
-	 * line completions where [requested](#CompletionItemProvider.provideCompletionItems) at.</haxe_doc>
+	 * The [range](#Range) of the edit must be single-line and on the same
+	 * line completions were [requested](#CompletionItemProvider.provideCompletionItems) at.</haxe_doc>
 		</textEdit>
+		<additionalTextEdits public="1">
+			<c path="Array"><c path="vscode.TextEdit"/></c>
+			<haxe_doc>* An optional array of additional [text edits](#TextEdit) that are applied when
+	 * selecting this completion. Edits must not overlap with the main [edit](#CompletionItem.textEdit)
+	 * nor with themselves.</haxe_doc>
+		</additionalTextEdits>
+		<command public="1">
+			<t path="vscode.Command"/>
+			<haxe_doc>* An optional [command](#Command) that is executed *after* inserting this completion. *Note* that
+	 * additional modifications to the current document should be described with the
+	 * [additionalTextEdits](#CompletionItem.additionalTextEdits)-property.</haxe_doc>
+		</command>
 		<new public="1" set="method">
 			<f a="label:?kind">
 				<c path="String"/>
@@ -2186,14 +2216,16 @@
 	 * @param label The label of the completion.
 	 * @param kind The [kind](#CompletionItemKind) of the completion.</haxe_doc>
 		</new>
-		<haxe_doc>* A completion item represents a text snippet that is
- * proposed to complete text that is being typed.
+		<haxe_doc>* A completion item represents a text snippet that is proposed to complete text that is being typed.
  *
- * It is suffient to create a completion item from just
- * a [label](#CompletionItem.label). In that case the completion
- * item will replace the [word](#TextDocument.getWordRangeAtPosition)
- * until the cursor with the given label.
+ * It is suffient to create a completion item from just a [label](#CompletionItem.label). In that
+ * case the completion item will replace the [word](#TextDocument.getWordRangeAtPosition)
+ * until the cursor with the given label or [insertText](#CompletionItem.insertText). Otherwise the
+ * the given [edit](#CompletionItem.textEdit) is used.
  *
+ * When selecting a completion item in the editor its defined or synthesized text edit will be applied
+ * to *all* cursors/selections whereas [additionalTextEdits](CompletionItem.additionalTextEdits) will be
+ * applied as provided.
  *
  * @see [CompletionItemProvider.provideCompletionItems](#CompletionItemProvider.provideCompletionItems)
  * @see [CompletionItemProvider.resolveCompletionItem](#CompletionItemProvider.resolveCompletionItem)</haxe_doc>
@@ -2533,14 +2565,17 @@
 			</provideCompletionItems>
 		</a>
 		<haxe_doc>* The completion item provider interface defines the contract between extensions and
- * the [IntelliSense](https://code.visualstudio.com/docs/editor/editingevolved#_intellisense).
+ * [IntelliSense](https://code.visualstudio.com/docs/editor/editingevolved#_intellisense).
  *
  * When computing *complete* completion items is expensive, providers can optionally implement
  * the `resolveCompletionItem`-function. In that case it is enough to return completion
  * items with a [label](#CompletionItem.label) from the
  * [provideCompletionItems](#CompletionItemProvider.provideCompletionItems)-function. Subsequently,
  * when a completion item is shown in the UI and gains focus this provider is asked to resolve
- * the item, like adding [doc-comment](#CompletionItem.documentation) or [details](#CompletionItem.detail).</haxe_doc>
+ * the item, like adding [doc-comment](#CompletionItem.documentation) or [details](#CompletionItem.detail).
+ *
+ * Providers are asked for completions either explicitly by a user gesture or -depending on the configuration-
+ * implicitly when typing words or trigger characters.</haxe_doc>
 	</typedef>
 	<class path="vscode.CompletionList" params="" file="src/vscode/CompletionList.hx" extern="1">
 		<isIncomplete public="1">
@@ -2602,7 +2637,7 @@
 			</renderOptions>
 			<range>
 				<c path="vscode.Range"/>
-				<haxe_doc>* Range to which this decoration is applied.</haxe_doc>
+				<haxe_doc>* Range to which this decoration is applied. The range must not be empty.</haxe_doc>
 			</range>
 			<hoverMessage>
 				<x path="haxe.extern.EitherType">
@@ -2854,11 +2889,12 @@
 	 * @param diagnostics Array of diagnostics or `undefined`</haxe_doc>
 </set></overloads>
 			</set>
-			<name>
+			<name set="null">
 				<c path="String"/>
 				<haxe_doc>* The name of this diagnostic collection, for instance `typescript`. Every diagnostic
 	 * from this collection will be associated with this name. Also, the task framework uses this
-	 * name when defining [problem matchers](https://code.visualstudio.com/docs/editor/tasks#_defining-a-problem-matcher).</haxe_doc>
+	 * name when defining [problem matchers](https://code.visualstudio.com/docs/editor/tasks#_defining-a-problem-matcher).
+	 * @readonly</haxe_doc>
 			</name>
 			<has set="method">
 				<f a="uri">
@@ -3262,20 +3298,43 @@
 </m></meta>
 	</class>
 	<typedef path="vscode.DocumentLinkProvider" params="" file="src/vscode/DocumentLinkProvider.hx">
-		<a><provideDocumentLinks set="method">
-	<f a="document:token">
-		<t path="vscode.TextDocument"/>
-		<t path="vscode.CancellationToken"/>
-		<x path="haxe.extern.EitherType">
-			<c path="Array"><c path="vscode.DocumentLink"/></c>
-			<t path="js.Thenable"><c path="Array"><c path="vscode.DocumentLink"/></c></t>
-		</x>
-	</f>
-	<haxe_doc>* @param document The document in which the command was invoked.
+		<a>
+			<resolveDocumentLink>
+				<t path="Null"><f a=":">
+	<c path="vscode.DocumentLink"/>
+	<t path="vscode.CancellationToken"/>
+	<x path="haxe.extern.EitherType">
+		<c path="vscode.DocumentLink"/>
+		<t path="js.Thenable"><c path="vscode.DocumentLink"/></t>
+	</x>
+</f></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Given a link fill in its [target](#DocumentLink.target). This method is called when an incomplete
+	 * link is selected in the UI. Providers can implement this method and return incomple links
+	 * (without target) from the [`provideDocumentLinks`](#DocumentLinkProvider.provideDocumentLinks) method which
+	 * often helps to improve performance.
+	 *
+	 * @param link The link that is to be resolved.
+	 * @param token A cancellation token.</haxe_doc>
+			</resolveDocumentLink>
+			<provideDocumentLinks set="method">
+				<f a="document:token">
+					<t path="vscode.TextDocument"/>
+					<t path="vscode.CancellationToken"/>
+					<x path="haxe.extern.EitherType">
+						<c path="Array"><c path="vscode.DocumentLink"/></c>
+						<t path="js.Thenable"><c path="Array"><c path="vscode.DocumentLink"/></c></t>
+					</x>
+				</f>
+				<haxe_doc>* Provide links for the given document. Note that the editor ships with a default provider that detects
+	 * `http(s)` and `file` links.
+	 *
+	 * @param document The document in which the command was invoked.
 	 * @param token A cancellation token.
 	 * @return An array of [document links](#DocumentLink) or a thenable that resolves to such. The lack of a result
 	 *  can be signaled by returning `undefined`, `null`, or an empty array.</haxe_doc>
-</provideDocumentLinks></a>
+			</provideDocumentLinks>
+		</a>
 		<haxe_doc>* The document link provider defines the contract between extensions and feature of showing
  * links in the editor.</haxe_doc>
 	</typedef>
@@ -3806,7 +3865,7 @@
 	<c path="String"/>
 </f></t>
 				<meta><m n=":optional"/></meta>
-				<haxe_doc>* An optional function that will be called to valide input and to give a hint
+				<haxe_doc>* An optional function that will be called to validate input and to give a hint
 	 * to the user.
 	 *
 	 * @param value The current value of the input box.
@@ -3826,8 +3885,13 @@
 			<password>
 				<t path="Null"><x path="Bool"/></t>
 				<meta><m n=":optional"/></meta>
-				<haxe_doc>* Set to true to show a password prompt that will not show the typed value.</haxe_doc>
+				<haxe_doc>* Set to `true` to show a password prompt that will not show the typed value.</haxe_doc>
 			</password>
+			<ignoreFocusOut>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Set to `true` to keep the input box open when focus moves to another part of the editor or to another window.</haxe_doc>
+			</ignoreFocusOut>
 		</a>
 		<haxe_doc>* Options to configure the behavior of the input box UI.</haxe_doc>
 	</typedef>
@@ -4455,6 +4519,11 @@
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional flag to include the description when filtering the picks.</haxe_doc>
 			</matchOnDescription>
+			<ignoreFocusOut>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Set to `true` to keep the picker open when focus moves to another part of the editor or to another window.</haxe_doc>
+			</ignoreFocusOut>
 		</a>
 		<haxe_doc>* Options to configure the behavior of the quick pick UI.</haxe_doc>
 	</typedef>
@@ -4910,21 +4979,35 @@
 			<haxe_doc>* The location of this symbol.</haxe_doc>
 		</location>
 		<new public="1" set="method">
-			<f a="name:kind:range:?uri:?containerName">
+			<f a="name:kind:containerName:location">
 				<c path="String"/>
 				<x path="vscode.SymbolKind"/>
-				<c path="vscode.Range"/>
-				<c path="vscode.Uri"/>
 				<c path="String"/>
+				<c path="vscode.Location"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>* Creates a new symbol information object.
 	 *
 	 * @param name The name of the symbol.
 	 * @param kind The kind of the symbol.
-	 * @param range The range of the location of the symbol.
-	 * @param uri The resource of the location of symbol, defaults to the current document.
-	 * @param containerName The name of the symbol containing the symbol.</haxe_doc>
+	 * @param containerName The name of the symbol containing the symbol.
+	 * @param location The the location of the symbol.</haxe_doc>
+			<overloads><new public="1" set="method">
+	<f a="name:kind:range:?uri:?containerName">
+		<c path="String"/>
+		<x path="vscode.SymbolKind"/>
+		<c path="vscode.Range"/>
+		<c path="vscode.Uri"/>
+		<c path="String"/>
+		<x path="Void"/>
+	</f>
+	<haxe_doc>* Creates a new symbol information object.
+	 *
+	 * @param name The name of the symbol.
+	 * @param kind The kind of the symbol.
+	 * @param containerName The name of the symbol containing the symbol.
+	 * @param location The the location of the symbol.</haxe_doc>
+</new></overloads>
 		</new>
 		<haxe_doc>* Represents information about programming constructs like variables, classes,
  * interfaces etc.</haxe_doc>
@@ -5258,6 +5341,50 @@
 			</m>
 		</meta>
 	</class>
+	<typedef path="vscode.Terminal" params="" file="src/vscode/Terminal.hx">
+		<a>
+			<show set="method">
+				<f a="?preserveFocus">
+					<x path="Bool"/>
+					<x path="Void"/>
+				</f>
+				<haxe_doc>* Show the terminal panel and reveal this terminal in the UI.
+	 *
+	 * @param preserveFocus When `true` the terminal will not take focus.</haxe_doc>
+			</show>
+			<sendText set="method">
+				<f a="text:?addNewLine">
+					<c path="String"/>
+					<x path="Bool"/>
+					<x path="Void"/>
+				</f>
+				<haxe_doc>* Send text to the terminal. The text is written to the stdin of the underlying pty process
+	 * (shell) of the terminal. Note that this will currently force the terminal panel to the
+	 * foreground, this is changing in v1.6 such that it will require an explicit call to
+	 * [Terminal.show](#Terminal.show) in order to show the terminal panel.
+	 *
+	 * @param text The text to send.
+	 * @param addNewLine Whether to add a new line to the text being sent, this is normally
+	 * required to run a command in the terminal. The character(s) added are \n or \r\n
+	 * depending on the platform. This defaults to `true`.</haxe_doc>
+			</sendText>
+			<name set="null">
+				<c path="String"/>
+				<haxe_doc>* The name of the terminal.
+	 *
+	 * @readonly</haxe_doc>
+			</name>
+			<hide set="method">
+				<f a=""><x path="Void"/></f>
+				<haxe_doc>* Hide the terminal panel if this terminal is currently showing.</haxe_doc>
+			</hide>
+			<dispose set="method">
+				<f a=""><x path="Void"/></f>
+				<haxe_doc>* Dispose and free associated resources.</haxe_doc>
+			</dispose>
+		</a>
+		<haxe_doc>* An individual terminal instance within the integrated terminal.</haxe_doc>
+	</typedef>
 	<typedef path="vscode.TextDocument" params="" file="src/vscode/TextDocument.hx">
 		<a>
 			<version set="null">
@@ -5604,11 +5731,15 @@
 	 * This method shows unexpected behavior and will be removed in the next major update.</haxe_doc>
 			</hide>
 			<edit set="method">
-				<f a="callback">
+				<f a="callback:?options">
 					<f a="">
 						<t path="vscode.TextEditorEdit"/>
 						<x path="Void"/>
 					</f>
+					<a>
+						<undoStopBefore><x path="Bool"/></undoStopBefore>
+						<undoStopAfter><x path="Bool"/></undoStopAfter>
+					</a>
 					<t path="js.Thenable"><x path="Bool"/></t>
 				</f>
 				<haxe_doc>* Perform an edit on the document associated with this text editor.
@@ -5617,7 +5748,8 @@
 	 * be used to make edits. Note that the edit-builder is only valid while the
 	 * callback executes.
 	 *
-	 * @param callback A function which can make edits using an [edit-builder](#TextEditorEdit).
+	 * @param @param callback A function which can create edits using an [edit-builder](#TextEditorEdit).
+	 * @param options The undo/redo behaviour around this edit. By default, undo stops will be created before and after this edit.
 	 * @return A promise that resolves with a value indicating if the edits could be applied.</haxe_doc>
 			</edit>
 			<document>
@@ -5923,9 +6055,93 @@
 				<c path="Array"><c path="vscode.Selection"/></c>
 				<haxe_doc>* The new value for the [text editor's selections](#TextEditor.selections).</haxe_doc>
 			</selections>
+			<kind>
+				<x path="vscode.TextEditorSelectionChangeKind"/>
+				<haxe_doc>* The [change kind](#TextEditorSelectionChangeKind) which has triggered this
+	 * event. Can be `undefined`.</haxe_doc>
+			</kind>
 		</a>
 		<haxe_doc>* Represents an event describing the change in a [text editor's selections](#TextEditor.selections).</haxe_doc>
 	</typedef>
+	<abstract path="vscode.TextEditorSelectionChangeKind" params="" file="src/vscode/TextEditorSelectionChangeKind.hx">
+		<this><x path="Int"/></this>
+		<haxe_doc>* Represents sources that can cause [selection change events](#window.onDidChangeTextEditorSelection).</haxe_doc>
+		<meta>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"TextEditorSelectionChangeKind"</e>
+			</m>
+			<m n=":enum"/>
+		</meta>
+		<impl><class path="vscode._TextEditorSelectionChangeKind.TextEditorSelectionChangeKind_Impl_" params="" file="src/vscode/TextEditorSelectionChangeKind.hx" private="1" module="vscode.TextEditorSelectionChangeKind" extern="1">
+	<Keyboard public="1" set="null" static="1">
+		<x path="vscode.TextEditorSelectionChangeKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Selection changed due to typing in the editor.</haxe_doc>
+	</Keyboard>
+	<Mouse public="1" set="null" static="1">
+		<x path="vscode.TextEditorSelectionChangeKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Selection change due to clicking in the editor.</haxe_doc>
+	</Mouse>
+	<Command public="1" set="null" static="1">
+		<x path="vscode.TextEditorSelectionChangeKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Selection changed because a command ran.</haxe_doc>
+	</Command>
+	<meta>
+		<m n=":final"/>
+		<m n=":enum"/>
+		<m n=":jsRequire">
+			<e>"vscode"</e>
+			<e>"TextEditorSelectionChangeKind"</e>
+		</m>
+	</meta>
+</class></impl>
+	</abstract>
+	<class path="vscode._TextEditorSelectionChangeKind.TextEditorSelectionChangeKind_Impl_" params="" file="src/vscode/TextEditorSelectionChangeKind.hx" private="1" module="vscode.TextEditorSelectionChangeKind" extern="1">
+		<Keyboard public="1" set="null" static="1">
+			<x path="vscode.TextEditorSelectionChangeKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Selection changed due to typing in the editor.</haxe_doc>
+		</Keyboard>
+		<Mouse public="1" set="null" static="1">
+			<x path="vscode.TextEditorSelectionChangeKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Selection change due to clicking in the editor.</haxe_doc>
+		</Mouse>
+		<Command public="1" set="null" static="1">
+			<x path="vscode.TextEditorSelectionChangeKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Selection changed because a command ran.</haxe_doc>
+		</Command>
+		<meta>
+			<m n=":final"/>
+			<m n=":enum"/>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"TextEditorSelectionChangeKind"</e>
+			</m>
+		</meta>
+	</class>
 	<typedef path="vscode.TextEditorViewColumnChangeEvent" params="" file="src/vscode/TextEditorViewColumnChangeEvent.hx">
 		<a>
 			<viewColumn>
@@ -6359,7 +6575,7 @@
 				</f>
 				<haxe_doc>* Check if this configuration has a certain value.
 	 *
-	 * @param section configuration name, supports _dotted_ names.
+	 * @param section Configuration name, supports _dotted_ names.
 	 * @return `true` iff the section doesn't resolve to `undefined`.</haxe_doc>
 			</has>
 			<get params="T" set="method">
@@ -6488,23 +6704,48 @@
 </class></impl>
 	</abstract>
 	<typedef path="vscode.WorkspaceSymbolProvider" params="" file="src/vscode/WorkspaceSymbolProvider.hx">
-		<a><provideWorkspaceSymbols set="method">
-	<f a="query:token">
-		<c path="String"/>
-		<t path="vscode.CancellationToken"/>
-		<x path="haxe.extern.EitherType">
-			<c path="Array"><c path="vscode.SymbolInformation"/></c>
-			<t path="js.Thenable"><c path="Array"><c path="vscode.SymbolInformation"/></c></t>
-		</x>
-	</f>
-	<haxe_doc>* Project-wide search for a symbol matching the given query string. It is up to the provider
-	 * how to search given the query string, like substring, indexOf etc.
+		<a>
+			<resolveWorkspaceSymbol>
+				<t path="Null"><f a=":">
+	<c path="vscode.SymbolInformation"/>
+	<t path="vscode.CancellationToken"/>
+	<x path="haxe.extern.EitherType">
+		<c path="vscode.SymbolInformation"/>
+		<t path="js.Thenable"><c path="vscode.SymbolInformation"/></t>
+	</x>
+</f></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Given a symbol fill in its [location](#SymbolInformation.location). This method is called whenever a symbol
+	 * is selected in the UI. Providers can implement this method and return incomplete symbols from
+	 * [`provideWorkspaceSymbols`](#WorkspaceSymbolProvider.provideWorkspaceSymbols) which often helps to improve
+	 * performance.
+	 *
+	 * @param symbol The symbol that is to be resolved. Guaranteed to be an instance of an object returned from an
+	 * earlier call to `provideWorkspaceSymbols`.
+	 * @param token A cancellation token.
+	 * @return The resolved symbol or a thenable that resolves to that. When no result is returned,
+	 * the given `symbol` is used.</haxe_doc>
+			</resolveWorkspaceSymbol>
+			<provideWorkspaceSymbols set="method">
+				<f a="query:token">
+					<c path="String"/>
+					<t path="vscode.CancellationToken"/>
+					<x path="haxe.extern.EitherType">
+						<c path="Array"><c path="vscode.SymbolInformation"/></c>
+						<t path="js.Thenable"><c path="Array"><c path="vscode.SymbolInformation"/></c></t>
+					</x>
+				</f>
+				<haxe_doc>* Project-wide search for a symbol matching the given query string. It is up to the provider
+	 * how to search given the query string, like substring, indexOf etc. To improve performance implementors can
+	 * skip the [location](#SymbolInformation.location) of symbols and implement `resolveWorkspaceSymbol` to do that
+	 * later.
 	 *
 	 * @param query A non-empty query string.
 	 * @param token A cancellation token.
 	 * @return An array of document highlights or a thenable that resolves to such. The lack of a result can be
 	 * signaled by returning `undefined`, `null`, or an empty array.</haxe_doc>
-</provideWorkspaceSymbols></a>
+			</provideWorkspaceSymbols>
+		</a>
 		<haxe_doc>* The workspace symbol provider interface defines the contract between extensions and
  * the [symbol search](https://code.visualstudio.com/docs/editor/editingevolved#_open-symbol-by-name)-feature.</haxe_doc>
 	</typedef>
