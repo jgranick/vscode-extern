@@ -21,8 +21,8 @@
 		<haxe_doc>An Array is a storage for values. You can access it using indexes or
 	with its API.
 
-	@see http://haxe.org/manual/std-Array.html
-	@see http://haxe.org/manual/lf-array-comprehension.html</haxe_doc>
+	@see https://haxe.org/manual/std-Array.html
+	@see https://haxe.org/manual/lf-array-comprehension.html</haxe_doc>
 		<meta>
 			<m n=":keep"/>
 			<m n=":directlyUsed"/>
@@ -35,7 +35,7 @@
 
 	See `Type` for the Haxe Reflection API.
 
-	@see http://haxe.org/manual/types-class-instance.html</haxe_doc>
+	@see https://haxe.org/manual/types-class-instance.html</haxe_doc>
 		<meta>
 			<m n=":coreType"/>
 			<m n=":runtimeValue"/>
@@ -73,8 +73,8 @@
 		</fromString>
 		<getTime public="1" set="method">
 			<f a=""><x path="Float"/></f>
-			<haxe_doc>Returns the timestamp of the date. It might only have a per-second
-		precision depending on the platforms.</haxe_doc>
+			<haxe_doc>Returns the timestamp (in milliseconds) of the date. It might
+		only have a per-second precision depending on the platforms.</haxe_doc>
 		</getTime>
 		<getHours public="1" set="method">
 			<f a=""><x path="Int"/></f>
@@ -102,7 +102,7 @@
 		</getDate>
 		<getDay public="1" set="method">
 			<f a=""><x path="Int"/></f>
-			<haxe_doc>Returns the day of the week of `this` Date (0-6 range).</haxe_doc>
+			<haxe_doc>Returns the day of the week of `this` Date (0-6 range) where `0` is Sunday.</haxe_doc>
 		</getDay>
 		<toString public="1" get="inline" set="null" line="34">
 			<f a=""><c path="String"/></f>
@@ -154,7 +154,7 @@
 
 	See `Type` for the Haxe Reflection API.
 
-	@see http://haxe.org/manual/types-enum-instance.html</haxe_doc>
+	@see https://haxe.org/manual/types-enum-instance.html</haxe_doc>
 		<meta>
 			<m n=":coreType"/>
 			<m n=":runtimeValue"/>
@@ -165,7 +165,7 @@
 		<haxe_doc>An abstract type that represents any enum value.
 	See `Type` for the Haxe Reflection API.
 
-	@see http://haxe.org/manual/types-enum-instance.html</haxe_doc>
+	@see https://haxe.org/manual/types-enum-instance.html</haxe_doc>
 		<meta><m n=":coreType"/></meta>
 	</abstract>
 	<class path="Math" params="" file="/home/travis/haxe/std/js/_std/Math.hx" extern="1"><meta>
@@ -340,7 +340,7 @@
 	String can be concatenated by using the `+` operator. If an operand is not a
 	String, it is passed through `Std.string()` first.
 	
-	@see http://haxe.org/manual/std-String.html</haxe_doc>
+	@see https://haxe.org/manual/std-String.html</haxe_doc>
 		<meta>
 			<m n=":directlyUsed"/>
 			<m n=":coreApi"/>
@@ -358,7 +358,7 @@
 		<this><x path="Void"/></this>
 		<haxe_doc>The standard `Void` type. Only `null` values can be of the type `Void`.
 
-	@see http://haxe.org/manual/types-void.html</haxe_doc>
+	@see https://haxe.org/manual/types-void.html</haxe_doc>
 		<meta><m n=":coreType"/></meta>
 	</abstract>
 	<abstract path="Float" params="" file="/home/travis/haxe/std/StdTypes.hx" module="StdTypes">
@@ -371,8 +371,8 @@
 	`Std.int` converts a `Float` to an `Int`, rounded towards 0.
 	`Std.parseFloat` converts a `String` to a `Float`.
 
-	@see http://haxe.org/manual/types-basic-types.html
-	@see http://haxe.org/manual/types-nullability.html]]></haxe_doc>
+	@see https://haxe.org/manual/types-basic-types.html
+	@see https://haxe.org/manual/types-nullability.html]]></haxe_doc>
 		<meta>
 			<m n=":coreType"/>
 			<m n=":notNull"/>
@@ -390,9 +390,9 @@
 	`Std.int` converts a `Float` to an `Int`, rounded towards 0.
 	`Std.parseInt` converts a `String` to an `Int`.
 
-	@see http://haxe.org/manual/types-basic-types.html
-	@see http://haxe.org/manual/std-math-integer-math.html
-	@see http://haxe.org/manual/types-nullability.html]]></haxe_doc>
+	@see https://haxe.org/manual/types-basic-types.html
+	@see https://haxe.org/manual/std-math-integer-math.html
+	@see https://haxe.org/manual/types-nullability.html]]></haxe_doc>
 		<meta>
 			<m n=":coreType"/>
 			<m n=":notNull"/>
@@ -406,7 +406,7 @@
 	generator to distinguish between base values that can be `null` and others that
 	can't.
 
-	@see http://haxe.org/manual/types-nullability.html</haxe_doc>
+	@see https://haxe.org/manual/types-nullability.html</haxe_doc>
 	</typedef>
 	<abstract path="Bool" params="" file="/home/travis/haxe/std/StdTypes.hx" module="StdTypes">
 		<this><x path="Bool"/></this>
@@ -415,8 +415,8 @@
 	On static targets, `null` cannot be assigned to `Bool`. If this is necessary,
 	`Null<Bool>` can be used instead.
 
-	@see http://haxe.org/manual/types-bool.html
-	@see http://haxe.org/manual/types-nullability.html]]></haxe_doc>
+	@see https://haxe.org/manual/types-bool.html
+	@see https://haxe.org/manual/types-nullability.html]]></haxe_doc>
 		<meta>
 			<m n=":coreType"/>
 			<m n=":notNull"/>
@@ -431,7 +431,7 @@
 	checks and optimizations. See `Any` type for a safer alternative for
 	representing values of any type.
 
-	@see http://haxe.org/manual/types-dynamic.html</haxe_doc>
+	@see https://haxe.org/manual/types-dynamic.html</haxe_doc>
 		<meta>
 			<m n=":coreType"/>
 			<m n=":runtimeValue"/>
@@ -465,14 +465,14 @@
 	and can then be used e.g. in `for`-loops. This makes it easy to implement
 	custom iterators.
 
-	@see http://haxe.org/manual/lf-iterators.html</haxe_doc>
+	@see https://haxe.org/manual/lf-iterators.html</haxe_doc>
 	</typedef>
 	<typedef path="Iterable" params="T" file="/home/travis/haxe/std/StdTypes.hx" module="StdTypes">
 		<a><iterator set="method"><f a=""><t path="Iterator"><c path="Iterable.T"/></t></f></iterator></a>
 		<haxe_doc>An `Iterable` is a data structure which has an `iterator()` method.
 	See `Lambda` for generic functions on iterable structures.
 
-	@see http://haxe.org/manual/lf-iterators.html</haxe_doc>
+	@see https://haxe.org/manual/lf-iterators.html</haxe_doc>
 	</typedef>
 	<class path="ArrayAccess" params="T" file="/home/travis/haxe/std/StdTypes.hx" module="StdTypes" extern="1" interface="1"><haxe_doc>`ArrayAccess` is used to indicate a class that can be accessed using brackets.
 	The type parameter represents the type of the elements stored.
@@ -481,7 +481,7 @@
 	array access on classes. However, array access can be implemented for
 	abstract types.
 
-	@see http://haxe.org/manual/types-abstract-array-access.html</haxe_doc></class>
+	@see https://haxe.org/manual/types-abstract-array-access.html</haxe_doc></class>
 	<class path="Vscode" params="" file="src/Vscode.hx" extern="1">
 		<version public="1" set="null" static="1">
 			<c path="String"/>
@@ -726,6 +726,11 @@
 	 * has changed. *Note* that the event also fires when the active editor changes
 	 * to `undefined`.</haxe_doc>
 		</onDidChangeActiveTextEditor>
+		<onDidChangeVisibleTextEditors public="1" set="null">
+			<t path="vscode.Event"><c path="Array"><t path="vscode.TextEditor"/></c></t>
+			<haxe_doc>* An [event](#Event) which fires when the array of [visible editors](#window.visibleTextEditors)
+	 * has changed.</haxe_doc>
+		</onDidChangeVisibleTextEditors>
 		<onDidChangeTextEditorSelection public="1" set="null">
 			<t path="vscode.Event"><t path="vscode.TextEditorSelectionChangeEvent"/></t>
 			<haxe_doc>* An [event](#Event) which fires when the selection in an editor has changed.</haxe_doc>
@@ -738,6 +743,10 @@
 			<t path="vscode.Event"><t path="vscode.TextEditorViewColumnChangeEvent"/></t>
 			<haxe_doc>* An [event](#Event) which fires when the view column of an editor has changed.</haxe_doc>
 		</onDidChangeTextEditorViewColumn>
+		<onDidCloseTerminal public="1" set="null">
+			<t path="vscode.Event"><t path="vscode.Terminal"/></t>
+			<haxe_doc>* An [event](#Event) which fires when a terminal is disposed.</haxe_doc>
+		</onDidCloseTerminal>
 		<showTextDocument public="1" set="method">
 			<f a="document:?column:?preserveFocus">
 				<t path="vscode.TextDocument"/>
@@ -963,15 +972,17 @@
 	 * @return A new status bar item.</haxe_doc>
 		</createStatusBarItem>
 		<createTerminal public="1" set="method">
-			<f a="?name">
+			<f a="?name:?shellPath:?shellArgs">
 				<c path="String"/>
+				<c path="String"/>
+				<c path="Array"><c path="String"/></c>
 				<t path="vscode.Terminal"/>
 			</f>
-			<haxe_doc>* Creates a [Terminal](#Terminal). Note that this will currently force the terminal panel
-	 * to the foreground, this is changing in v1.6 such that it will require an explicit call to
-	 * [Terminal.show](#Terminal.show) in order to show the terminal panel.
+			<haxe_doc>* Creates a [Terminal](#Terminal).
 	 *
 	 * @param name Optional human-readable string which will be used to represent the terminal in the UI.
+	 * @param shellPath Optional path to a custom shell executable to be used in the terminal.
+	 * @param shellArgs Optional args for the custom shell executable, this does not work on Windows (see #8429)
 	 * @return A new Terminal.</haxe_doc>
 		</createTerminal>
 	</class>
@@ -1222,6 +1233,10 @@
 			</f>
 			<haxe_doc>* Register a formatting provider for a document range.
 	 *
+	 * *Note:* A document range provider is also a [document formatter](#DocumentFormattingEditProvider)
+	 * which means there is no need to [register](registerDocumentFormattingEditProvider) a document
+	 * formatter when also registering a range provider.
+	 *
 	 * Multiple providers can be registered for a language. In that case providers are sorted
 	 * by their [score](#languages.match) and the best-matching provider is used. Failure
 	 * of the selected provider will cause a failure of the whole operation.
@@ -1260,8 +1275,8 @@
 			<haxe_doc>* Register a signature help provider.
 	 *
 	 * Multiple providers can be registered for a language. In that case providers are sorted
-	 * by their [score](#languages.match) and the best-matching provider is used. Failure
-	 * of the selected provider will cause a failure of the whole operation.
+	 * by their [score](#languages.match) and called sequentially until a provider returns a
+	 * valid result.
 	 *
 	 * @param selector A selector that defines the documents this provider is applicable to.
 	 * @param provider A signature help provider.
@@ -1450,6 +1465,20 @@
 			<t path="vscode.Event"><t path="vscode.TextDocumentChangeEvent"/></t>
 			<haxe_doc>* An event that is emitted when a [text document](#TextDocument) is changed.</haxe_doc>
 		</onDidChangeTextDocument>
+		<onWillSaveTextDocument public="1" set="null">
+			<t path="vscode.Event"><t path="vscode.TextDocumentWillSaveEvent"/></t>
+			<haxe_doc>* An event that is emitted when a [text document](#TextDocument) will be saved to disk.
+	 *
+	 * *Note 1:* Subscribers can delay saving by registering asynchronous work. For the sake of data integrity the editor
+	 * might save without firing this event. For instance when shutting down with dirty files.
+	 *
+	 * *Note 2:* Subscribers are called sequentially and they can [delay](#TextDocumentWillSaveEvent.waitUntil) saving
+	 * by registering asynchronous work. Protection against misbehaving listeners is implemented as such:
+	 *  * there is an overall time budget that all listeners share and if that is exhausted no further listener is called
+	 *  * listeners that take a long time or produce errors frequently will not be called anymore
+	 *
+	 * The current thresholds are 1.5 seconds as overall time budget and a listener can misbehave 3 times before being ignored.</haxe_doc>
+		</onWillSaveTextDocument>
 		<onDidSaveTextDocument public="1" set="null">
 			<t path="vscode.Event"><t path="vscode.TextDocument"/></t>
 			<haxe_doc>* An event that is emitted when a [text document](#TextDocument) is saved to disk.</haxe_doc>
@@ -1463,8 +1492,7 @@
 	 *
 	 * When a section-identifier is provided only that part of the configuration
 	 * is returned. Dots in the section-identifier are interpreted as child-access,
-	 * like `{ myExt: { setting: { doIt: true }}}` and `getConfiguration('myExt.setting.doIt') === true`.
-	 *
+	 * like `{ myExt: { setting: { doIt: true }}}` and `getConfiguration('myExt.setting').get('doIt') === true`.
 	 *
 	 * @param section A dot-separated identifier.
 	 * @return The full workspace configuration or a subset.</haxe_doc>
@@ -1600,7 +1628,7 @@
 		</getConstructors>
 		<haxe_doc>This class provides advanced methods on enums. It is ideally used with
 	`using EnumTools` and then acts as an 
-  [extension](http://haxe.org/manual/lf-static-extension.html) to the 
+  [extension](https://haxe.org/manual/lf-static-extension.html) to the 
   `enum` types.
 
 	If the first argument to any of the methods is null, the result is
@@ -1692,7 +1720,7 @@
 		</match>
 		<haxe_doc>This class provides advanced methods on enum values. It is ideally used with
 	`using EnumValueTools` and then acts as an 
-  [extension](http://haxe.org/manual/lf-static-extension.html) to the 
+  [extension](https://haxe.org/manual/lf-static-extension.html) to the 
   `EnumValue` types.
 
 	If the first argument to any of the methods is null, the result is
@@ -1737,7 +1765,7 @@
 
 	Otherwise, use of this type is discouraged.
 	
-	@see <http://haxe.org/manual/lf-externs.html>]]></haxe_doc>
+	@see <https://haxe.org/manual/lf-externs.html>]]></haxe_doc>
 		<impl><class path="haxe.extern._EitherType.EitherType_Impl_" params="" file="/home/travis/haxe/std/haxe/extern/EitherType.hx" private="1" module="haxe.extern.EitherType"><meta>
 	<m n=":keep"/>
 	<m n=":final"/>
@@ -1751,7 +1779,7 @@
 	representing that arbitrary number of arguments of given type can be
 	passed to that method.
 	
-	@see <http://haxe.org/manual/lf-externs.html>]]></haxe_doc>
+	@see <https://haxe.org/manual/lf-externs.html>]]></haxe_doc>
 		<impl><class path="haxe.extern._Rest.Rest_Impl_" params="" file="/home/travis/haxe/std/haxe/extern/Rest.hx" private="1" module="haxe.extern.Rest"><meta>
 	<m n=":keep"/>
 	<m n=":final"/>
@@ -1940,7 +1968,7 @@
 		<haxe_doc>Native JavaScript regular expressions.
 
     For cross-platform regular expressions, use Haxe `EReg` class or 
-    [regexp literals](http://haxe.org/manual/std-regex.html).</haxe_doc>
+    [regexp literals](https://haxe.org/manual/std-regex.html).</haxe_doc>
 		<meta><m n=":native"><e>"RegExp"</e></m></meta>
 	</class>
 	<class path="js.RegExpMatch" params="" file="/home/travis/haxe/std/js/RegExp.hx" module="js.RegExp" extern="1">
@@ -2713,9 +2741,12 @@
 	 * For further information: https://msdn.microsoft.com/en-us/library/jj127316(v=vs.85).aspx</haxe_doc>
 			</gutterIconSize>
 			<gutterIconPath>
-				<t path="Null"><c path="String"/></t>
+				<t path="Null"><x path="haxe.extern.EitherType">
+	<c path="String"/>
+	<c path="vscode.Uri"/>
+</x></t>
 				<meta><m n=":optional"/></meta>
-				<haxe_doc>* An **absolute path** to an image to be rendered in the gutterIconPath.</haxe_doc>
+				<haxe_doc>* An **absolute path** or an URI to an image to be rendered in the gutter.</haxe_doc>
 			</gutterIconPath>
 			<dark>
 				<t path="Null"><t path="vscode.ThemableDecorationRenderOptions"/></t>
@@ -3500,7 +3531,7 @@
  *
  * @param listener The listener function will be called when the event happens.
  * @param thisArgs The `this`-argument which will be used when calling the event listener.
- * @param disposables An array to which a [disposeable](#Disposable) will be added.
+ * @param disposables An array to which a [disposable](#Disposable) will be added.
  * @return A disposable which unsubscribes the event listener.
  *
  * @sample `item.onDidChange(function(event) { console.log("Event happened: " + event); });`</haxe_doc>
@@ -5359,15 +5390,19 @@
 					<x path="Void"/>
 				</f>
 				<haxe_doc>* Send text to the terminal. The text is written to the stdin of the underlying pty process
-	 * (shell) of the terminal. Note that this will currently force the terminal panel to the
-	 * foreground, this is changing in v1.6 such that it will require an explicit call to
-	 * [Terminal.show](#Terminal.show) in order to show the terminal panel.
+	 * (shell) of the terminal.
 	 *
 	 * @param text The text to send.
 	 * @param addNewLine Whether to add a new line to the text being sent, this is normally
 	 * required to run a command in the terminal. The character(s) added are \n or \r\n
 	 * depending on the platform. This defaults to `true`.</haxe_doc>
 			</sendText>
+			<processId set="null">
+				<t path="js.Thenable"><x path="Int"/></t>
+				<haxe_doc>* The process ID of the shell process.
+	 *
+	 * @readonly</haxe_doc>
+			</processId>
 			<name set="null">
 				<c path="String"/>
 				<haxe_doc>* The name of the terminal.
@@ -5600,6 +5635,150 @@
  * for a [uri-scheme](#Uri.scheme). When a uri with that scheme is to
  * be [loaded](#workspace.openTextDocument) the content provider is
  * asked.</haxe_doc>
+	</typedef>
+	<abstract path="vscode.TextDocumentSaveReason" params="" file="src/vscode/TextDocumentSaveReason.hx">
+		<this><x path="Int"/></this>
+		<haxe_doc>* Represents reasons why a text document is saved.</haxe_doc>
+		<meta>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"TextDocumentSaveReason"</e>
+			</m>
+			<m n=":enum"/>
+		</meta>
+		<impl><class path="vscode._TextDocumentSaveReason.TextDocumentSaveReason_Impl_" params="" file="src/vscode/TextDocumentSaveReason.hx" private="1" module="vscode.TextDocumentSaveReason" extern="1">
+	<Manual public="1" set="null" static="1">
+		<x path="vscode.TextDocumentSaveReason"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Manually triggered, e.g. by the user pressing save, by starting debugging,
+	 * or by an API call.</haxe_doc>
+	</Manual>
+	<AfterDelay public="1" set="null" static="1">
+		<x path="vscode.TextDocumentSaveReason"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Automatic after a delay.</haxe_doc>
+	</AfterDelay>
+	<FocusOut public="1" set="null" static="1">
+		<x path="vscode.TextDocumentSaveReason"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* When the editor lost focus.</haxe_doc>
+	</FocusOut>
+	<meta>
+		<m n=":final"/>
+		<m n=":enum"/>
+		<m n=":jsRequire">
+			<e>"vscode"</e>
+			<e>"TextDocumentSaveReason"</e>
+		</m>
+	</meta>
+</class></impl>
+	</abstract>
+	<class path="vscode._TextDocumentSaveReason.TextDocumentSaveReason_Impl_" params="" file="src/vscode/TextDocumentSaveReason.hx" private="1" module="vscode.TextDocumentSaveReason" extern="1">
+		<Manual public="1" set="null" static="1">
+			<x path="vscode.TextDocumentSaveReason"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Manually triggered, e.g. by the user pressing save, by starting debugging,
+	 * or by an API call.</haxe_doc>
+		</Manual>
+		<AfterDelay public="1" set="null" static="1">
+			<x path="vscode.TextDocumentSaveReason"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Automatic after a delay.</haxe_doc>
+		</AfterDelay>
+		<FocusOut public="1" set="null" static="1">
+			<x path="vscode.TextDocumentSaveReason"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* When the editor lost focus.</haxe_doc>
+		</FocusOut>
+		<meta>
+			<m n=":final"/>
+			<m n=":enum"/>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"TextDocumentSaveReason"</e>
+			</m>
+		</meta>
+	</class>
+	<typedef path="vscode.TextDocumentWillSaveEvent" params="" file="src/vscode/TextDocumentWillSaveEvent.hx">
+		<a>
+			<waitUntil set="method">
+				<f a="thenable">
+					<t path="js.Thenable"><c path="Array"><c path="vscode.TextEdit"/></c></t>
+					<x path="Void"/>
+				</f>
+				<haxe_doc><![CDATA[* Allows to pause the event loop and to apply [pre-save-edits](#TextEdit).
+	 * Edits of subsequent calls to this function will be applied in order. The
+	 * edits will be *ignored* if concurrent modifications of the document happened.
+	 *
+	 * *Note:* This function can only be called during event dispatch and not
+	 * in an asynchronous manner:
+	 *
+	 * ```ts
+	 * workspace.onWillSaveTextDocument(event => {
+		// async, will *throw* an error
+	 	setTimeout(() => event.waitUntil(promise));
+	 	// sync, OK
+	 *	event.waitUntil(promise);
+	 * })
+	 * ```
+	 *
+	 * @param thenable A thenable that resolves to [pre-save-edits](#TextEdit).]]></haxe_doc>
+				<overloads><waitUntil public="1" set="method">
+	<f a="thenable">
+		<t path="js.Thenable"><x path="Any"/></t>
+		<x path="Void"/>
+	</f>
+	<haxe_doc><![CDATA[* Allows to pause the event loop and to apply [pre-save-edits](#TextEdit).
+	 * Edits of subsequent calls to this function will be applied in order. The
+	 * edits will be *ignored* if concurrent modifications of the document happened.
+	 *
+	 * *Note:* This function can only be called during event dispatch and not
+	 * in an asynchronous manner:
+	 *
+	 * ```ts
+	 * workspace.onWillSaveTextDocument(event => {
+		// async, will *throw* an error
+	 	setTimeout(() => event.waitUntil(promise));
+	 	// sync, OK
+	 *	event.waitUntil(promise);
+	 * })
+	 * ```
+	 *
+	 * @param thenable A thenable that resolves to [pre-save-edits](#TextEdit).]]></haxe_doc>
+</waitUntil></overloads>
+			</waitUntil>
+			<reason>
+				<x path="vscode.TextDocumentSaveReason"/>
+				<haxe_doc>* The reason why save was triggered.</haxe_doc>
+			</reason>
+			<document>
+				<t path="vscode.TextDocument"/>
+				<haxe_doc>* The document that will be saved.</haxe_doc>
+			</document>
+		</a>
+		<haxe_doc>* An event that is fired when a [document](#TextDocument) will be saved.
+ *
+ * To make modifications to the document before it is being saved, call the
+ * [`waitUntil`](#TextDocumentWillSaveEvent.waitUntil)-function with a thenable
+ * that resolves to an array of [text edits](#TextEdit).</haxe_doc>
 	</typedef>
 	<class path="vscode.TextEdit" params="" file="src/vscode/TextEdit.hx" extern="1">
 		<replace public="1" set="method" static="1">
@@ -5916,6 +6095,85 @@
  * they can be applied on a [document](#TextDocument) associated with a [text editor](#TextEditor).
  *</haxe_doc>
 	</typedef>
+	<abstract path="vscode.TextEditorLineNumbersStyle" params="" file="src/vscode/TextEditorLineNumbersStyle.hx">
+		<this><x path="Int"/></this>
+		<haxe_doc>* Rendering style of the line numbers.</haxe_doc>
+		<meta>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"TextEditorLineNumbersStyle"</e>
+			</m>
+			<m n=":enum"/>
+		</meta>
+		<impl><class path="vscode._TextEditorLineNumbersStyle.TextEditorLineNumbersStyle_Impl_" params="" file="src/vscode/TextEditorLineNumbersStyle.hx" private="1" module="vscode.TextEditorLineNumbersStyle" extern="1">
+	<Off public="1" set="null" static="1">
+		<x path="vscode.TextEditorLineNumbersStyle"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Do not render the line numbers.</haxe_doc>
+	</Off>
+	<On public="1" set="null" static="1">
+		<x path="vscode.TextEditorLineNumbersStyle"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Render the line numbers.</haxe_doc>
+	</On>
+	<Relative public="1" set="null" static="1">
+		<x path="vscode.TextEditorLineNumbersStyle"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Render the line numbers with values relative to the primary cursor location.</haxe_doc>
+	</Relative>
+	<meta>
+		<m n=":final"/>
+		<m n=":enum"/>
+		<m n=":jsRequire">
+			<e>"vscode"</e>
+			<e>"TextEditorLineNumbersStyle"</e>
+		</m>
+	</meta>
+</class></impl>
+	</abstract>
+	<class path="vscode._TextEditorLineNumbersStyle.TextEditorLineNumbersStyle_Impl_" params="" file="src/vscode/TextEditorLineNumbersStyle.hx" private="1" module="vscode.TextEditorLineNumbersStyle" extern="1">
+		<Off public="1" set="null" static="1">
+			<x path="vscode.TextEditorLineNumbersStyle"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Do not render the line numbers.</haxe_doc>
+		</Off>
+		<On public="1" set="null" static="1">
+			<x path="vscode.TextEditorLineNumbersStyle"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Render the line numbers.</haxe_doc>
+		</On>
+		<Relative public="1" set="null" static="1">
+			<x path="vscode.TextEditorLineNumbersStyle"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Render the line numbers with values relative to the primary cursor location.</haxe_doc>
+		</Relative>
+		<meta>
+			<m n=":final"/>
+			<m n=":enum"/>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"TextEditorLineNumbersStyle"</e>
+			</m>
+		</meta>
+	</class>
 	<typedef path="vscode.TextEditorOptions" params="" file="src/vscode/TextEditorOptions.hx">
 		<a>
 			<tabSize>
@@ -5931,6 +6189,13 @@
 	 * When getting a text editor's options, this property will always be a number (resolved).
 	 * When setting a text editor's options, this property is optional and it can be a number or `"auto"`.</haxe_doc>
 			</tabSize>
+			<lineNumbers>
+				<t path="Null"><x path="vscode.TextEditorLineNumbersStyle"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Render relative line numbers w.r.t. the current line number.
+	 * When getting a text editor's options, this property will always be present.
+	 * When setting a text editor's options, this property is optional.</haxe_doc>
+			</lineNumbers>
 			<insertSpaces>
 				<t path="Null"><x path="haxe.extern.EitherType">
 	<x path="Bool"/>
@@ -6228,9 +6493,13 @@
 		<haxe_doc>* Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.</haxe_doc>
 	</contentText>
 	<contentIconPath>
-		<t path="Null"><c path="String"/></t>
+		<t path="Null"><x path="haxe.extern.EitherType">
+	<c path="String"/>
+	<c path="vscode.Uri"/>
+</x></t>
 		<meta><m n=":optional"/></meta>
-		<haxe_doc>* An **absolute path** to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.</haxe_doc>
+		<haxe_doc>* An **absolute path** or an URI to an image to be rendered in the attachment. Either an icon
+	 * or a text can be shown, but not both.</haxe_doc>
 	</contentIconPath>
 	<color>
 		<t path="Null"><c path="String"/></t>
@@ -6308,9 +6577,12 @@
 	 * For further information: https://msdn.microsoft.com/en-us/library/jj127316(v=vs.85).aspx</haxe_doc>
 			</gutterIconSize>
 			<gutterIconPath>
-				<t path="Null"><c path="String"/></t>
+				<t path="Null"><x path="haxe.extern.EitherType">
+	<c path="String"/>
+	<c path="vscode.Uri"/>
+</x></t>
 				<meta><m n=":optional"/></meta>
-				<haxe_doc>* An **absolute path** to an image to be rendered in the gutterIconPath.</haxe_doc>
+				<haxe_doc>* An **absolute path** or an URI to an image to be rendered in the gutter.</haxe_doc>
 			</gutterIconPath>
 			<cursor>
 				<t path="Null"><c path="String"/></t>
@@ -6568,6 +6840,27 @@
 	</class>
 	<typedef path="vscode.WorkspaceConfiguration" params="" file="src/vscode/WorkspaceConfiguration.hx">
 		<a>
+			<update set="method">
+				<f a="section:value:?global">
+					<c path="String"/>
+					<x path="Any"/>
+					<x path="Bool"/>
+					<t path="js.Thenable"><x path="Void"/></t>
+				</f>
+				<haxe_doc>* Update a configuration value. A value can be changed for the current
+	 * [workspace](#workspace.rootPath) only, or globally for all instances of the
+	 * editor. The updated configuration values are persisted.
+	 *
+	 * *Note 1:* Setting an installation-wide value (`global: true`) in the presence of
+	 * a more specific workspace value has no observable effect in that workspace, but
+	 * in others.
+	 *
+	 * *Note 2:* To remove a configuration value use `undefined`, like so: `config.update('somekey', undefined)`
+	 *
+	 * @param section Configuration name, supports _dotted_ names.
+	 * @param value The new value.
+	 * @param global When `true` changes the configuration value for all instances of the editor.</haxe_doc>
+			</update>
 			<has set="method">
 				<f a="section">
 					<c path="String"/>
@@ -6591,9 +6884,24 @@
 	 * @return The value `section` denotes or the default.</haxe_doc>
 			</get>
 		</a>
-		<haxe_doc>* Represents the workspace configuration. The workspace configuration
- * is always a merged view of the configuration of the current [workspace](#workspace.rootPath)
- * and the installation-wide configuration.</haxe_doc>
+		<haxe_doc>* Represents the workspace configuration.
+ *
+ * The workspace configuration is a merged view: Configurations of the current [workspace](#workspace.rootPath)
+ * (if available), files like `launch.json`, and the installation-wide configuration. Workspace specific values
+ * shadow installation-wide values.
+ *
+ * *Note:* The merged configuration of the current [workspace](#workspace.rootPath)
+ * also contains settings from files like `launch.json` and `tasks.json`. Their basename will be
+ * part of the section identifier. The following snippets shows how to retrieve all configurations
+ * from `launch.json`:
+ *
+ * ```
+ * // launch.json configuration
+ * const config = workspace.getConfiguration('launch');
+ *
+ * // retrieve values
+ * const values = config.get('configurations');
+ * ```</haxe_doc>
 	</typedef>
 	<class path="vscode.WorkspaceEdit" params="" file="src/vscode/WorkspaceEdit.hx" extern="1">
 		<size public="1" set="null">
