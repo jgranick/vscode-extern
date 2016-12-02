@@ -11,21 +11,21 @@ greater than zero mean the selector matches the document. The more individual ma
 and a document have, the higher the score is. These are the abstract rules given a <code>selector</code>:</p>
 <pre><code>(1) When selector is an array, return the maximum individual result.
 (2) When selector is a string match that against the [languageId](#TextDocument.languageId).
-	(2.1) When both are equal score is `10`,
-	(2.2) When the selector is `*` score is `5`,
-	(2.3) Else score is `0`.
+ (2.1) When both are equal score is `10`,
+ (2.2) When the selector is `*` score is `5`,
+ (2.3) Else score is `0`.
 (3) When selector is a [filter](#DocumentFilter) return the maximum individual score given that each score is `&gt;0`.
-	(3.1) When [language](#DocumentFilter.language) is set apply rules from #2, when `0` the total score is `0`.
-		*	(3.2) When [scheme](#DocumentFilter.scheme) is set and equals the [uri](#TextDocument.uri)-scheme score with `10`, else the total score is `0`.
-		*	(3.3) When [pattern](#DocumentFilter.pattern) is set
-		* 		(3.3.1) pattern equals the [uri](#TextDocument.uri)-fsPath score with `10`,
-		*		(3.3.1) if the pattern matches as glob-pattern score with `5`,
-		*		(3.3.1) the total score is `0`
-		* ```
-		*
-		* @param selector A document selector.
-		* @param document A text document.
-		* @return A number `&gt;0` when the selector matches and `0` when the selector does not match.</code></pre></div></div><div class="field "><a name="registerCodeActionsProvider"></a><h3><p><code><a href="#registerCodeActionsProvider"><span class="identifier">registerCodeActionsProvider</span></a> (<span style="white-space:nowrap">selector:<a class="type" title="A language selector is the combination of one or many language identifiers and language filters." href="./vscode/DocumentSelector.html">DocumentSelector</a>,</span> <span style="white-space:nowrap">provider:<a class="type" title="The code action interface defines the contract between extensions and the light bulb feature." href="./vscode/CodeActionProvider.html">CodeActionProvider</a></span>):<a class="type" title="Represents a type which can release resources, such as event listening or a timer." href="./vscode/Disposable.html">Disposable</a></code></p></h3><div class="doc"><p>Register a code action provider.</p>
+ (3.1) When [language](#DocumentFilter.language) is set apply rules from #2, when `0` the total score is `0`.
+        *   (3.2) When [scheme](#DocumentFilter.scheme) is set and equals the [uri](#TextDocument.uri)-scheme score with `10`, else the total score is `0`.
+        *   (3.3) When [pattern](#DocumentFilter.pattern) is set
+        *       (3.3.1) pattern equals the [uri](#TextDocument.uri)-fsPath score with `10`,
+        *       (3.3.1) if the pattern matches as glob-pattern score with `5`,
+        *       (3.3.1) the total score is `0`
+        * ```
+        *
+        * @param selector A document selector.
+        * @param document A text document.
+        * @return A number `&gt;0` when the selector matches and `0` when the selector does not match.</code></pre></div></div><div class="field "><a name="registerCodeActionsProvider"></a><h3><p><code><a href="#registerCodeActionsProvider"><span class="identifier">registerCodeActionsProvider</span></a> (<span style="white-space:nowrap">selector:<a class="type" title="A language selector is the combination of one or many language identifiers and language filters." href="./vscode/DocumentSelector.html">DocumentSelector</a>,</span> <span style="white-space:nowrap">provider:<a class="type" title="The code action interface defines the contract between extensions and the light bulb feature." href="./vscode/CodeActionProvider.html">CodeActionProvider</a></span>):<a class="type" title="Represents a type which can release resources, such as event listening or a timer." href="./vscode/Disposable.html">Disposable</a></code></p></h3><div class="doc"><p>Register a code action provider.</p>
 <p>Multiple providers can be registered for a language. In that case providers are asked in
 parallel and the results are merged. A failing provider (rejected promise or exception) will
 not cause a failure of the whole operation.</p><p class="javadoc">Parameters:</p><table class="table table-bordered params"><tr><th width="25%"><code>selector</code></th><td><p>A selector that defines the documents this provider is applicable to.</p></td></tr><tr><th width="25%"><code>provider</code></th><td><p>A code action provider.</p></td></tr></table><p class="javadoc">Returns:</p><div class="indent inline-content"><p>A <a href="#Disposable">disposable</a> that unregisters this provider when being disposed.</p></div></div></div><div class="field "><a name="registerCodeLensProvider"></a><h3><p><code><a href="#registerCodeLensProvider"><span class="identifier">registerCodeLensProvider</span></a> (<span style="white-space:nowrap">selector:<a class="type" title="A language selector is the combination of one or many language identifiers and language filters." href="./vscode/DocumentSelector.html">DocumentSelector</a>,</span> <span style="white-space:nowrap">provider:<a class="type" title="A code lens provider adds commands to source text." href="./vscode/CodeLensProvider.html">CodeLensProvider</a></span>):<a class="type" title="Represents a type which can release resources, such as event listening or a timer." href="./vscode/Disposable.html">Disposable</a></code></p></h3><div class="doc"><p>Register a code lens provider.</p>

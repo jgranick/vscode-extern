@@ -18,13 +18,13 @@ of a URI depends on the scheme. The resulting string can be safely used with
 <a href="#Uri.parse">Uri.parse</a>.</p>
 <p>@returns A string representation of this Uri.</p><p class="javadoc">Parameters:</p><table class="table table-bordered params"><tr><th width="25%"><code>skipEncoding</code></th><td><p>Do not percentage-encode the result, defaults to <code>false</code>. Note that
 the <code>#</code> and <code>?</code> characters occuring in the path will always be encoded.</p>
-<pre><code>* 
+<pre><code>   * 
 </code></pre></td></tr></table></div></div><div class="field "><a name="with"></a><h3><p><code><a href="#with"><span class="identifier">with</span></a> (<span style="white-space:nowrap">change:{scheme:<span class="type">Null</span>&lt;<span class="type">String</span>&gt;, query:<span class="type">Null</span>&lt;<span class="type">String</span>&gt;, path:<span class="type">Null</span>&lt;<span class="type">String</span>&gt;, fragment:<span class="type">Null</span>&lt;<span class="type">String</span>&gt;, authority:<span class="type">Null</span>&lt;<span class="type">String</span>&gt;}</span>):<a class="type" title="A universal resource identifier representing either a file on disk or another resource, like untitled resources." href="../vscode/Uri.html">Uri</a></code></p></h3><div class="doc"><p>Derive a new Uri from this Uri.</p>
 <p>@sample <code></code>`</p>
-<pre><code>	let file = Uri.parse('before:some/file/path');
-	let other = file.with({ scheme: 'after' });
-	assert.ok(other.toString() === 'after:some/file/path');
-	* ```
+<pre><code>    let file = Uri.parse('before:some/file/path');
+    let other = file.with({ scheme: 'after' });
+    assert.ok(other.toString() === 'after:some/file/path');
+    * ```
 </code></pre><p class="javadoc">Parameters:</p><table class="table table-bordered params"><tr><th width="25%"><code>change</code></th><td><p>An object that describes a change to this Uri. To unset components use <code>null</code> or
 the empty string.</p></td></tr></table><p class="javadoc">Returns:</p><div class="indent inline-content"><p>A new Uri that reflects the given change. Will return <code>this</code> Uri if the change
 is not changing anything.</p></div></div></div></div><h3 class="section">Static methods</h3><div class="fields"><div class="field "><a name="file"></a><h3><p><code><span class="label">static</span><a href="#file"><span class="identifier">file</span></a> (<span style="white-space:nowrap">path:<span class="type">String</span></span>):<a class="type" title="A universal resource identifier representing either a file on disk or another resource, like untitled resources." href="../vscode/Uri.html">Uri</a></code></p></h3><div class="doc"><p>Create an URI from a file system path. The <a href="#Uri.scheme">scheme</a>
