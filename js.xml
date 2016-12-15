@@ -682,7 +682,7 @@
 			<f a="command:rest">
 				<c path="String"/>
 				<x path="haxe.extern.Rest"><x path="Any"/></x>
-				<t path="js.Thenable"><c path="executeCommand.T"/></t>
+				<t path="js.Thenable"><t path="Null"><c path="executeCommand.T"/></t></t>
 			</f>
 			<haxe_doc>* Executes the command denoted by the given command identifier.
      *
@@ -711,7 +711,7 @@
 	</class>
 	<class path="VscodeWindow" params="" file="src/Vscode.hx" module="Vscode" extern="1">
 		<activeTextEditor public="1">
-			<t path="vscode.TextEditor"/>
+			<t path="Null"><t path="vscode.TextEditor"/></t>
 			<haxe_doc>* The currently active editor or `undefined`. The active editor is the one
      * that currently has focus or, when none has focus, the one that has changed
      * input most recently.</haxe_doc>
@@ -777,7 +777,7 @@
 			<f a="message:items">
 				<c path="String"/>
 				<x path="haxe.extern.Rest"><c path="showInformationMessage.T"/></x>
-				<t path="js.Thenable"><c path="showInformationMessage.T"/></t>
+				<t path="js.Thenable"><t path="Null"><c path="showInformationMessage.T"/></t></t>
 			</f>
 			<haxe_doc>* Show an information message.
      *
@@ -790,7 +790,7 @@
 	<f a="message:items">
 		<c path="String"/>
 		<x path="haxe.extern.Rest"><c path="String"/></x>
-		<t path="js.Thenable"><c path="String"/></t>
+		<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
 	</f>
 	<haxe_doc>* Show an information message.
      *
@@ -805,7 +805,7 @@
 			<f a="message:items">
 				<c path="String"/>
 				<x path="haxe.extern.Rest"><c path="showWarningMessage.T"/></x>
-				<t path="js.Thenable"><c path="showWarningMessage.T"/></t>
+				<t path="js.Thenable"><t path="Null"><c path="showWarningMessage.T"/></t></t>
 			</f>
 			<haxe_doc>* Show a warning message.
      *
@@ -818,7 +818,7 @@
 	<f a="message:items">
 		<c path="String"/>
 		<x path="haxe.extern.Rest"><c path="String"/></x>
-		<t path="js.Thenable"><c path="String"/></t>
+		<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
 	</f>
 	<haxe_doc>* Show a warning message.
      *
@@ -833,7 +833,7 @@
 			<f a="message:items">
 				<c path="String"/>
 				<x path="haxe.extern.Rest"><c path="showErrorMessage.T"/></x>
-				<t path="js.Thenable"><c path="showErrorMessage.T"/></t>
+				<t path="js.Thenable"><t path="Null"><c path="showErrorMessage.T"/></t></t>
 			</f>
 			<haxe_doc>* Show an error message.
      *
@@ -846,7 +846,7 @@
 	<f a="message:items">
 		<c path="String"/>
 		<x path="haxe.extern.Rest"><c path="String"/></x>
-		<t path="js.Thenable"><c path="String"/></t>
+		<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
 	</f>
 	<haxe_doc>* Show an error message.
      *
@@ -865,14 +865,14 @@
 				</x>
 				<t path="vscode.QuickPickOptions"/>
 				<t path="vscode.CancellationToken"/>
-				<t path="js.Thenable"><c path="showQuickPick.T"/></t>
+				<t path="js.Thenable"><t path="Null"><c path="showQuickPick.T"/></t></t>
 			</f>
 			<haxe_doc>* Shows a selection list.
      *
      * @param items An array of strings, or a promise that resolves to an array of strings.
      * @param options Configures the behavior of the selection list.
      * @param token A token that can be used to signal cancellation.
-     * @return A promise that resolves to the selection or undefined.</haxe_doc>
+     * @return A promise that resolves to the selection or `undefined`.</haxe_doc>
 			<overloads><showQuickPick public="1" set="method">
 	<f a="items:?options:?token">
 		<x path="haxe.extern.EitherType">
@@ -881,21 +881,21 @@
 		</x>
 		<t path="vscode.QuickPickOptions"/>
 		<t path="vscode.CancellationToken"/>
-		<t path="js.Thenable"><c path="String"/></t>
+		<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
 	</f>
 	<haxe_doc>* Shows a selection list.
      *
      * @param items An array of strings, or a promise that resolves to an array of strings.
      * @param options Configures the behavior of the selection list.
      * @param token A token that can be used to signal cancellation.
-     * @return A promise that resolves to the selection or undefined.</haxe_doc>
+     * @return A promise that resolves to the selection or `undefined`.</haxe_doc>
 </showQuickPick></overloads>
 		</showQuickPick>
 		<showInputBox public="1" set="method">
 			<f a="?options:?token">
 				<t path="vscode.InputBoxOptions"/>
 				<t path="vscode.CancellationToken"/>
-				<t path="js.Thenable"><c path="String"/></t>
+				<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
 			</f>
 			<haxe_doc>* Opens an input box to ask the user for input.
      *
@@ -990,7 +990,7 @@
 		<getExtension public="1" params="T" set="method">
 			<f a="extensionId">
 				<c path="String"/>
-				<t path="vscode.Extension"><c path="getExtension.T"/></t>
+				<t path="Null"><t path="vscode.Extension"><c path="getExtension.T"/></t></t>
 			</f>
 			<haxe_doc>* Get an extension by its full identifier in the form of: `publisher.name`.
      *
@@ -1333,7 +1333,7 @@
      * @return A new file system watcher instance.</haxe_doc>
 		</createFileSystemWatcher>
 		<rootPath public="1" set="null">
-			<c path="String"/>
+			<t path="Null"><c path="String"/></t>
 			<haxe_doc>* The folder that is open in VS Code. `undefined` when no folder
      * has been opened.
      *
@@ -1356,7 +1356,7 @@
      * @return A path relative to the root or the input.</haxe_doc>
 		</asRelativePath>
 		<findFiles public="1" set="method">
-			<f a="include:exclude:?maxResults:?token">
+			<f a="include:?exclude:?maxResults:?token">
 				<c path="String"/>
 				<c path="String"/>
 				<x path="Int"/>
@@ -2035,10 +2035,7 @@
 		<c path="vscode.Range"/>
 		<t path="vscode.CodeActionContext"/>
 		<t path="vscode.CancellationToken"/>
-		<x path="haxe.extern.EitherType">
-			<c path="Array"><t path="vscode.Command"/></c>
-			<t path="js.Thenable"><c path="Array"><t path="vscode.Command"/></c></t>
-		</x>
+		<t path="vscode.ProviderResult"><c path="Array"><t path="vscode.Command"/></c></t>
 	</f>
 	<haxe_doc>* Provide commands for the given document and range.
      *
@@ -2060,12 +2057,14 @@
 			<haxe_doc>* The range in which this code lens is valid. Should only span a single line.</haxe_doc>
 		</range>
 		<command public="1">
-			<t path="vscode.Command"/>
+			<t path="Null"><t path="vscode.Command"/></t>
 			<haxe_doc>* The command this code lens represents.</haxe_doc>
 		</command>
-		<isResolved public="1">
+		<isResolved public="1" set="null">
 			<x path="Bool"/>
-			<haxe_doc>* `true` when there is a command associated.</haxe_doc>
+			<haxe_doc>* `true` when there is a command associated.
+     *
+     * @readonly</haxe_doc>
 		</isResolved>
 		<new public="1" set="method">
 			<f a="range:?command">
@@ -2097,10 +2096,7 @@
 				<t path="Null"><f a="codeLens:token">
 	<c path="vscode.CodeLens"/>
 	<t path="vscode.CancellationToken"/>
-	<x path="haxe.extern.EitherType">
-		<c path="vscode.CodeLens"/>
-		<t path="js.Thenable"><c path="vscode.CodeLens"/></t>
-	</x>
+	<t path="vscode.ProviderResult"><c path="vscode.CodeLens"/></t>
 </f></t>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* This function will be called for each visible code lens, usually when scrolling and after
@@ -2114,10 +2110,7 @@
 				<f a="document:token">
 					<t path="vscode.TextDocument"/>
 					<t path="vscode.CancellationToken"/>
-					<x path="haxe.extern.EitherType">
-						<c path="Array"><c path="vscode.CodeLens"/></c>
-						<t path="js.Thenable"><c path="Array"><c path="vscode.CodeLens"/></c></t>
-					</x>
+					<t path="vscode.ProviderResult"><c path="Array"><c path="vscode.CodeLens"/></c></t>
 				</f>
 				<haxe_doc>* Compute a list of [lenses](#CodeLens). This call should return as fast as possible and if
      * computing the commands is expensive implementors should only return code lens objects with the
@@ -2178,54 +2171,70 @@
      * this completion.</haxe_doc>
 		</label>
 		<kind public="1">
-			<x path="vscode.CompletionItemKind"/>
+			<t path="Null"><x path="vscode.CompletionItemKind"/></t>
 			<haxe_doc>* The kind of this completion item. Based on the kind
      * an icon is chosen by the editor.</haxe_doc>
 		</kind>
 		<detail public="1">
-			<c path="String"/>
+			<t path="Null"><c path="String"/></t>
 			<haxe_doc>* A human-readable string with additional information
      * about this item, like type or symbol information.</haxe_doc>
 		</detail>
 		<documentation public="1">
-			<c path="String"/>
+			<t path="Null"><c path="String"/></t>
 			<haxe_doc>* A human-readable string that represents a doc-comment.</haxe_doc>
 		</documentation>
 		<sortText public="1">
-			<c path="String"/>
+			<t path="Null"><c path="String"/></t>
 			<haxe_doc>* A string that should be used when comparing this item
      * with other items. When `falsy` the [label](#CompletionItem.label)
      * is used.</haxe_doc>
 		</sortText>
 		<filterText public="1">
-			<c path="String"/>
+			<t path="Null"><c path="String"/></t>
 			<haxe_doc>* A string that should be used when filtering a set of
      * completion items. When `falsy` the [label](#CompletionItem.label)
      * is used.</haxe_doc>
 		</filterText>
 		<insertText public="1">
-			<c path="String"/>
-			<haxe_doc>* A string that should be inserted in a document when selecting
+			<t path="Null"><x path="haxe.extern.EitherType">
+	<c path="String"/>
+	<c path="vscode.SnippetString"/>
+</x></t>
+			<haxe_doc>* A string or snippet that should be inserted in a document when selecting
      * this completion. When `falsy` the [label](#CompletionItem.label)
      * is used.</haxe_doc>
 		</insertText>
-		<textEdit public="1">
-			<c path="vscode.TextEdit"/>
-			<haxe_doc>* An [edit](#TextEdit) which is applied to a document when selecting
-     * this completion. When an edit is provided the value of
-     * [insertText](#CompletionItem.insertText) is ignored.
+		<range public="1">
+			<t path="Null"><c path="vscode.Range"/></t>
+			<haxe_doc>* A range of text that should be replaced by this completion item.
      *
-     * The [range](#Range) of the edit must be single-line and on the same
-     * line completions were [requested](#CompletionItemProvider.provideCompletionItems) at.</haxe_doc>
+     * Defaults to a range from the start of the [current word](#TextDocument.getWordRangeAtPosition) to the
+     * current position.
+     *
+     * *Note:* The range must be a [single line](#Range.isSingleLine) and it must
+     * [contain](#Range.contains) the position at which completion has been [requested](#CompletionItemProvider.provideCompletionItems).</haxe_doc>
+		</range>
+		<textEdit public="1">
+			<t path="Null"><c path="vscode.TextEdit"/></t>
+			<meta><m n=":deprecated"/></meta>
+			<haxe_doc>* @deprecated **Deprecated** in favor of `CompletionItem.insertText` and `CompletionItem.range`.
+     *
+     * ~~An [edit](#TextEdit) which is applied to a document when selecting
+     * this completion. When an edit is provided the value of
+     * [insertText](#CompletionItem.insertText) is ignored.~~
+     *
+     * ~~The [range](#Range) of the edit must be single-line and on the same
+     * line completions were [requested](#CompletionItemProvider.provideCompletionItems) at.~~</haxe_doc>
 		</textEdit>
 		<additionalTextEdits public="1">
-			<c path="Array"><c path="vscode.TextEdit"/></c>
+			<t path="Null"><c path="Array"><c path="vscode.TextEdit"/></c></t>
 			<haxe_doc>* An optional array of additional [text edits](#TextEdit) that are applied when
      * selecting this completion. Edits must not overlap with the main [edit](#CompletionItem.textEdit)
      * nor with themselves.</haxe_doc>
 		</additionalTextEdits>
 		<command public="1">
-			<t path="vscode.Command"/>
+			<t path="Null"><t path="vscode.Command"/></t>
 			<haxe_doc>* An optional [command](#Command) that is executed *after* inserting this completion. *Note* that
      * additional modifications to the current document should be described with the
      * [additionalTextEdits](#CompletionItem.additionalTextEdits)-property.</haxe_doc>
@@ -2551,10 +2560,7 @@
 				<t path="Null"><f a="item:token">
 	<c path="vscode.CompletionItem"/>
 	<t path="vscode.CancellationToken"/>
-	<x path="haxe.extern.EitherType">
-		<c path="vscode.CompletionItem"/>
-		<t path="js.Thenable"><c path="vscode.CompletionItem"/></t>
-	</x>
+	<t path="vscode.ProviderResult"><c path="vscode.CompletionItem"/></t>
 </f></t>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Given a completion item fill in more data, like [doc-comment](#CompletionItem.documentation)
@@ -2572,16 +2578,10 @@
 					<t path="vscode.TextDocument"/>
 					<c path="vscode.Position"/>
 					<t path="vscode.CancellationToken"/>
-					<x path="haxe.extern.EitherType">
-						<c path="Array"><c path="vscode.CompletionItem"/></c>
-						<x path="haxe.extern.EitherType">
-							<t path="js.Thenable"><c path="Array"><c path="vscode.CompletionItem"/></c></t>
-							<x path="haxe.extern.EitherType">
-								<c path="vscode.CompletionList"/>
-								<t path="js.Thenable"><c path="vscode.CompletionList"/></t>
-							</x>
-						</x>
-					</x>
+					<t path="vscode.ProviderResult"><x path="haxe.extern.EitherType">
+	<c path="Array"><c path="vscode.CompletionItem"/></c>
+	<c path="vscode.CompletionList"/>
+</x></t>
 				</f>
 				<haxe_doc>* Provide completion items for the given position and document.
      *
@@ -2607,7 +2607,7 @@
 	</typedef>
 	<class path="vscode.CompletionList" params="" file="src/vscode/CompletionList.hx" extern="1">
 		<isIncomplete public="1">
-			<x path="Bool"/>
+			<t path="Null"><x path="Bool"/></t>
 			<haxe_doc>* This list it not complete. Further typing should result in recomputing
      * this list.</haxe_doc>
 		</isIncomplete>
@@ -2831,10 +2831,7 @@
 		<t path="vscode.TextDocument"/>
 		<c path="vscode.Position"/>
 		<t path="vscode.CancellationToken"/>
-		<x path="haxe.extern.EitherType">
-			<t path="vscode.Definition"/>
-			<t path="js.Thenable"><t path="vscode.Definition"/></t>
-		</x>
+		<t path="vscode.ProviderResult"><t path="vscode.Definition"/></t>
 	</f>
 	<haxe_doc>* Provide the definition of the symbol at the given position and document.
      *
@@ -2900,7 +2897,7 @@
 			<set set="method">
 				<f a="uri:diagnostics">
 					<c path="vscode.Uri"/>
-					<c path="Array"><c path="vscode.Diagnostic"/></c>
+					<t path="Null"><c path="Array"><c path="vscode.Diagnostic"/></c></t>
 					<x path="Void"/>
 				</f>
 				<haxe_doc>* Assign diagnostics for given resource. Will replace
@@ -2941,7 +2938,7 @@
 			<get set="method">
 				<f a="uri">
 					<c path="vscode.Uri"/>
-					<c path="Array"><c path="vscode.Diagnostic"/></c>
+					<t path="Null"><c path="Array"><c path="vscode.Diagnostic"/></c></t>
 				</f>
 				<haxe_doc>* Get the diagnostics for a given resource. *Note* that you cannot
      * modify the diagnostics-array returned from this call.
@@ -3155,10 +3152,7 @@
 		<t path="vscode.TextDocument"/>
 		<t path="vscode.FormattingOptions"/>
 		<t path="vscode.CancellationToken"/>
-		<x path="haxe.extern.EitherType">
-			<c path="Array"><c path="vscode.TextEdit"/></c>
-			<t path="js.Thenable"><c path="Array"><c path="vscode.TextEdit"/></c></t>
-		</x>
+		<t path="vscode.ProviderResult"><c path="Array"><c path="vscode.TextEdit"/></c></t>
 	</f>
 	<haxe_doc>* Provide formatting edits for a whole document.
      *
@@ -3177,7 +3171,7 @@
 			<haxe_doc>* The range this highlight applies to.</haxe_doc>
 		</range>
 		<kind public="1">
-			<x path="vscode.DocumentHighlightKind"/>
+			<t path="Null"><x path="vscode.DocumentHighlightKind"/></t>
 			<haxe_doc>* The highlight kind, default is [text](#DocumentHighlightKind.Text).</haxe_doc>
 		</kind>
 		<new public="1" set="method">
@@ -3284,10 +3278,7 @@
 		<t path="vscode.TextDocument"/>
 		<c path="vscode.Position"/>
 		<t path="vscode.CancellationToken"/>
-		<x path="haxe.extern.EitherType">
-			<c path="Array"><c path="vscode.DocumentHighlight"/></c>
-			<t path="js.Thenable"><c path="Array"><c path="vscode.DocumentHighlight"/></c></t>
-		</x>
+		<t path="vscode.ProviderResult"><c path="Array"><c path="vscode.DocumentHighlight"/></c></t>
 	</f>
 	<haxe_doc>* Provide a set of document highlights, like all occurrences of a variable or
      * all exit-points of a function.
@@ -3307,11 +3298,11 @@
 			<haxe_doc>* The range this link applies to.</haxe_doc>
 		</range>
 		<target public="1">
-			<c path="vscode.Uri"/>
+			<t path="Null"><c path="vscode.Uri"/></t>
 			<haxe_doc>* The uri this link points to.</haxe_doc>
 		</target>
 		<new public="1" set="method">
-			<f a="range:target">
+			<f a="range:?target">
 				<c path="vscode.Range"/>
 				<c path="vscode.Uri"/>
 				<x path="Void"/>
@@ -3334,10 +3325,7 @@
 				<t path="Null"><f a=":">
 	<c path="vscode.DocumentLink"/>
 	<t path="vscode.CancellationToken"/>
-	<x path="haxe.extern.EitherType">
-		<c path="vscode.DocumentLink"/>
-		<t path="js.Thenable"><c path="vscode.DocumentLink"/></t>
-	</x>
+	<t path="vscode.ProviderResult"><c path="vscode.DocumentLink"/></t>
 </f></t>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Given a link fill in its [target](#DocumentLink.target). This method is called when an incomplete
@@ -3352,10 +3340,7 @@
 				<f a="document:token">
 					<t path="vscode.TextDocument"/>
 					<t path="vscode.CancellationToken"/>
-					<x path="haxe.extern.EitherType">
-						<c path="Array"><c path="vscode.DocumentLink"/></c>
-						<t path="js.Thenable"><c path="Array"><c path="vscode.DocumentLink"/></c></t>
-					</x>
+					<t path="vscode.ProviderResult"><c path="Array"><c path="vscode.DocumentLink"/></c></t>
 				</f>
 				<haxe_doc>* Provide links for the given document. Note that the editor ships with a default provider that detects
      * `http(s)` and `file` links.
@@ -3363,7 +3348,7 @@
      * @param document The document in which the command was invoked.
      * @param token A cancellation token.
      * @return An array of [document links](#DocumentLink) or a thenable that resolves to such. The lack of a result
-     *  can be signaled by returning `undefined`, `null`, or an empty array.</haxe_doc>
+     * can be signaled by returning `undefined`, `null`, or an empty array.</haxe_doc>
 			</provideDocumentLinks>
 		</a>
 		<haxe_doc>* The document link provider defines the contract between extensions and feature of showing
@@ -3376,10 +3361,7 @@
 		<c path="vscode.Range"/>
 		<t path="vscode.FormattingOptions"/>
 		<t path="vscode.CancellationToken"/>
-		<x path="haxe.extern.EitherType">
-			<c path="Array"><c path="vscode.TextEdit"/></c>
-			<t path="js.Thenable"><c path="Array"><c path="vscode.TextEdit"/></c></t>
-		</x>
+		<t path="vscode.ProviderResult"><c path="Array"><c path="vscode.TextEdit"/></c></t>
 	</f>
 	<haxe_doc>* Provide formatting edits for a range in a document.
      *
@@ -3417,10 +3399,7 @@
 	<f a="document:token">
 		<t path="vscode.TextDocument"/>
 		<t path="vscode.CancellationToken"/>
-		<x path="haxe.extern.EitherType">
-			<c path="Array"><c path="vscode.SymbolInformation"/></c>
-			<t path="js.Thenable"><c path="Array"><c path="vscode.SymbolInformation"/></c></t>
-		</x>
+		<t path="vscode.ProviderResult"><c path="Array"><c path="vscode.SymbolInformation"/></c></t>
 	</f>
 	<haxe_doc>* Provide symbol information for the given document.
      *
@@ -3623,13 +3602,13 @@
      * extension is deactivated the disposables will be disposed.</haxe_doc>
 			</subscriptions>
 			<storagePath>
-				<c path="String"/>
+				<t path="Null"><c path="String"/></t>
 				<haxe_doc>* An absolute file path of a workspace specific directory in which the extension
      * can store private state. The directory might not exist on disk and creation is
      * up to the extension. However, the parent directory is guaranteed to be existent.
      *
-     * Use [`workspaceState`](ExtensionContext#workspaceState) or
-     * [`globalState`](ExtensionContext#globalState) to store key value data.</haxe_doc>
+     * Use [`workspaceState`](#ExtensionContext.workspaceState) or
+     * [`globalState`](#ExtensionContext.globalState) to store key value data.</haxe_doc>
 			</storagePath>
 			<globalState>
 				<t path="vscode.Memento"/>
@@ -3711,7 +3690,7 @@
 			<haxe_doc>* The contents of this hover.</haxe_doc>
 		</contents>
 		<range public="1">
-			<c path="vscode.Range"/>
+			<t path="Null"><c path="vscode.Range"/></t>
 			<haxe_doc>* The range to which this hover applies. When missing, the
      * editor will use the range at the current position or the
      * current position itself.</haxe_doc>
@@ -3743,10 +3722,7 @@
 		<t path="vscode.TextDocument"/>
 		<c path="vscode.Position"/>
 		<t path="vscode.CancellationToken"/>
-		<x path="haxe.extern.EitherType">
-			<c path="vscode.Hover"/>
-			<t path="js.Thenable"><c path="vscode.Hover"/></t>
-		</x>
+		<t path="vscode.ProviderResult"><c path="vscode.Hover"/></t>
 	</f>
 	<haxe_doc>* Provide a hover for the given position and document. Multiple hovers at the same
      * position will be merged by the editor. A hover can have a range which defaults
@@ -3893,7 +3869,7 @@
 			<validateInput>
 				<t path="Null"><f a="">
 	<c path="String"/>
-	<c path="String"/>
+	<t path="Null"><c path="String"/></t>
 </f></t>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional function that will be called to validate input and to give a hint
@@ -4075,10 +4051,9 @@
      * @param value A value. MUST not contain cyclic references.</haxe_doc>
 			</update>
 			<get params="T" set="method">
-				<f a="key:?defaultValue">
+				<f a="key">
 					<c path="String"/>
-					<c path="get.T"/>
-					<c path="get.T"/>
+					<t path="Null"><c path="get.T"/></t>
 				</f>
 				<haxe_doc>* Return a value.
      *
@@ -4086,6 +4061,19 @@
      * @param defaultValue A value that should be returned when there is no
      * value (`undefined`) with the given key.
      * @return The stored value, `undefined`, or the defaultValue.</haxe_doc>
+				<overloads><get public="1" params="T" set="method">
+	<f a="key:defaultValue">
+		<c path="String"/>
+		<c path="get.T"/>
+		<c path="get.T"/>
+	</f>
+	<haxe_doc>* Return a value.
+     *
+     * @param key A string.
+     * @param defaultValue A value that should be returned when there is no
+     * value (`undefined`) with the given key.
+     * @return The stored value, `undefined`, or the defaultValue.</haxe_doc>
+</get></overloads>
 			</get>
 		</a>
 		<haxe_doc>* A memento represents a storage utility. It can store and retrieve
@@ -4137,10 +4125,7 @@
 		<c path="String"/>
 		<t path="vscode.FormattingOptions"/>
 		<t path="vscode.CancellationToken"/>
-		<x path="haxe.extern.EitherType">
-			<c path="Array"><c path="vscode.TextEdit"/></c>
-			<t path="js.Thenable"><c path="Array"><c path="vscode.TextEdit"/></c></t>
-		</x>
+		<t path="vscode.ProviderResult"><c path="Array"><c path="vscode.TextEdit"/></c></t>
 	</f>
 	<haxe_doc>* Provide formatting edits after a character has been typed.
      *
@@ -4317,7 +4302,7 @@
      * the UI.</haxe_doc>
 		</label>
 		<documentation public="1">
-			<c path="String"/>
+			<t path="Null"><c path="String"/></t>
 			<haxe_doc>* The human-readable doc-comment of this signature. Will be shown
      * in the UI but can be omitted.</haxe_doc>
 		</documentation>
@@ -4503,6 +4488,40 @@
 	<e>"Position"</e>
 </m></meta>
 	</class>
+	<typedef path="vscode.ProviderResult" params="T" file="src/vscode/ProviderResult.hx">
+		<x path="haxe.extern.EitherType">
+			<c path="vscode.ProviderResult.T"/>
+			<t path="js.Thenable"><c path="vscode.ProviderResult.T"/></t>
+		</x>
+		<haxe_doc><![CDATA[* A provider result represents the values a provider, like the [`HoverProvider`](#HoverProvider),
+ * may return. For once this is the actual result type `T`, like `Hover`, or a thenable that resolves
+ * to that type `T`. In addition, `null` and `undefined` can be returned - either directly or from a
+ * thenable.
+ *
+ * The snippets below are all valid implementions of the [`HoverProvider`](#HoverProvider):
+ *
+ * ```ts
+ *	let a: HoverProvider = {
+ *		provideHover(doc, pos, token): ProviderResult<Hover> {
+ *			return new Hover('Hello World');
+ *		}
+ *	}
+ *
+ *	let b: HoverProvider = {
+ *		provideHover(doc, pos, token): ProviderResult<Hover> {
+ *			return new Promise(resolve => {
+ * 				resolve(new Hover('Hello World'));
+ *			});
+ *		}
+ *	}
+ *
+ *	let c: HoverProvider = {
+ *		provideHover(doc, pos, token): ProviderResult<Hover> {
+ *			return; // undefined
+ *		}
+ *	}
+ *```]]></haxe_doc>
+	</typedef>
 	<typedef path="vscode.QuickPickItem" params="" file="src/vscode/QuickPickItem.hx">
 		<a>
 			<label>
@@ -4605,7 +4624,7 @@
 		<intersection public="1" set="method">
 			<f a="range">
 				<c path="vscode.Range"/>
-				<c path="vscode.Range"/>
+				<t path="Null"><c path="vscode.Range"/></t>
 			</f>
 			<haxe_doc>* Intersect `range` with this range and returns a new range or `undefined`
      * if the ranges have no overlap.
@@ -4710,10 +4729,7 @@
 		<c path="vscode.Position"/>
 		<t path="vscode.ReferenceContext"/>
 		<t path="vscode.CancellationToken"/>
-		<x path="haxe.extern.EitherType">
-			<c path="Array"><c path="vscode.Location"/></c>
-			<t path="js.Thenable"><c path="Array"><c path="vscode.Location"/></c></t>
-		</x>
+		<t path="vscode.ProviderResult"><c path="Array"><c path="vscode.Location"/></c></t>
 	</f>
 	<haxe_doc>* Provide a set of project-wide references for the given position and document.
      *
@@ -4734,10 +4750,7 @@
 		<c path="vscode.Position"/>
 		<c path="String"/>
 		<t path="vscode.CancellationToken"/>
-		<x path="haxe.extern.EitherType">
-			<c path="vscode.WorkspaceEdit"/>
-			<t path="js.Thenable"><c path="vscode.WorkspaceEdit"/></t>
-		</x>
+		<t path="vscode.ProviderResult"><c path="vscode.WorkspaceEdit"/></t>
 	</f>
 	<haxe_doc>* Provide an edit that describes changes that have to be made to one
      * or many resources to rename a symbol to a different name.
@@ -4825,10 +4838,7 @@
 		<t path="vscode.TextDocument"/>
 		<c path="vscode.Position"/>
 		<t path="vscode.CancellationToken"/>
-		<x path="haxe.extern.EitherType">
-			<c path="vscode.SignatureHelp"/>
-			<t path="js.Thenable"><c path="vscode.SignatureHelp"/></t>
-		</x>
+		<t path="vscode.ProviderResult"><c path="vscode.SignatureHelp"/></t>
 	</f>
 	<haxe_doc>* Provide help for the signature at the given position and document.
      *
@@ -4848,7 +4858,7 @@
      * the UI.</haxe_doc>
 		</label>
 		<documentation public="1">
-			<c path="String"/>
+			<t path="Null"><c path="String"/></t>
 			<haxe_doc>* The human-readable doc-comment of this signature. Will be shown
      * in the UI but can be omitted.</haxe_doc>
 		</documentation>
@@ -4873,6 +4883,92 @@
 		<meta><m n=":jsRequire">
 	<e>"vscode"</e>
 	<e>"SignatureInformation"</e>
+</m></meta>
+	</class>
+	<class path="vscode.SnippetString" params="" file="src/vscode/SnippetString.hx" extern="1">
+		<value public="1">
+			<c path="String"/>
+			<haxe_doc>* The snippet string.</haxe_doc>
+		</value>
+		<appendText public="1" set="method">
+			<f a="string">
+				<c path="String"/>
+				<c path="vscode.SnippetString"/>
+			</f>
+			<haxe_doc>* Builder-function that appends the given string to
+     * the [`value`](#SnippetString.value) of this snippet string.
+     *
+     * @param string A value to append 'as given'. The string will be escaped.
+     * @return This snippet string.</haxe_doc>
+		</appendText>
+		<appendTabstop public="1" set="method">
+			<f a="?number">
+				<x path="Int"/>
+				<c path="vscode.SnippetString"/>
+			</f>
+			<haxe_doc>* Builder-function that appends a tabstop (`$1`, `$2` etc) to
+     * the [`value`](#SnippetString.value) of this snippet string.
+     *
+     * @param number The number of this tabstop, defaults to an auto-incremet
+     * value starting at 1.
+     * @return This snippet string.</haxe_doc>
+		</appendTabstop>
+		<appendPlaceholder public="1" set="method">
+			<f a="value:?number">
+				<x path="haxe.extern.EitherType">
+					<c path="String"/>
+					<f a="">
+						<c path="vscode.SnippetString"/>
+						<x path="Any"/>
+					</f>
+				</x>
+				<x path="Int"/>
+				<c path="vscode.SnippetString"/>
+			</f>
+			<haxe_doc>* Builder-function that appends a placeholder (`${1:value}`) to
+     * the [`value`](#SnippetString.value) of this snippet string.
+     *
+     * @param value The value of this placeholder - either a string or a function
+     * with which a nested snippet can be created.
+     * @param number The number of this tabstop, defaults to an auto-incremet
+     * value starting at 1.
+     * @return This snippet string.</haxe_doc>
+		</appendPlaceholder>
+		<appendVariable public="1" set="method">
+			<f a="name:defaultValue">
+				<c path="String"/>
+				<x path="haxe.extern.EitherType">
+					<c path="String"/>
+					<f a="">
+						<c path="vscode.SnippetString"/>
+						<x path="Any"/>
+					</f>
+				</x>
+				<c path="vscode.SnippetString"/>
+			</f>
+			<haxe_doc>* Builder-function that appends a variable (`${VAR}`) to
+     * the [`value`](#SnippetString.value) of this snippet string.
+     *
+     * @param name The name of the variable - excluding the `$`.
+     * @param defaultValue The default value which is used when the variable name cannot
+     * be resolved - either a string or a function with which a nested snippet can be created.
+     * @return This snippet string.</haxe_doc>
+		</appendVariable>
+		<new public="1" set="method"><f a="?value">
+	<c path="String"/>
+	<x path="Void"/>
+</f></new>
+		<haxe_doc>* A snippet string is a template which allows to insert text
+ * and to control the editor cursor when insertion happens.
+ *
+ * A snippet can define tab stops and placeholders with `$1`, `$2`
+ * and `${3:foo}`. `$0` defines the final tab stop, it defaults to
+ * the end of the snippet. Variables are defined with `$name` and
+ * `${name:default value}`. The full snippet syntax is documented
+ * [here](http://code.visualstudio.com/docs/customization/userdefinedsnippets#_creating-your-own-snippets).</haxe_doc>
+		<meta><m n=":jsRequire">
+	<e>"vscode"</e>
+	<e>"SnippetString"</e>
 </m></meta>
 	</class>
 	<abstract path="vscode.StatusBarAlignment" params="" file="src/vscode/StatusBarAlignment.hx">
@@ -5536,17 +5632,20 @@
      * @readonly</haxe_doc>
 			</isDirty>
 			<getWordRangeAtPosition set="method">
-				<f a="position">
+				<f a="position:?regex">
 					<c path="vscode.Position"/>
-					<c path="vscode.Range"/>
+					<c path="js.RegExp"/>
+					<t path="Null"><c path="vscode.Range"/></t>
 				</f>
 				<haxe_doc>* Get a word-range at the given position. By default words are defined by
      * common separators, like space, -, _, etc. In addition, per languge custom
-     * [word definitions](#LanguageConfiguration.wordPattern) can be defined.
+     * [word definitions](#LanguageConfiguration.wordPattern) can be defined. It
+     * is also possible to provide a custom regular expression.
      *
      * The position will be [adjusted](#TextDocument.validatePosition).
      *
      * @param position A position.
+     * @param regex Optional regular expression that describes what a word is.
      * @return A range spanning a word, or `undefined`.</haxe_doc>
 			</getWordRangeAtPosition>
 			<getText set="method">
@@ -5607,10 +5706,7 @@
 				<f a="uri:token">
 					<c path="vscode.Uri"/>
 					<t path="vscode.CancellationToken"/>
-					<x path="haxe.extern.EitherType">
-						<c path="String"/>
-						<t path="js.Thenable"><c path="String"/></t>
-					</x>
+					<t path="vscode.ProviderResult"><c path="String"/></t>
 				</f>
 				<haxe_doc>* Provide textual content for a given uri.
      *
@@ -5844,7 +5940,8 @@
 	<typedef path="vscode.TextEditor" params="" file="src/vscode/TextEditor.hx">
 		<a>
 			<viewColumn>
-				<x path="vscode.ViewColumn"/>
+				<t path="Null"><x path="vscode.ViewColumn"/></t>
+				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The column in which this editor shows. Will be `undefined` in case this
      * isn't one of the three main editors, e.g an embedded editor.</haxe_doc>
 			</viewColumn>
@@ -6321,7 +6418,8 @@
 				<haxe_doc>* The new value for the [text editor's selections](#TextEditor.selections).</haxe_doc>
 			</selections>
 			<kind>
-				<x path="vscode.TextEditorSelectionChangeKind"/>
+				<t path="Null"><x path="vscode.TextEditorSelectionChangeKind"/></t>
+				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The [change kind](#TextEditorSelectionChangeKind) which has triggered this
      * event. Can be `undefined`.</haxe_doc>
 			</kind>
@@ -6861,6 +6959,37 @@
      * @param value The new value.
      * @param global When `true` changes the configuration value for all instances of the editor.</haxe_doc>
 			</update>
+			<inspect params="T" set="method">
+				<f a="section">
+					<c path="String"/>
+					<t path="Null"><a>
+	<workspaceValue>
+		<t path="Null"><c path="inspect.T"/></t>
+		<meta><m n=":optional"/></meta>
+	</workspaceValue>
+	<key><c path="String"/></key>
+	<globalValue>
+		<t path="Null"><c path="inspect.T"/></t>
+		<meta><m n=":optional"/></meta>
+	</globalValue>
+	<defaultValue>
+		<t path="Null"><c path="inspect.T"/></t>
+		<meta><m n=":optional"/></meta>
+	</defaultValue>
+</a></t>
+				</f>
+				<haxe_doc>* Retrieve all information about a configuration setting. A configuration value
+     * often consists of a *default* value, a global or installation-wide value, and
+     * a workspace-specific value. The *effective* value (returned by [`get`](#WorkspaceConfiguration.get))
+     * is computed like this: `defaultValue` overwritten by `globalValue`,
+     * `globalValue` overwritten by `workspaceValue`.
+     *
+     * *Note:* The configuration name must denote a leaf in the configuration tree
+     * (`editor.fontSize` vs `editor`) otherwise no result is returned.
+     *
+     * @param section Configuration name, supports _dotted_ names.
+     * @return Information about a configuration setting or `undefined`.</haxe_doc>
+			</inspect>
 			<has set="method">
 				<f a="section">
 					<c path="String"/>
@@ -6872,16 +7001,25 @@
      * @return `true` iff the section doesn't resolve to `undefined`.</haxe_doc>
 			</has>
 			<get params="T" set="method">
-				<f a="section:?defaultValue">
+				<f a="section">
 					<c path="String"/>
-					<c path="get.T"/>
-					<c path="get.T"/>
+					<t path="Null"><c path="get.T"/></t>
 				</f>
 				<haxe_doc>* Return a value from this configuration.
      *
      * @param section Configuration name, supports _dotted_ names.
-     * @param defaultValue A value should be returned when no value could be found, is `undefined`.
-     * @return The value `section` denotes or the default.</haxe_doc>
+     * @return The value `section` denotes or `undefined`.</haxe_doc>
+				<overloads><get public="1" params="T" set="method">
+	<f a="section:defaultValue">
+		<c path="String"/>
+		<c path="get.T"/>
+		<c path="get.T"/>
+	</f>
+	<haxe_doc>* Return a value from this configuration.
+     *
+     * @param section Configuration name, supports _dotted_ names.
+     * @return The value `section` denotes or `undefined`.</haxe_doc>
+</get></overloads>
 			</get>
 		</a>
 		<haxe_doc>* Represents the workspace configuration.
@@ -7017,10 +7155,7 @@
 				<t path="Null"><f a=":">
 	<c path="vscode.SymbolInformation"/>
 	<t path="vscode.CancellationToken"/>
-	<x path="haxe.extern.EitherType">
-		<c path="vscode.SymbolInformation"/>
-		<t path="js.Thenable"><c path="vscode.SymbolInformation"/></t>
-	</x>
+	<t path="vscode.ProviderResult"><c path="vscode.SymbolInformation"/></t>
 </f></t>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Given a symbol fill in its [location](#SymbolInformation.location). This method is called whenever a symbol
@@ -7038,10 +7173,7 @@
 				<f a="query:token">
 					<c path="String"/>
 					<t path="vscode.CancellationToken"/>
-					<x path="haxe.extern.EitherType">
-						<c path="Array"><c path="vscode.SymbolInformation"/></c>
-						<t path="js.Thenable"><c path="Array"><c path="vscode.SymbolInformation"/></c></t>
-					</x>
+					<t path="vscode.ProviderResult"><c path="Array"><c path="vscode.SymbolInformation"/></c></t>
 				</f>
 				<haxe_doc>* Project-wide search for a symbol matching the given query string. It is up to the provider
      * how to search given the query string, like substring, indexOf etc. To improve performance implementors can
