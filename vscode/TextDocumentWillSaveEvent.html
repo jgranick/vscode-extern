@@ -15,8 +15,9 @@ edits will be <em>ignored</em> if concurrent modifications of the document happe
 <p><em>Note:</em> This function can only be called during event dispatch and not
 in an asynchronous manner:</p>
 <pre><code class="prettyprint ts">workspace.onWillSaveTextDocument(event =&gt; {
-        // async, will *throw* an error
-        setTimeout(() =&gt; event.waitUntil(promise));
-        // sync, OK
- event.waitUntil(promise);
+	// async, will *throw* an error
+	setTimeout(() =&gt; event.waitUntil(promise));
+
+	// sync, OK
+	event.waitUntil(promise);
 })</code></pre><p class="javadoc">Parameters:</p><table class="table table-bordered params"><tr><th width="25%"><code>thenable</code></th><td><p>A thenable that resolves to <a href="#TextEdit">pre-save-edits</a>.</p></td></tr></table></div></div></div></div></div></div></div><footer class="section site-footer" style="background:#141419"><div class="container"><div class="copyright"><p style="color:#FFFFFF">&copy; 2017 &nbsp;<a style="color:#FFFFFF" href="https://github.com/vshaxe/">https://github.com/vshaxe/</a></p></div></div></footer><script src="..//highlighter.js"></script><link href="../highlighter.css" rel="stylesheet"/></body></html>

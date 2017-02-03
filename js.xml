@@ -216,7 +216,7 @@
 				<x path="Int"/>
 				<x path="Int"/>
 			</f>
-			<haxe_doc>Returns the position of the leftmost occurence of `str` within `this`
+			<haxe_doc>Returns the position of the leftmost occurrence of `str` within `this`
 		String.
 
 		If `startIndex` is given, the search is performed within the substring
@@ -232,7 +232,7 @@
 				<x path="Int"/>
 				<x path="Int"/>
 			</f>
-			<haxe_doc>Returns the position of the rightmost occurence of `str` within `this`
+			<haxe_doc>Returns the position of the rightmost occurrence of `str` within `this`
 		String.
 
 		If `startIndex` is given, the search is performed within the substring
@@ -247,7 +247,7 @@
 				<c path="String"/>
 				<c path="Array"><c path="String"/></c>
 			</f>
-			<haxe_doc>Splits `this` String at each occurence of `delimiter`.
+			<haxe_doc>Splits `this` String at each occurrence of `delimiter`.
 
 		If `this` String is the empty String `""`, the result is not consistent
 		across targets and may either be `[]` (on Js, Cpp) or `[""]`.
@@ -261,7 +261,7 @@
 
 		If `delimiter` is null, the result is unspecified.
 
-		Otherwise, `this` String is split into parts at each occurence of
+		Otherwise, `this` String is split into parts at each occurrence of
 		`delimiter`. If `this` String starts (or ends) with `delimiter`, the
 		result `Array` contains a leading (or trailing) empty String `""` element.
 		Two subsequent delimiters also result in an empty String `""` element.</haxe_doc>
@@ -513,17 +513,18 @@
     * register a command handler with the identfier `extension.sayHello`.
     * ```javascript
     * commands.registerCommand('extension.sayHello', () => {
-    *   window.showInformationMessage('Hello World!');
+    * 	window.showInformationMessage('Hello World!');
     * });
     * ```
     * Second, bind the command identfier to a title under which it will show in the palette (`package.json`).
     * ```json
     * {
-    * "contributes": {
-    *   "commands": [{
-    *       "command": "extension.sayHello",
-    *       "title": "Hello World"
-    *   }]
+    * 	"contributes": {
+    * 		"commands": [{
+    * 			"command": "extension.sayHello",
+    * 			"title": "Hello World"
+    * 		}]
+    * 	}
     * }
     * ```]]></haxe_doc>
 		</commands>
@@ -559,9 +560,9 @@
      *
      * ```javascript
      * languages.registerHoverProvider('javascript', {
-     *  provideHover(document, position, token) {
-     *      return new Hover('I am a hover!');
-     *  }
+     * 	provideHover(document, position, token) {
+     * 		return new Hover('I am a hover!');
+     * 	}
      * });
      * ```
      *
@@ -582,16 +583,16 @@
      *
      * ```javascript
      * export function activate(context: vscode.ExtensionContext) {
-     *  let api = {
-     *      sum(a, b) {
-     *          return a + b;
-     *      },
-     *      mul(a, b) {
-     *          return a * b;
-     *      }
-     *  };
-     *  // 'export' public api-surface
-     *  return api;
+     * 	let api = {
+     * 		sum(a, b) {
+     * 			return a + b;
+     * 		},
+     * 		mul(a, b) {
+     * 			return a * b;
+     * 		}
+     * 	};
+     * 	// 'export' public api-surface
+     * 	return api;
      * }
      * ```
      *
@@ -924,6 +925,9 @@
 			<haxe_doc>* Set a message to the status bar. This is a short hand for the more powerful
      * status bar [items](#window.createStatusBarItem).
      *
+     * *Note* that status bar messages without hide arguments stack and that they must be disposed when no
+     * longer used.
+     *
      * @param text The message to show, support icon subtitution as in status bar [items](#StatusBarItem.text).
      * @param hideAfterTimeout Timeout in milliseconds after which the message will be disposed.
      * @param hideWhenDone Thenable on which completion (resolve or reject) the message will be disposed.
@@ -938,6 +942,9 @@
 					<haxe_doc>* Set a message to the status bar. This is a short hand for the more powerful
      * status bar [items](#window.createStatusBarItem).
      *
+     * *Note* that status bar messages without hide arguments stack and that they must be disposed when no
+     * longer used.
+     *
      * @param text The message to show, support icon subtitution as in status bar [items](#StatusBarItem.text).
      * @param hideAfterTimeout Timeout in milliseconds after which the message will be disposed.
      * @param hideWhenDone Thenable on which completion (resolve or reject) the message will be disposed.
@@ -951,6 +958,9 @@
 					</f>
 					<haxe_doc>* Set a message to the status bar. This is a short hand for the more powerful
      * status bar [items](#window.createStatusBarItem).
+     *
+     * *Note* that status bar messages without hide arguments stack and that they must be disposed when no
+     * longer used.
      *
      * @param text The message to show, support icon subtitution as in status bar [items](#StatusBarItem.text).
      * @param hideAfterTimeout Timeout in milliseconds after which the message will be disposed.
@@ -978,12 +988,28 @@
 				<c path="Array"><c path="String"/></c>
 				<t path="vscode.Terminal"/>
 			</f>
-			<haxe_doc>* Creates a [Terminal](#Terminal).
+			<haxe_doc>* Creates a [Terminal](#Terminal). The cwd of the terminal will be the workspace directory
+     * if it exists, regardless of whether an explicit customStartPath setting exists.
      *
      * @param name Optional human-readable string which will be used to represent the terminal in the UI.
      * @param shellPath Optional path to a custom shell executable to be used in the terminal.
      * @param shellArgs Optional args for the custom shell executable, this does not work on Windows (see #8429)
+     * @param options A TerminalOptions object describing the characteristics of the new terminal.
      * @return A new Terminal.</haxe_doc>
+			<overloads><createTerminal public="1" set="method">
+	<f a="options">
+		<t path="vscode.TerminalOptions"/>
+		<t path="vscode.Terminal"/>
+	</f>
+	<haxe_doc>* Creates a [Terminal](#Terminal). The cwd of the terminal will be the workspace directory
+     * if it exists, regardless of whether an explicit customStartPath setting exists.
+     *
+     * @param name Optional human-readable string which will be used to represent the terminal in the UI.
+     * @param shellPath Optional path to a custom shell executable to be used in the terminal.
+     * @param shellArgs Optional args for the custom shell executable, this does not work on Windows (see #8429)
+     * @param options A TerminalOptions object describing the characteristics of the new terminal.
+     * @return A new Terminal.</haxe_doc>
+</createTerminal></overloads>
 		</createTerminal>
 	</class>
 	<class path="VscodeExtensions" params="" file="src/Vscode.hx" module="Vscode" extern="1">
@@ -1115,6 +1141,22 @@
      * @param provider A definition provider.
      * @return A [disposable](#Disposable) that unregisters this provider when being disposed.</haxe_doc>
 		</registerDefinitionProvider>
+		<registerImplementationProvider public="1" set="method">
+			<f a="selector:provider">
+				<t path="vscode.DocumentSelector"/>
+				<t path="vscode.ImplementationProvider"/>
+				<c path="vscode.Disposable"/>
+			</f>
+			<haxe_doc>* Register an implementation provider.
+     *
+     * Multiple providers can be registered for a language. In that case providers are asked in
+     * parallel and the results are merged. A failing provider (rejected promise or exception) will
+     * not cause a failure of the whole operation.
+     *
+     * @param selector A selector that defines the documents this provider is applicable to.
+     * @param provider An implementation provider.
+     * @return A [disposable](#Disposable) that unregisters this provider when being disposed.</haxe_doc>
+		</registerImplementationProvider>
 		<registerHoverProvider public="1" set="method">
 			<f a="selector:provider">
 				<t path="vscode.DocumentSelector"/>
@@ -1418,14 +1460,27 @@
      *
      * Uris with other schemes will make this method return a rejected promise.
      *
+     * ---
+     *
+     * A short-hand for `openTextDocument(Uri.file(fileName))`.
+     *
+     * ---
+     *
+     * Opens an untitled text document. The editor will prompt the user for a file
+     * path when the document is to be saved. The `options` parameter allows to
+     * specify the *language* of the document.
+     *
      * @param uri Identifies the resource to open.
+     * @param fileName A name of a file on disk.
+     * @param options Options to control how the document will be created.
      * @return A promise that resolves to a [document](#TextDocument).</haxe_doc>
-			<overloads><openTextDocument public="1" set="method">
-	<f a="fileName">
-		<c path="String"/>
-		<t path="js.Thenable"><t path="vscode.TextDocument"/></t>
-	</f>
-	<haxe_doc>* Opens the denoted document from disk. Will return early if the
+			<overloads>
+				<openTextDocument public="1" set="method">
+					<f a="?options">
+						<a><language><c path="String"/></language></a>
+						<t path="js.Thenable"><t path="vscode.TextDocument"/></t>
+					</f>
+					<haxe_doc>* Opens the denoted document from disk. Will return early if the
      * document is already open, otherwise the document is loaded and the
      * [open document](#workspace.onDidOpenTextDocument)-event fires.
      * The document to open is denoted by the [uri](#Uri). Two schemes are supported:
@@ -1435,9 +1490,52 @@
      *
      * Uris with other schemes will make this method return a rejected promise.
      *
+     * ---
+     *
+     * A short-hand for `openTextDocument(Uri.file(fileName))`.
+     *
+     * ---
+     *
+     * Opens an untitled text document. The editor will prompt the user for a file
+     * path when the document is to be saved. The `options` parameter allows to
+     * specify the *language* of the document.
+     *
      * @param uri Identifies the resource to open.
+     * @param fileName A name of a file on disk.
+     * @param options Options to control how the document will be created.
      * @return A promise that resolves to a [document](#TextDocument).</haxe_doc>
-</openTextDocument></overloads>
+				</openTextDocument>
+				<openTextDocument public="1" set="method">
+					<f a="fileName">
+						<c path="String"/>
+						<t path="js.Thenable"><t path="vscode.TextDocument"/></t>
+					</f>
+					<haxe_doc>* Opens the denoted document from disk. Will return early if the
+     * document is already open, otherwise the document is loaded and the
+     * [open document](#workspace.onDidOpenTextDocument)-event fires.
+     * The document to open is denoted by the [uri](#Uri). Two schemes are supported:
+     *
+     * file: A file on disk, will be rejected if the file does not exist or cannot be loaded, e.g. `file:///Users/frodo/r.ini`.
+     * untitled: A new file that should be saved on disk, e.g. `untitled:c:\frodo\new.js`. The language will be derived from the file name.
+     *
+     * Uris with other schemes will make this method return a rejected promise.
+     *
+     * ---
+     *
+     * A short-hand for `openTextDocument(Uri.file(fileName))`.
+     *
+     * ---
+     *
+     * Opens an untitled text document. The editor will prompt the user for a file
+     * path when the document is to be saved. The `options` parameter allows to
+     * specify the *language* of the document.
+     *
+     * @param uri Identifies the resource to open.
+     * @param fileName A name of a file on disk.
+     * @param options Options to control how the document will be created.
+     * @return A promise that resolves to a [document](#TextDocument).</haxe_doc>
+				</openTextDocument>
+			</overloads>
 		</openTextDocument>
 		<registerTextDocumentContentProvider public="1" set="method">
 			<f a="scheme:provider">
@@ -2021,9 +2119,7 @@
 	<typedef path="vscode.CodeActionContext" params="" file="src/vscode/CodeActionContext.hx">
 		<a><diagnostics set="null">
 	<c path="Array"><c path="vscode.Diagnostic"/></c>
-	<haxe_doc>* An array of diagnostics.
-     *
-     * @readonly</haxe_doc>
+	<haxe_doc>* An array of diagnostics.</haxe_doc>
 </diagnostics></a>
 		<haxe_doc>* Contains additional diagnostic information about the context in which
  * a [code action](#CodeActionProvider.provideCodeActions) is run.</haxe_doc>
@@ -2062,9 +2158,7 @@
 		</command>
 		<isResolved public="1" set="null">
 			<x path="Bool"/>
-			<haxe_doc>* `true` when there is a command associated.
-     *
-     * @readonly</haxe_doc>
+			<haxe_doc>* `true` when there is a command associated.</haxe_doc>
 		</isResolved>
 		<new public="1" set="method">
 			<f a="range:?command">
@@ -2121,6 +2215,11 @@
      * @return An array of code lenses or a thenable that resolves to such. The lack of a result can be
      * signaled by returning `undefined`, `null`, or an empty array.</haxe_doc>
 			</provideCodeLenses>
+			<onDidChangeCodeLenses>
+				<t path="Null"><t path="vscode.Event"><x path="Void"/></t></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* An optional event to signal that the code lenses from this provider have changed.</haxe_doc>
+			</onDidChangeCodeLenses>
 		</a>
 		<haxe_doc>* A code lens provider adds [commands](#Command) to source text. The commands will be shown
  * as dedicated horizontal lines in between the source text.</haxe_doc>
@@ -2215,6 +2314,12 @@
      * *Note:* The range must be a [single line](#Range.isSingleLine) and it must
      * [contain](#Range.contains) the position at which completion has been [requested](#CompletionItemProvider.provideCompletionItems).</haxe_doc>
 		</range>
+		<commitCharacters public="1">
+			<t path="Null"><c path="Array"><c path="String"/></c></t>
+			<haxe_doc>* An optional set of characters that when pressed while this completion is active will accept it first and
+     * then type that character. *Note* that all commit characters should have `length=1` and that superfluous
+     * characters will be ignored.</haxe_doc>
+		</commitCharacters>
 		<textEdit public="1">
 			<t path="Null"><c path="vscode.TextEdit"/></t>
 			<meta><m n=":deprecated"/></meta>
@@ -2408,6 +2513,13 @@
 			<m n=":impl"/>
 		</meta>
 	</Reference>
+	<Folder public="1" set="null" static="1">
+		<x path="vscode.CompletionItemKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</Folder>
 	<meta>
 		<m n=":final"/>
 		<m n=":enum"/>
@@ -2545,6 +2657,13 @@
 				<m n=":impl"/>
 			</meta>
 		</Reference>
+		<Folder public="1" set="null" static="1">
+			<x path="vscode.CompletionItemKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</Folder>
 		<meta>
 			<m n=":final"/>
 			<m n=":enum"/>
@@ -2921,8 +3040,7 @@
 				<c path="String"/>
 				<haxe_doc>* The name of this diagnostic collection, for instance `typescript`. Every diagnostic
      * from this collection will be associated with this name. Also, the task framework uses this
-     * name when defining [problem matchers](https://code.visualstudio.com/docs/editor/tasks#_defining-a-problem-matcher).
-     * @readonly</haxe_doc>
+     * name when defining [problem matchers](https://code.visualstudio.com/docs/editor/tasks#_defining-a-problem-matcher).</haxe_doc>
 			</name>
 			<has set="method">
 				<f a="uri">
@@ -3549,34 +3667,24 @@
 		<a>
 			<packageJSON set="null">
 				<x path="Any"/>
-				<haxe_doc>* The parsed contents of the extension's package.json.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* The parsed contents of the extension's package.json.</haxe_doc>
 			</packageJSON>
 			<isActive set="null">
 				<x path="Bool"/>
-				<haxe_doc>* `true` if the extension has been activated.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* `true` if the extension has been activated.</haxe_doc>
 			</isActive>
 			<id set="null">
 				<c path="String"/>
-				<haxe_doc>* The canonical extension identifier in the form of: `publisher.name`.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* The canonical extension identifier in the form of: `publisher.name`.</haxe_doc>
 			</id>
 			<extensionPath set="null">
 				<c path="String"/>
-				<haxe_doc>* The absolute file path of the directory containing this extension.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* The absolute file path of the directory containing this extension.</haxe_doc>
 			</extensionPath>
 			<exports>
 				<c path="vscode.Extension.T"/>
 				<haxe_doc>* The public API exported by this extension. It is an invalid action
-     * to access this field before this extension has been activated.
-     *
-     * @readonly</haxe_doc>
+     * to access this field before this extension has been activated.</haxe_doc>
 			</exports>
 			<activate set="method">
 				<f a=""><t path="js.Thenable"><c path="vscode.Extension.T"/></t></f>
@@ -3736,6 +3844,25 @@
 </provideHover></a>
 		<haxe_doc>* The hover provider interface defines the contract between extensions and
  * the [hover](https://code.visualstudio.com/docs/editor/editingevolved#_hover)-feature.</haxe_doc>
+	</typedef>
+	<typedef path="vscode.ImplementationProvider" params="" file="src/vscode/ImplementationProvider.hx">
+		<a><provideImplementation set="method">
+	<f a="document:position:token">
+		<t path="vscode.TextDocument"/>
+		<c path="vscode.Position"/>
+		<t path="vscode.CancellationToken"/>
+		<t path="vscode.ProviderResult"><t path="vscode.Definition"/></t>
+	</f>
+	<haxe_doc>* Provide the implementations of the symbol at the given position and document.
+     *
+     * @param document The document in which the command was invoked.
+     * @param position The position at which the command was invoked.
+     * @param token A cancellation token.
+     * @return A definition or a thenable that resolves to such. The lack of a result can be
+     * signaled by returning `undefined` or `null`.</haxe_doc>
+</provideImplementation></a>
+		<haxe_doc>* The type implemenetation provider interface defines the contract between extensions and
+ * the go to implementation feature.</haxe_doc>
 	</typedef>
 	<abstract path="vscode.IndentAction" params="" file="src/vscode/IndentAction.hx">
 		<this><x path="Int"/></this>
@@ -4167,8 +4294,7 @@
 			</show>
 			<name>
 				<c path="String"/>
-				<haxe_doc>* The human-readable name of this output channel.
-     * @readonly</haxe_doc>
+				<haxe_doc>* The human-readable name of this output channel.</haxe_doc>
 			</name>
 			<hide set="method">
 				<f a=""><x path="Void"/></f>
@@ -4327,13 +4453,11 @@
 	<class path="vscode.Position" params="" file="src/vscode/Position.hx" extern="1">
 		<line public="1" set="null">
 			<x path="Int"/>
-			<haxe_doc>* The zero-based line value.
-     * @readonly</haxe_doc>
+			<haxe_doc>* The zero-based line value.</haxe_doc>
 		</line>
 		<character public="1" set="null">
 			<x path="Int"/>
-			<haxe_doc>* The zero-based character value.
-     * @readonly</haxe_doc>
+			<haxe_doc>* The zero-based character value.</haxe_doc>
 		</character>
 		<isBefore public="1" set="method">
 			<f a="other">
@@ -4501,26 +4625,26 @@
  * The snippets below are all valid implementions of the [`HoverProvider`](#HoverProvider):
  *
  * ```ts
- *	let a: HoverProvider = {
- *		provideHover(doc, pos, token): ProviderResult<Hover> {
- *			return new Hover('Hello World');
- *		}
- *	}
+ * let a: HoverProvider = {
+ * 	provideHover(doc, pos, token): ProviderResult<Hover> {
+ * 		return new Hover('Hello World');
+ * 	}
+ * }
  *
- *	let b: HoverProvider = {
- *		provideHover(doc, pos, token): ProviderResult<Hover> {
- *			return new Promise(resolve => {
- * 				resolve(new Hover('Hello World'));
- *			});
- *		}
- *	}
+ * let b: HoverProvider = {
+ * 	provideHover(doc, pos, token): ProviderResult<Hover> {
+ * 		return new Promise(resolve => {
+ * 			resolve(new Hover('Hello World'));
+ * 	 	});
+ * 	}
+ * }
  *
- *	let c: HoverProvider = {
- *		provideHover(doc, pos, token): ProviderResult<Hover> {
- *			return; // undefined
- *		}
- *	}
- *```]]></haxe_doc>
+ * let c: HoverProvider = {
+ * 	provideHover(doc, pos, token): ProviderResult<Hover> {
+ * 		return; // undefined
+ * 	}
+ * }
+ * ```]]></haxe_doc>
 	</typedef>
 	<typedef path="vscode.QuickPickItem" params="" file="src/vscode/QuickPickItem.hx">
 		<a>
@@ -4580,13 +4704,11 @@
 	<class path="vscode.Range" params="" file="src/vscode/Range.hx" extern="1">
 		<start public="1" set="null">
 			<c path="vscode.Position"/>
-			<haxe_doc>* The start position. It is before or equal to [end](#Range.end).
-     * @readonly</haxe_doc>
+			<haxe_doc>* The start position. It is before or equal to [end](#Range.end).</haxe_doc>
 		</start>
 		<end public="1" set="null">
 			<c path="vscode.Position"/>
-			<haxe_doc>* The end position. It is after or equal to [start](#Range.start).
-     * @readonly</haxe_doc>
+			<haxe_doc>* The end position. It is after or equal to [start](#Range.start).</haxe_doc>
 		</end>
 		<isEmpty public="1">
 			<x path="Bool"/>
@@ -5056,9 +5178,7 @@
 			<priority set="null">
 				<x path="Float"/>
 				<haxe_doc>* The priority of this item. Higher value means the item should
-     * be shown more to the left.
-     *
-     * @readonly</haxe_doc>
+     * be shown more to the left.</haxe_doc>
 			</priority>
 			<hide set="method">
 				<f a=""><x path="Void"/></f>
@@ -5080,9 +5200,7 @@
 			</color>
 			<alignment set="null">
 				<x path="vscode.StatusBarAlignment"/>
-				<haxe_doc>* The alignment of this item.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* The alignment of this item.</haxe_doc>
 			</alignment>
 		</a>
 		<haxe_doc>* A status bar item is a status bar contribution that can
@@ -5495,15 +5613,11 @@
 			</sendText>
 			<processId set="null">
 				<t path="js.Thenable"><x path="Int"/></t>
-				<haxe_doc>* The process ID of the shell process.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* The process ID of the shell process.</haxe_doc>
 			</processId>
 			<name set="null">
 				<c path="String"/>
-				<haxe_doc>* The name of the terminal.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* The name of the terminal.</haxe_doc>
 			</name>
 			<hide set="method">
 				<f a=""><x path="Void"/></f>
@@ -5516,14 +5630,32 @@
 		</a>
 		<haxe_doc>* An individual terminal instance within the integrated terminal.</haxe_doc>
 	</typedef>
+	<typedef path="vscode.TerminalOptions" params="" file="src/vscode/TerminalOptions.hx">
+		<a>
+			<shellPath>
+				<t path="Null"><c path="String"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* A path to a custom shell executable to be used in the terminal.</haxe_doc>
+			</shellPath>
+			<shellArgs>
+				<t path="Null"><c path="Array"><c path="String"/></c></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Args for the custom shell executable, this does not work on Windows (see #8429)</haxe_doc>
+			</shellArgs>
+			<name>
+				<t path="Null"><c path="String"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* A human-readable string which will be used to represent the terminal in the UI.</haxe_doc>
+			</name>
+		</a>
+		<haxe_doc>* Value-object describing what options formatting should use.</haxe_doc>
+	</typedef>
 	<typedef path="vscode.TextDocument" params="" file="src/vscode/TextDocument.hx">
 		<a>
 			<version set="null">
 				<x path="Int"/>
 				<haxe_doc>* The version number of this document (it will strictly increase after each
-     * change, including undo/redo).
-     *
-     * @readonly</haxe_doc>
+     * change, including undo/redo).</haxe_doc>
 			</version>
 			<validateRange set="method">
 				<f a="range">
@@ -5549,9 +5681,7 @@
 				<c path="vscode.Uri"/>
 				<haxe_doc>* The associated URI for this document. Most documents have the __file__-scheme, indicating that they
      * represent files on disk. However, some documents may have other schemes indicating that they are not
-     * available on disk.
-     *
-     * @readonly</haxe_doc>
+     * available on disk.</haxe_doc>
 			</uri>
 			<save set="method">
 				<f a=""><t path="js.Thenable"><x path="Bool"/></t></f>
@@ -5583,11 +5713,9 @@
      * @param position A position.
      * @return A valid zero-based offset.</haxe_doc>
 			</offsetAt>
-			<lineCount>
+			<lineCount set="null">
 				<x path="Int"/>
-				<haxe_doc>* The number of lines in this document.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* The number of lines in this document.</haxe_doc>
 			</lineCount>
 			<lineAt set="method">
 				<f a="line">
@@ -5615,21 +5743,15 @@
 			</lineAt>
 			<languageId set="null">
 				<c path="String"/>
-				<haxe_doc>* The identifier of the language associated with this document.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* The identifier of the language associated with this document.</haxe_doc>
 			</languageId>
 			<isUntitled set="null">
 				<x path="Bool"/>
-				<haxe_doc>* Is this document representing an untitled file.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* Is this document representing an untitled file.</haxe_doc>
 			</isUntitled>
 			<isDirty set="null">
 				<x path="Bool"/>
-				<haxe_doc>* true if there are unpersisted changes.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* true if there are unpersisted changes.</haxe_doc>
 			</isDirty>
 			<getWordRangeAtPosition set="method">
 				<f a="position:?regex">
@@ -5662,9 +5784,7 @@
 			<fileName set="null">
 				<c path="String"/>
 				<haxe_doc>* The file system path of the associated resource. Shorthand
-     * notation for [TextDocument.uri.fsPath](#TextDocument.uri). Independent of the uri scheme.
-     *
-     * @readonly</haxe_doc>
+     * notation for [TextDocument.uri.fsPath](#TextDocument.uri). Independent of the uri scheme.</haxe_doc>
 			</fileName>
 		</a>
 		<haxe_doc>* Represents a text document, such as a source file. Text documents have
@@ -5829,10 +5949,11 @@
      *
      * ```ts
      * workspace.onWillSaveTextDocument(event => {
-        // async, will *throw* an error
-        setTimeout(() => event.waitUntil(promise));
-        // sync, OK
-     *  event.waitUntil(promise);
+     * 	// async, will *throw* an error
+     * 	setTimeout(() => event.waitUntil(promise));
+     *
+     * 	// sync, OK
+     * 	event.waitUntil(promise);
      * })
      * ```
      *
@@ -5851,10 +5972,11 @@
      *
      * ```ts
      * workspace.onWillSaveTextDocument(event => {
-        // async, will *throw* an error
-        setTimeout(() => event.waitUntil(promise));
-        // sync, OK
-     *  event.waitUntil(promise);
+     * 	// async, will *throw* an error
+     * 	setTimeout(() => event.waitUntil(promise));
+     *
+     * 	// sync, OK
+     * 	event.waitUntil(promise);
      * })
      * ```
      *
@@ -5998,6 +6120,35 @@
 				<t path="vscode.TextEditorOptions"/>
 				<haxe_doc>* Text editor options.</haxe_doc>
 			</options>
+			<insertSnippet set="method">
+				<f a="snippet:?location:?options">
+					<c path="vscode.SnippetString"/>
+					<x path="haxe.extern.EitherType">
+						<c path="vscode.Position"/>
+						<x path="haxe.extern.EitherType">
+							<c path="vscode.Range"/>
+							<x path="haxe.extern.EitherType">
+								<c path="Array"><c path="vscode.Position"/></c>
+								<c path="Array"><c path="vscode.Range"/></c>
+							</x>
+						</x>
+					</x>
+					<a>
+						<undoStopBefore><x path="Bool"/></undoStopBefore>
+						<undoStopAfter><x path="Bool"/></undoStopAfter>
+					</a>
+					<t path="js.Thenable"><x path="Bool"/></t>
+				</f>
+				<haxe_doc>* Insert a [snippet](#SnippetString) and put the editor into snippet mode. "Snippet mode"
+     * means the editor adds placeholders and additionals cursors so that the user can complete
+     * or accept the snippet.
+     *
+     * @param snippet The snippet to insert in this edit.
+     * @param location Position or range at which to insert the snippet, defaults to the current editor selection or selections.
+     * @param options The undo/redo behaviour around this edit. By default, undo stops will be created before and after this edit.
+     * @return A promise that resolves with a value indicating if the snippet could be inserted. Note that the promise does not signal
+     * that the snippet is completely filled-in or accepted.</haxe_doc>
+			</insertSnippet>
 			<hide set="method">
 				<f a=""><x path="Void"/></f>
 				<meta><m n=":deprecated"><e>"Use the command 'workbench.action.closeActiveEditor' instead."</e></m></meta>
@@ -6118,8 +6269,7 @@
 		<a>
 			<key set="null">
 				<c path="String"/>
-				<haxe_doc>* Internal representation of the handle.
-     * @readonly</haxe_doc>
+				<haxe_doc>* Internal representation of the handle.</haxe_doc>
 			</key>
 			<dispose set="method">
 				<f a=""><x path="Void"/></f>
@@ -6362,6 +6512,14 @@
 		<haxe_doc>* If the range is outside the viewport, it will be revealed in the center of the viewport.
      * Otherwise, it will be revealed with as little scrolling as possible.</haxe_doc>
 	</InCenterIfOutsideViewport>
+	<AtTop public="1" set="null" static="1">
+		<x path="vscode.TextEditorRevealType"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* The range will always be revealed at the top of the viewport.</haxe_doc>
+	</AtTop>
 	<meta>
 		<m n=":final"/>
 		<m n=":enum"/>
@@ -6398,6 +6556,14 @@
 			<haxe_doc>* If the range is outside the viewport, it will be revealed in the center of the viewport.
      * Otherwise, it will be revealed with as little scrolling as possible.</haxe_doc>
 		</InCenterIfOutsideViewport>
+		<AtTop public="1" set="null" static="1">
+			<x path="vscode.TextEditorRevealType"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* The range will always be revealed at the top of the viewport.</haxe_doc>
+		</AtTop>
 		<meta>
 			<m n=":final"/>
 			<m n=":enum"/>
@@ -6522,41 +6688,29 @@
 		<a>
 			<text set="null">
 				<c path="String"/>
-				<haxe_doc>* The text of this line without the line separator characters.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* The text of this line without the line separator characters.</haxe_doc>
 			</text>
 			<rangeIncludingLineBreak set="null">
 				<c path="vscode.Range"/>
-				<haxe_doc>* The range this line covers with the line separator characters.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* The range this line covers with the line separator characters.</haxe_doc>
 			</rangeIncludingLineBreak>
 			<range set="null">
 				<c path="vscode.Range"/>
-				<haxe_doc>* The range this line covers without the line separator characters.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* The range this line covers without the line separator characters.</haxe_doc>
 			</range>
 			<lineNumber set="null">
 				<x path="Int"/>
-				<haxe_doc>* The zero-based line number.
-     *
-     * @readonly</haxe_doc>
+				<haxe_doc>* The zero-based line number.</haxe_doc>
 			</lineNumber>
 			<isEmptyOrWhitespace set="null">
 				<x path="Bool"/>
 				<haxe_doc>* Whether this line is whitespace only, shorthand
-     * for [TextLine.firstNonWhitespaceCharacterIndex](#TextLine.firstNonWhitespaceCharacterIndex) === [TextLine.text.length](#TextLine.text).
-     *
-     * @readonly</haxe_doc>
+     * for [TextLine.firstNonWhitespaceCharacterIndex](#TextLine.firstNonWhitespaceCharacterIndex) === [TextLine.text.length](#TextLine.text).</haxe_doc>
 			</isEmptyOrWhitespace>
 			<firstNonWhitespaceCharacterIndex set="null">
 				<x path="Int"/>
 				<haxe_doc>* The offset of the first character which is not a whitespace character as defined
-     * by `/\s/`. **Note** that if a line is all whitespaces the length of the line is returned.
-     *
-     * @readonly</haxe_doc>
+     * by `/\s/`. **Note** that if a line is all whitespaces the length of the line is returned.</haxe_doc>
 			</firstNonWhitespaceCharacterIndex>
 		</a>
 		<haxe_doc>* Represents a line of text, such as a line of source code.
@@ -6768,29 +6922,29 @@
      * @param value The string value of an Uri.
      * @return A new Uri instance.</haxe_doc>
 		</parse>
-		<scheme public="1">
+		<scheme public="1" set="null">
 			<c path="String"/>
 			<haxe_doc>* Scheme is the `http` part of `http://www.msft.com/some/path?query#fragment`.
      * The part before the first colon.</haxe_doc>
 		</scheme>
-		<authority public="1">
+		<authority public="1" set="null">
 			<c path="String"/>
 			<haxe_doc>* Authority is the `www.msft.com` part of `http://www.msft.com/some/path?query#fragment`.
      * The part between the first double slashes and the next slash.</haxe_doc>
 		</authority>
-		<path public="1">
+		<path public="1" set="null">
 			<c path="String"/>
 			<haxe_doc>* Path is the `/some/path` part of `http://www.msft.com/some/path?query#fragment`.</haxe_doc>
 		</path>
-		<query public="1">
+		<query public="1" set="null">
 			<c path="String"/>
 			<haxe_doc>* Query is the `query` part of `http://www.msft.com/some/path?query#fragment`.</haxe_doc>
 		</query>
-		<fragment public="1">
+		<fragment public="1" set="null">
 			<c path="String"/>
 			<haxe_doc>* Fragment is the `fragment` part of `http://www.msft.com/some/path?query#fragment`.</haxe_doc>
 		</fragment>
-		<fsPath public="1">
+		<fsPath public="1" set="null">
 			<c path="String"/>
 			<haxe_doc>* The string representing the corresponding file system path of this Uri.
      *
@@ -6826,15 +6980,16 @@
 			</f>
 			<haxe_doc>* Derive a new Uri from this Uri.
      *
+     * ```haxe
+     * var file = Uri.parse('before:some/file/path');
+     * var other = file.with({scheme: 'after'});
+     * Assert.ok(other.toString() == 'after:some/file/path');
+     * ```
+     *
      * @param change An object that describes a change to this Uri. To unset components use `null` or
      *  the empty string.
      * @return A new Uri that reflects the given change. Will return `this` Uri if the change
-     *  is not changing anything.
-     * @sample ```
-        let file = Uri.parse('before:some/file/path');
-        let other = file.with({ scheme: 'after' });
-        assert.ok(other.toString() === 'after:some/file/path');
-        * ```</haxe_doc>
+     *  is not changing anything.</haxe_doc>
 		</with>
 		<toString public="1" set="method">
 			<f a="?skipEncoding">
@@ -7033,20 +7188,18 @@
  * part of the section identifier. The following snippets shows how to retrieve all configurations
  * from `launch.json`:
  *
- * ```
+ * ```haxe
  * // launch.json configuration
- * const config = workspace.getConfiguration('launch');
+ * var config = workspace.getConfiguration('launch');
  *
  * // retrieve values
- * const values = config.get('configurations');
+ * var values = config.get('configurations');
  * ```</haxe_doc>
 	</typedef>
 	<class path="vscode.WorkspaceEdit" params="" file="src/vscode/WorkspaceEdit.hx" extern="1">
 		<size public="1" set="null">
 			<x path="Int"/>
-			<haxe_doc>* The number of affected resources.
-     *
-     * @readonly</haxe_doc>
+			<haxe_doc>* The number of affected resources.</haxe_doc>
 		</size>
 		<replace public="1" set="method">
 			<f a="uri:range:newText">
