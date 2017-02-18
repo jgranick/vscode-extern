@@ -3652,6 +3652,7 @@
 			<f a=""><x path="Void"/></f>
 			<haxe_doc>* Dispose this object and free resources.</haxe_doc>
 		</dispose>
+		<new public="1" set="method"><f a=""><x path="Void"/></f></new>
 		<haxe_doc>* An event emitter can be used to create and manage an [event](#Event) for others
  * to subscribe to. One emitter always owns one event.
  *
@@ -5838,7 +5839,7 @@
      * @param token A cancellation token.
      * @return A string or a thenable that resolves to such.</haxe_doc>
 			</provideTextDocumentContent>
-			<onDidChange>
+			<onDidChange set="null">
 				<t path="Null"><t path="vscode.Event"><c path="vscode.Uri"/></t></t>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An event to signal a resource has changed.</haxe_doc>
