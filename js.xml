@@ -2105,6 +2105,7 @@
 			<f a=""><x path="Void"/></f>
 			<haxe_doc>* Dispose object and free resources. Will call [cancel](#CancellationTokenSource.cancel).</haxe_doc>
 		</dispose>
+		<new public="1" set="method"><f a=""><x path="Void"/></f></new>
 		<haxe_doc>* A cancellation source creates and controls a [cancellation token](#CancellationToken).</haxe_doc>
 		<meta><m n=":jsRequire">
 	<e>"vscode"</e>
@@ -4947,6 +4948,7 @@
 			<x path="Int"/>
 			<haxe_doc>* The active parameter of the active signature.</haxe_doc>
 		</activeParameter>
+		<new public="1" set="method"><f a=""><x path="Void"/></f></new>
 		<haxe_doc>* Signature help represents the signature of something
  * callable. There can be multiple signatures but only one
  * active and only one active parameter.</haxe_doc>
