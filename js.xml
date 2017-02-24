@@ -7005,7 +7005,7 @@
      *
      * @param skipEncoding Do not percentage-encode the result, defaults to `false`. Note that
      *  the `#` and `?` characters occuring in the path will always be encoded.
-        * @returns A string representation of this Uri.</haxe_doc>
+     * @returns A string representation of this Uri.</haxe_doc>
 		</toString>
 		<toJSON public="1" set="method">
 			<f a=""><x path="Any"/></f>
