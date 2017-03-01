@@ -17,11 +17,11 @@ for your extension.</li></ul>
 <p>Commands from other extensions and from the editor itself are accessible to an extension. However,
 when invoking an editor command not all argument types are supported.</p>
 <p>This is a sample that registers a command handler and adds an entry for that command to the palette. First
-register a command handler with the identfier <code>extension.sayHello</code>.</p>
+register a command handler with the identifier <code>extension.sayHello</code>.</p>
 <pre><code class="prettyprint javascript">commands.registerCommand('extension.sayHello', () =&gt; {
 	window.showInformationMessage('Hello World!');
 });</code></pre>
-<p>Second, bind the command identfier to a title under which it will show in the palette (<code>package.json</code>).</p>
+<p>Second, bind the command identifier to a title under which it will show in the palette (<code>package.json</code>).</p>
 <pre><code class="prettyprint json">{
 	"contributes": {
 		"commands": [{

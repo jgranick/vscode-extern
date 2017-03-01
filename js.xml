@@ -510,13 +510,13 @@
     * when invoking an editor command not all argument types are supported.
     *
     * This is a sample that registers a command handler and adds an entry for that command to the palette. First
-    * register a command handler with the identfier `extension.sayHello`.
+    * register a command handler with the identifier `extension.sayHello`.
     * ```javascript
     * commands.registerCommand('extension.sayHello', () => {
     * 	window.showInformationMessage('Hello World!');
     * });
     * ```
-    * Second, bind the command identfier to a title under which it will show in the palette (`package.json`).
+    * Second, bind the command identifier to a title under which it will show in the palette (`package.json`).
     * ```json
     * {
     * 	"contributes": {
@@ -774,11 +774,12 @@
      * @param options Rendering options for the decoration type.
      * @return A new decoration type instance.</haxe_doc>
 		</createTextEditorDecorationType>
-		<showInformationMessage public="1" params="T" set="method">
-			<f a="message:items">
+		<showInformationMessage public="1" set="method">
+			<f a="message:options:items">
 				<c path="String"/>
-				<x path="haxe.extern.Rest"><c path="showInformationMessage.T"/></x>
-				<t path="js.Thenable"><t path="Null"><c path="showInformationMessage.T"/></t></t>
+				<t path="vscode.MessageOptions"/>
+				<x path="haxe.extern.Rest"><c path="String"/></x>
+				<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
 			</f>
 			<haxe_doc>* Show an information message.
      *
@@ -786,77 +787,184 @@
      *
      * @param message The message to show.
      * @param items A set of items that will be rendered as actions in the message.
+     * @param options Configures the behaviour of the message.
      * @return A thenable that resolves to the selected item or `undefined` when being dismissed.</haxe_doc>
-			<overloads><showInformationMessage public="1" set="method">
-	<f a="message:items">
-		<c path="String"/>
-		<x path="haxe.extern.Rest"><c path="String"/></x>
-		<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
-	</f>
-	<haxe_doc>* Show an information message.
+			<overloads>
+				<showInformationMessage public="1" params="T" set="method">
+					<f a="message:items">
+						<c path="String"/>
+						<x path="haxe.extern.Rest"><c path="showInformationMessage.T"/></x>
+						<t path="js.Thenable"><t path="Null"><c path="showInformationMessage.T"/></t></t>
+					</f>
+					<haxe_doc>* Show an information message.
      *
      * @see [showInformationMessage](#window.showInformationMessage)
      *
      * @param message The message to show.
      * @param items A set of items that will be rendered as actions in the message.
+     * @param options Configures the behaviour of the message.
      * @return A thenable that resolves to the selected item or `undefined` when being dismissed.</haxe_doc>
-</showInformationMessage></overloads>
+				</showInformationMessage>
+				<showInformationMessage public="1" params="T" set="method">
+					<f a="message:options:items">
+						<c path="String"/>
+						<t path="vscode.MessageOptions"/>
+						<x path="haxe.extern.Rest"><c path="showInformationMessage.T"/></x>
+						<t path="js.Thenable"><t path="Null"><c path="showInformationMessage.T"/></t></t>
+					</f>
+					<haxe_doc>* Show an information message.
+     *
+     * @see [showInformationMessage](#window.showInformationMessage)
+     *
+     * @param message The message to show.
+     * @param items A set of items that will be rendered as actions in the message.
+     * @param options Configures the behaviour of the message.
+     * @return A thenable that resolves to the selected item or `undefined` when being dismissed.</haxe_doc>
+				</showInformationMessage>
+				<showInformationMessage public="1" set="method">
+					<f a="message:items">
+						<c path="String"/>
+						<x path="haxe.extern.Rest"><c path="String"/></x>
+						<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
+					</f>
+					<haxe_doc>* Show an information message.
+     *
+     * @see [showInformationMessage](#window.showInformationMessage)
+     *
+     * @param message The message to show.
+     * @param items A set of items that will be rendered as actions in the message.
+     * @param options Configures the behaviour of the message.
+     * @return A thenable that resolves to the selected item or `undefined` when being dismissed.</haxe_doc>
+				</showInformationMessage>
+			</overloads>
 		</showInformationMessage>
-		<showWarningMessage public="1" params="T" set="method">
-			<f a="message:items">
+		<showWarningMessage public="1" set="method">
+			<f a="message:options:items">
 				<c path="String"/>
-				<x path="haxe.extern.Rest"><c path="showWarningMessage.T"/></x>
-				<t path="js.Thenable"><t path="Null"><c path="showWarningMessage.T"/></t></t>
+				<t path="vscode.MessageOptions"/>
+				<x path="haxe.extern.Rest"><c path="String"/></x>
+				<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
 			</f>
 			<haxe_doc>* Show a warning message.
      *
      * @see [showInformationMessage](#window.showInformationMessage)
      *
      * @param message The message to show.
+     * @param options Configures the behaviour of the message.
      * @param items A set of items that will be rendered as actions in the message.
      * @return A thenable that resolves to the selected item or `undefined` when being dismissed.</haxe_doc>
-			<overloads><showWarningMessage public="1" set="method">
-	<f a="message:items">
-		<c path="String"/>
-		<x path="haxe.extern.Rest"><c path="String"/></x>
-		<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
-	</f>
-	<haxe_doc>* Show a warning message.
+			<overloads>
+				<showWarningMessage public="1" params="T" set="method">
+					<f a="message:items">
+						<c path="String"/>
+						<x path="haxe.extern.Rest"><c path="showWarningMessage.T"/></x>
+						<t path="js.Thenable"><t path="Null"><c path="showWarningMessage.T"/></t></t>
+					</f>
+					<haxe_doc>* Show a warning message.
      *
      * @see [showInformationMessage](#window.showInformationMessage)
      *
      * @param message The message to show.
+     * @param options Configures the behaviour of the message.
      * @param items A set of items that will be rendered as actions in the message.
      * @return A thenable that resolves to the selected item or `undefined` when being dismissed.</haxe_doc>
-</showWarningMessage></overloads>
+				</showWarningMessage>
+				<showWarningMessage public="1" params="T" set="method">
+					<f a="message:options:items">
+						<c path="String"/>
+						<t path="vscode.MessageOptions"/>
+						<x path="haxe.extern.Rest"><c path="showWarningMessage.T"/></x>
+						<t path="js.Thenable"><t path="Null"><c path="showWarningMessage.T"/></t></t>
+					</f>
+					<haxe_doc>* Show a warning message.
+     *
+     * @see [showInformationMessage](#window.showInformationMessage)
+     *
+     * @param message The message to show.
+     * @param options Configures the behaviour of the message.
+     * @param items A set of items that will be rendered as actions in the message.
+     * @return A thenable that resolves to the selected item or `undefined` when being dismissed.</haxe_doc>
+				</showWarningMessage>
+				<showWarningMessage public="1" set="method">
+					<f a="message:items">
+						<c path="String"/>
+						<x path="haxe.extern.Rest"><c path="String"/></x>
+						<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
+					</f>
+					<haxe_doc>* Show a warning message.
+     *
+     * @see [showInformationMessage](#window.showInformationMessage)
+     *
+     * @param message The message to show.
+     * @param options Configures the behaviour of the message.
+     * @param items A set of items that will be rendered as actions in the message.
+     * @return A thenable that resolves to the selected item or `undefined` when being dismissed.</haxe_doc>
+				</showWarningMessage>
+			</overloads>
 		</showWarningMessage>
-		<showErrorMessage public="1" params="T" set="method">
-			<f a="message:items">
+		<showErrorMessage public="1" set="method">
+			<f a="message:options:items">
 				<c path="String"/>
-				<x path="haxe.extern.Rest"><c path="showErrorMessage.T"/></x>
-				<t path="js.Thenable"><t path="Null"><c path="showErrorMessage.T"/></t></t>
+				<t path="vscode.MessageOptions"/>
+				<x path="haxe.extern.Rest"><c path="String"/></x>
+				<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
 			</f>
 			<haxe_doc>* Show an error message.
      *
      * @see [showInformationMessage](#window.showInformationMessage)
      *
      * @param message The message to show.
+     * @param options Configures the behaviour of the message.
      * @param items A set of items that will be rendered as actions in the message.
      * @return A thenable that resolves to the selected item or `undefined` when being dismissed.</haxe_doc>
-			<overloads><showErrorMessage public="1" set="method">
-	<f a="message:items">
-		<c path="String"/>
-		<x path="haxe.extern.Rest"><c path="String"/></x>
-		<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
-	</f>
-	<haxe_doc>* Show an error message.
+			<overloads>
+				<showErrorMessage public="1" params="T" set="method">
+					<f a="message:items">
+						<c path="String"/>
+						<x path="haxe.extern.Rest"><c path="showErrorMessage.T"/></x>
+						<t path="js.Thenable"><t path="Null"><c path="showErrorMessage.T"/></t></t>
+					</f>
+					<haxe_doc>* Show an error message.
      *
      * @see [showInformationMessage](#window.showInformationMessage)
      *
      * @param message The message to show.
+     * @param options Configures the behaviour of the message.
      * @param items A set of items that will be rendered as actions in the message.
      * @return A thenable that resolves to the selected item or `undefined` when being dismissed.</haxe_doc>
-</showErrorMessage></overloads>
+				</showErrorMessage>
+				<showErrorMessage public="1" params="T" set="method">
+					<f a="message:options:items">
+						<c path="String"/>
+						<t path="vscode.MessageOptions"/>
+						<x path="haxe.extern.Rest"><c path="showErrorMessage.T"/></x>
+						<t path="js.Thenable"><t path="Null"><c path="showErrorMessage.T"/></t></t>
+					</f>
+					<haxe_doc>* Show an error message.
+     *
+     * @see [showInformationMessage](#window.showInformationMessage)
+     *
+     * @param message The message to show.
+     * @param options Configures the behaviour of the message.
+     * @param items A set of items that will be rendered as actions in the message.
+     * @return A thenable that resolves to the selected item or `undefined` when being dismissed.</haxe_doc>
+				</showErrorMessage>
+				<showErrorMessage public="1" set="method">
+					<f a="message:items">
+						<c path="String"/>
+						<x path="haxe.extern.Rest"><c path="String"/></x>
+						<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
+					</f>
+					<haxe_doc>* Show an error message.
+     *
+     * @see [showInformationMessage](#window.showInformationMessage)
+     *
+     * @param message The message to show.
+     * @param options Configures the behaviour of the message.
+     * @param items A set of items that will be rendered as actions in the message.
+     * @return A thenable that resolves to the selected item or `undefined` when being dismissed.</haxe_doc>
+				</showErrorMessage>
+			</overloads>
 		</showErrorMessage>
 		<showQuickPick public="1" params="T" set="method">
 			<f a="items:?options:?token">
@@ -928,7 +1036,7 @@
      * *Note* that status bar messages without hide arguments stack and that they must be disposed when no
      * longer used.
      *
-     * @param text The message to show, support icon subtitution as in status bar [items](#StatusBarItem.text).
+     * @param text The message to show, supports icon substitution as in status bar [items](#StatusBarItem.text).
      * @param hideAfterTimeout Timeout in milliseconds after which the message will be disposed.
      * @param hideWhenDone Thenable on which completion (resolve or reject) the message will be disposed.
      * @return A disposable which hides the status bar message.</haxe_doc>
@@ -945,7 +1053,7 @@
      * *Note* that status bar messages without hide arguments stack and that they must be disposed when no
      * longer used.
      *
-     * @param text The message to show, support icon subtitution as in status bar [items](#StatusBarItem.text).
+     * @param text The message to show, supports icon substitution as in status bar [items](#StatusBarItem.text).
      * @param hideAfterTimeout Timeout in milliseconds after which the message will be disposed.
      * @param hideWhenDone Thenable on which completion (resolve or reject) the message will be disposed.
      * @return A disposable which hides the status bar message.</haxe_doc>
@@ -962,7 +1070,7 @@
      * *Note* that status bar messages without hide arguments stack and that they must be disposed when no
      * longer used.
      *
-     * @param text The message to show, support icon subtitution as in status bar [items](#StatusBarItem.text).
+     * @param text The message to show, supports icon substitution as in status bar [items](#StatusBarItem.text).
      * @param hideAfterTimeout Timeout in milliseconds after which the message will be disposed.
      * @param hideWhenDone Thenable on which completion (resolve or reject) the message will be disposed.
      * @return A disposable which hides the status bar message.</haxe_doc>
@@ -1157,6 +1265,22 @@
      * @param provider An implementation provider.
      * @return A [disposable](#Disposable) that unregisters this provider when being disposed.</haxe_doc>
 		</registerImplementationProvider>
+		<registerTypeDefinitionProvider public="1" set="method">
+			<f a="selector:provider">
+				<t path="vscode.DocumentSelector"/>
+				<t path="vscode.TypeDefinitionProvider"/>
+				<c path="vscode.Disposable"/>
+			</f>
+			<haxe_doc>* Register a type definition provider.
+     *
+     * Multiple providers can be registered for a language. In that case providers are asked in
+     * parallel and the results are merged. A failing provider (rejected promise or exception) will
+     * not cause a failure of the whole operation.
+     *
+     * @param selector A selector that defines the documents this provider is applicable to.
+     * @param provider A type definition provider.
+     * @return A [disposable](#Disposable) that unregisters this provider when being disposed.</haxe_doc>
+		</registerTypeDefinitionProvider>
 		<registerHoverProvider public="1" set="method">
 			<f a="selector:provider">
 				<t path="vscode.DocumentSelector"/>
@@ -3863,7 +3987,7 @@
      * @return A definition or a thenable that resolves to such. The lack of a result can be
      * signaled by returning `undefined` or `null`.</haxe_doc>
 </provideImplementation></a>
-		<haxe_doc>* The type implemenetation provider interface defines the contract between extensions and
+		<haxe_doc>* The implemenetation provider interface defines the contract between extensions and
  * the go to implementation feature.</haxe_doc>
 	</typedef>
 	<abstract path="vscode.IndentAction" params="" file="src/vscode/IndentAction.hx">
@@ -4223,6 +4347,18 @@
 		</a>
 		<haxe_doc>* Represents an action that is shown with an information, warning, or
  * error message.
+ *
+ * @see [showInformationMessage](#window.showInformationMessage)
+ * @see [showWarningMessage](#window.showWarningMessage)
+ * @see [showErrorMessage](#window.showErrorMessage)</haxe_doc>
+	</typedef>
+	<typedef path="vscode.MessageOptions" params="" file="src/vscode/MessageOptions.hx">
+		<a><modal>
+	<t path="Null"><x path="Bool"/></t>
+	<meta><m n=":optional"/></meta>
+	<haxe_doc>* Indicates that this message should be modal.</haxe_doc>
+</modal></a>
+		<haxe_doc>* Options to configure the behavior of the message.
  *
  * @see [showInformationMessage](#window.showInformationMessage)
  * @see [showWarningMessage](#window.showWarningMessage)
@@ -4714,11 +4850,11 @@
 		</end>
 		<isEmpty public="1">
 			<x path="Bool"/>
-			<haxe_doc>* `true` iff `start` and `end` are equal.</haxe_doc>
+			<haxe_doc>* `true` if `start` and `end` are equal.</haxe_doc>
 		</isEmpty>
 		<isSingleLine public="1">
 			<x path="Bool"/>
-			<haxe_doc>* `true` iff `start.line` and `end.line` are equal.</haxe_doc>
+			<haxe_doc>* `true` if `start.line` and `end.line` are equal.</haxe_doc>
 		</isSingleLine>
 		<contains public="1" set="method">
 			<f a="positionOrRange">
@@ -4731,7 +4867,7 @@
 			<haxe_doc>* Check if a position or a range is contained in this range.
      *
      * @param positionOrRange A position or a range.
-     * @return `true` iff the position or range is inside or equal
+     * @return `true` if the position or range is inside or equal
      * to this range.</haxe_doc>
 		</contains>
 		<isEqual public="1" set="method">
@@ -5162,7 +5298,7 @@
 	<typedef path="vscode.StatusBarItem" params="" file="src/vscode/StatusBarItem.hx">
 		<a>
 			<tooltip>
-				<c path="String"/>
+				<t path="Null"><c path="String"/></t>
 				<haxe_doc>* The tooltip text when you hover over this entry.</haxe_doc>
 			</tooltip>
 			<text>
@@ -5193,12 +5329,12 @@
      * [hide](#StatusBarItem.hide).</haxe_doc>
 			</dispose>
 			<command>
-				<c path="String"/>
+				<t path="Null"><c path="String"/></t>
 				<haxe_doc>* The identifier of a command to run on click. The command must be
      * [known](#commands.getCommands).</haxe_doc>
 			</command>
 			<color>
-				<c path="String"/>
+				<t path="Null"><c path="String"/></t>
 				<haxe_doc>* The foreground color for this entry.</haxe_doc>
 			</color>
 			<alignment set="null">
@@ -6206,7 +6342,7 @@
 			<m n=":enum"/>
 			<m n=":impl"/>
 		</meta>
-		<haxe_doc>* Render the cursor as a vertical line.</haxe_doc>
+		<haxe_doc>* Render the cursor as a vertical thick line.</haxe_doc>
 	</Line>
 	<Block public="1" set="null" static="1">
 		<x path="vscode.TextEditorCursorStyle"/>
@@ -6214,7 +6350,7 @@
 			<m n=":enum"/>
 			<m n=":impl"/>
 		</meta>
-		<haxe_doc>* Render the cursor as a block.</haxe_doc>
+		<haxe_doc>* Render the cursor as a block filled.</haxe_doc>
 	</Block>
 	<Underline public="1" set="null" static="1">
 		<x path="vscode.TextEditorCursorStyle"/>
@@ -6222,8 +6358,32 @@
 			<m n=":enum"/>
 			<m n=":impl"/>
 		</meta>
-		<haxe_doc>* Render the cursor as a horizontal line under the character.</haxe_doc>
+		<haxe_doc>* Render the cursor as a thick horizontal line.</haxe_doc>
 	</Underline>
+	<LineThin public="1" set="null" static="1">
+		<x path="vscode.TextEditorCursorStyle"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Render the cursor as a vertical thin line.</haxe_doc>
+	</LineThin>
+	<BlockOutline public="1" set="null" static="1">
+		<x path="vscode.TextEditorCursorStyle"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Render the cursor as a block outlined.</haxe_doc>
+	</BlockOutline>
+	<UnderlineThin public="1" set="null" static="1">
+		<x path="vscode.TextEditorCursorStyle"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Render the cursor as a thin horizontal line.</haxe_doc>
+	</UnderlineThin>
 	<meta>
 		<m n=":final"/>
 		<m n=":enum"/>
@@ -6241,7 +6401,7 @@
 				<m n=":enum"/>
 				<m n=":impl"/>
 			</meta>
-			<haxe_doc>* Render the cursor as a vertical line.</haxe_doc>
+			<haxe_doc>* Render the cursor as a vertical thick line.</haxe_doc>
 		</Line>
 		<Block public="1" set="null" static="1">
 			<x path="vscode.TextEditorCursorStyle"/>
@@ -6249,7 +6409,7 @@
 				<m n=":enum"/>
 				<m n=":impl"/>
 			</meta>
-			<haxe_doc>* Render the cursor as a block.</haxe_doc>
+			<haxe_doc>* Render the cursor as a block filled.</haxe_doc>
 		</Block>
 		<Underline public="1" set="null" static="1">
 			<x path="vscode.TextEditorCursorStyle"/>
@@ -6257,8 +6417,32 @@
 				<m n=":enum"/>
 				<m n=":impl"/>
 			</meta>
-			<haxe_doc>* Render the cursor as a horizontal line under the character.</haxe_doc>
+			<haxe_doc>* Render the cursor as a thick horizontal line.</haxe_doc>
 		</Underline>
+		<LineThin public="1" set="null" static="1">
+			<x path="vscode.TextEditorCursorStyle"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Render the cursor as a vertical thin line.</haxe_doc>
+		</LineThin>
+		<BlockOutline public="1" set="null" static="1">
+			<x path="vscode.TextEditorCursorStyle"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Render the cursor as a block outlined.</haxe_doc>
+		</BlockOutline>
+		<UnderlineThin public="1" set="null" static="1">
+			<x path="vscode.TextEditorCursorStyle"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Render the cursor as a thin horizontal line.</haxe_doc>
+		</UnderlineThin>
 		<meta>
 			<m n=":final"/>
 			<m n=":enum"/>
@@ -6902,6 +7086,25 @@
 		</a>
 		<haxe_doc>* Represents theme specific rendering styles for a [text editor decoration](#TextEditorDecorationType).</haxe_doc>
 	</typedef>
+	<typedef path="vscode.TypeDefinitionProvider" params="" file="src/vscode/TypeDefinitionProvider.hx">
+		<a><provideTypeDefinition set="method">
+	<f a="document:position:token">
+		<t path="vscode.TextDocument"/>
+		<c path="vscode.Position"/>
+		<t path="vscode.CancellationToken"/>
+		<t path="vscode.ProviderResult"><t path="vscode.Definition"/></t>
+	</f>
+	<haxe_doc>* Provide the type definition of the symbol at the given position and document.
+     *
+     * @param document The document in which the command was invoked.
+     * @param position The position at which the command was invoked.
+     * @param token A cancellation token.
+     * @return A definition or a thenable that resolves to such. The lack of a result can be
+     * signaled by returning `undefined` or `null`.</haxe_doc>
+</provideTypeDefinition></a>
+		<haxe_doc>* The type definition provider defines the contract between extensions and
+ * the go to type definition feature.</haxe_doc>
+	</typedef>
 	<class path="vscode.Uri" params="" file="src/vscode/Uri.hx" extern="1">
 		<file public="1" set="method" static="1">
 			<f a="path">
@@ -7156,7 +7359,7 @@
 				<haxe_doc>* Check if this configuration has a certain value.
      *
      * @param section Configuration name, supports _dotted_ names.
-     * @return `true` iff the section doesn't resolve to `undefined`.</haxe_doc>
+     * @return `true` if the section doesn't resolve to `undefined`.</haxe_doc>
 			</has>
 			<get params="T" set="method">
 				<f a="section">
