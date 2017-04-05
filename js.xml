@@ -86,7 +86,7 @@
 		</getMinutes>
 		<getSeconds public="1" set="method">
 			<f a=""><x path="Int"/></f>
-			<haxe_doc>Returns the seconds of the `this` Date (0-59 range).</haxe_doc>
+			<haxe_doc>Returns the seconds of `this` Date (0-59 range).</haxe_doc>
 		</getSeconds>
 		<getFullYear public="1" set="method">
 			<f a=""><x path="Int"/></f>
@@ -501,9 +501,9 @@
     * can be executed [manually](#commands.executeCommand) or from a UI gesture. Those are:
     *
     * * palette - Use the `commands`-section in `package.json` to make a command show in
-    * the [command palette](https://code.visualstudio.com/docs/editor/codebasics#_command-palette).
+    * the [command palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette).
     * * keybinding - Use the `keybindings`-section in `package.json` to enable
-    * [keybindings](https://code.visualstudio.com/docs/customization/keybindings#_customizing-shortcuts)
+    * [keybindings](https://code.visualstudio.com/docs/getstarted/keybindings#_customizing-shortcuts)
     * for your extension.
     *
     * Commands from other extensions and from the editor itself are accessible to an extension. However,
@@ -573,6 +573,7 @@
      * the score is only checked to be `>0`, for other features, like [IntelliSense](#languages.registerCompletionItemProvider) the
      * score is used for determining the order in which providers are asked to participate.]]></haxe_doc>
 		</languages>
+		<scm public="1" set="null" static="1"><c path="VscodeScm"/></scm>
 		<extensions public="1" set="null" static="1">
 			<c path="VscodeExtensions"/>
 			<haxe_doc>* Namespace for dealing with installed extensions. Extensions are represented
@@ -1077,6 +1078,21 @@
 				</setStatusBarMessage>
 			</overloads>
 		</setStatusBarMessage>
+		<withScmProgress public="1" params="R" set="method">
+			<f a="task">
+				<f a="">
+					<t path="vscode.Progress"><x path="Float"/></t>
+					<t path="js.Thenable"><c path="withScmProgress.R"/></t>
+				</f>
+				<t path="js.Thenable"><c path="withScmProgress.R"/></t>
+			</f>
+			<haxe_doc>* Show progress in the Source Control viewlet while running the given callback and while
+     * its returned promise isn't resolve or rejected.
+     *
+     * @param task A callback returning a promise. Progress increments can be reported with
+     * the provided [progress](#Progress)-object.
+     * @return The thenable the task did return.</haxe_doc>
+		</withScmProgress>
 		<createStatusBarItem public="1" set="method">
 			<f a="?alignment:?priority">
 				<x path="vscode.StatusBarAlignment"/>
@@ -1136,6 +1152,24 @@
 			<haxe_doc>* All extensions currently known to the system.</haxe_doc>
 		</all>
 	</class>
+	<class path="VscodeScm" params="" file="src/Vscode.hx" module="Vscode" extern="1">
+		<inputBox public="1" set="null">
+			<t path="vscode.SourceControlInputBox"/>
+			<haxe_doc>* The [input box](#SourceControlInputBox) in the Source Control viewlet.</haxe_doc>
+		</inputBox>
+		<createSourceControl public="1" set="method">
+			<f a="id:label">
+				<c path="String"/>
+				<c path="String"/>
+				<t path="vscode.SourceControl"/>
+			</f>
+			<haxe_doc>* Creates a new [source control](#SourceControl) instance.
+     *
+     * @param id A unique `id` for the source control. Something short, eg: `git`.
+     * @param label A human-readable string for the source control. Eg: `Git`.
+     * @return An instance of [source control](#SourceControl).</haxe_doc>
+		</createSourceControl>
+	</class>
 	<class path="VscodeLanguages" params="" file="src/Vscode.hx" module="Vscode" extern="1">
 		<getLanguages public="1" set="method">
 			<f a=""><t path="js.Thenable"><c path="Array"><c path="String"/></c></t></f>
@@ -1149,27 +1183,40 @@
 				<x path="Float"/>
 			</f>
 			<haxe_doc><![CDATA[* Compute the match between a document [selector](#DocumentSelector) and a document. Values
-     * greater than zero mean the selector matches the document. The more individual matches a selector
-     * and a document have, the higher the score is. These are the abstract rules given a `selector`:
+     * greater than zero mean the selector matches the document.
      *
+     * A match is computed according to these rules:
+     * 1. When [`DocumentSelector`](#DocumentSelector) is an array, compute the match for each contained `DocumentFilter` or language identifier and take the maximum value.
+     * 2. A string will be desugared to become the `language`-part of a [`DocumentFilter`](#DocumentFilter), so `"fooLang"` is like `{ language: "fooLang" }`.
+     * 3. A [`DocumentFilter`](#DocumentFilter) will be matched against the document by comparing its parts with the document. The following rules apply:
+     *  1. When the `DocumentFilter` is empty (`{}`) the result is `0`
+     *  2. When `scheme`, `language`, or `pattern` are defined but one doesnвЂ™t match, the result is `0`
+     *  3. Matching against `*` gives a score of `5`, matching via equality or via a glob-pattern gives a score of `10`
+     *  4. The result is the maximun value of each match
+     *
+     * Samples:
+     * ```js
+     * // default document from disk (file-scheme)
+     * doc.uri; //'file:///my/file.js'
+     * doc.languageId; // 'javascript'
+     * match('javascript', doc); // 10;
+     * match({language: 'javascript'}, doc); // 10;
+     * match({language: 'javascript', scheme: 'file'}, doc); // 10;
+     * match('*', doc); // 5
+     * match('fooLang', doc); // 0
+     * match(['fooLang', '*'], doc); // 5
+     *
+     * // virtual document, e.g. from git-index
+     * doc.uri; // 'git:/my/file.js'
+     * doc.languageId; // 'javascript'
+     * match('javascript', doc); // 10;
+     * match({language: 'javascript', scheme: 'git'}, doc); // 10;
+     * match('*', doc); // 5
      * ```
-     * (1) When selector is an array, return the maximum individual result.
-     * (2) When selector is a string match that against the [languageId](#TextDocument.languageId).
-     *  (2.1) When both are equal score is `10`,
-     *  (2.2) When the selector is `*` score is `5`,
-     *  (2.3) Else score is `0`.
-     * (3) When selector is a [filter](#DocumentFilter) return the maximum individual score given that each score is `>0`.
-     *  (3.1) When [language](#DocumentFilter.language) is set apply rules from #2, when `0` the total score is `0`.
-        *   (3.2) When [scheme](#DocumentFilter.scheme) is set and equals the [uri](#TextDocument.uri)-scheme score with `10`, else the total score is `0`.
-        *   (3.3) When [pattern](#DocumentFilter.pattern) is set
-        *       (3.3.1) pattern equals the [uri](#TextDocument.uri)-fsPath score with `10`,
-        *       (3.3.1) if the pattern matches as glob-pattern score with `5`,
-        *       (3.3.1) the total score is `0`
-        * ```
-        *
-        * @param selector A document selector.
-        * @param document A text document.
-        * @return A number `>0` when the selector matches and `0` when the selector does not match.]]></haxe_doc>
+     *
+     * @param selector A document selector.
+     * @param document A text document.
+     * @return A number `>0` when the selector matches and `0` when the selector does not match.]]></haxe_doc>
 		</match>
 		<createDiagnosticCollection public="1" set="method">
 			<f a="?name">
@@ -1574,15 +1621,18 @@
 				<c path="vscode.Uri"/>
 				<t path="js.Thenable"><t path="vscode.TextDocument"/></t>
 			</f>
-			<haxe_doc>* Opens the denoted document from disk. Will return early if the
-     * document is already open, otherwise the document is loaded and the
-     * [open document](#workspace.onDidOpenTextDocument)-event fires.
-     * The document to open is denoted by the [uri](#Uri). Two schemes are supported:
+			<haxe_doc>* Opens a document. Will return early if this document is already open. Otherwise
+     * the document is loaded and the [didOpen](#workspace.onDidOpenTextDocument)-event fires.
      *
-     * file: A file on disk, will be rejected if the file does not exist or cannot be loaded, e.g. `file:///Users/frodo/r.ini`.
-     * untitled: A new file that should be saved on disk, e.g. `untitled:c:\frodo\new.js`. The language will be derived from the file name.
+     * The document is denoted by an [uri](#Uri). Depending on the [scheme](#Uri.scheme) the
+     * following rules apply:
+     * * `file`-scheme: Open a file on disk, will be rejected if the file does not exist or cannot be loaded.
+     * * `untitled`-scheme: A new file that should be saved on disk, e.g. `untitled:c:\frodo\new.js`. The language
+     * will be derived from the file name.
+     * * For all other schemes the registered text document content [providers](#TextDocumentContentProvider) are consulted.
      *
-     * Uris with other schemes will make this method return a rejected promise.
+     * *Note* that the lifecycle of the returned document is owned by the editor and not by the extension. That means an
+     * [`onDidClose`](#workspace.onDidCloseTextDocument)-event can occur at any time after opening it.
      *
      * ---
      *
@@ -1592,7 +1642,7 @@
      *
      * Opens an untitled text document. The editor will prompt the user for a file
      * path when the document is to be saved. The `options` parameter allows to
-     * specify the *language* of the document.
+     * specify the *language* and/or the *content* of the document.
      *
      * @param uri Identifies the resource to open.
      * @param fileName A name of a file on disk.
@@ -1601,18 +1651,30 @@
 			<overloads>
 				<openTextDocument public="1" set="method">
 					<f a="?options">
-						<a><language><c path="String"/></language></a>
+						<a>
+							<language>
+								<t path="Null"><c path="String"/></t>
+								<meta><m n=":optional"/></meta>
+							</language>
+							<content>
+								<t path="Null"><c path="String"/></t>
+								<meta><m n=":optional"/></meta>
+							</content>
+						</a>
 						<t path="js.Thenable"><t path="vscode.TextDocument"/></t>
 					</f>
-					<haxe_doc>* Opens the denoted document from disk. Will return early if the
-     * document is already open, otherwise the document is loaded and the
-     * [open document](#workspace.onDidOpenTextDocument)-event fires.
-     * The document to open is denoted by the [uri](#Uri). Two schemes are supported:
+					<haxe_doc>* Opens a document. Will return early if this document is already open. Otherwise
+     * the document is loaded and the [didOpen](#workspace.onDidOpenTextDocument)-event fires.
      *
-     * file: A file on disk, will be rejected if the file does not exist or cannot be loaded, e.g. `file:///Users/frodo/r.ini`.
-     * untitled: A new file that should be saved on disk, e.g. `untitled:c:\frodo\new.js`. The language will be derived from the file name.
+     * The document is denoted by an [uri](#Uri). Depending on the [scheme](#Uri.scheme) the
+     * following rules apply:
+     * * `file`-scheme: Open a file on disk, will be rejected if the file does not exist or cannot be loaded.
+     * * `untitled`-scheme: A new file that should be saved on disk, e.g. `untitled:c:\frodo\new.js`. The language
+     * will be derived from the file name.
+     * * For all other schemes the registered text document content [providers](#TextDocumentContentProvider) are consulted.
      *
-     * Uris with other schemes will make this method return a rejected promise.
+     * *Note* that the lifecycle of the returned document is owned by the editor and not by the extension. That means an
+     * [`onDidClose`](#workspace.onDidCloseTextDocument)-event can occur at any time after opening it.
      *
      * ---
      *
@@ -1622,7 +1684,7 @@
      *
      * Opens an untitled text document. The editor will prompt the user for a file
      * path when the document is to be saved. The `options` parameter allows to
-     * specify the *language* of the document.
+     * specify the *language* and/or the *content* of the document.
      *
      * @param uri Identifies the resource to open.
      * @param fileName A name of a file on disk.
@@ -1634,15 +1696,18 @@
 						<c path="String"/>
 						<t path="js.Thenable"><t path="vscode.TextDocument"/></t>
 					</f>
-					<haxe_doc>* Opens the denoted document from disk. Will return early if the
-     * document is already open, otherwise the document is loaded and the
-     * [open document](#workspace.onDidOpenTextDocument)-event fires.
-     * The document to open is denoted by the [uri](#Uri). Two schemes are supported:
+					<haxe_doc>* Opens a document. Will return early if this document is already open. Otherwise
+     * the document is loaded and the [didOpen](#workspace.onDidOpenTextDocument)-event fires.
      *
-     * file: A file on disk, will be rejected if the file does not exist or cannot be loaded, e.g. `file:///Users/frodo/r.ini`.
-     * untitled: A new file that should be saved on disk, e.g. `untitled:c:\frodo\new.js`. The language will be derived from the file name.
+     * The document is denoted by an [uri](#Uri). Depending on the [scheme](#Uri.scheme) the
+     * following rules apply:
+     * * `file`-scheme: Open a file on disk, will be rejected if the file does not exist or cannot be loaded.
+     * * `untitled`-scheme: A new file that should be saved on disk, e.g. `untitled:c:\frodo\new.js`. The language
+     * will be derived from the file name.
+     * * For all other schemes the registered text document content [providers](#TextDocumentContentProvider) are consulted.
      *
-     * Uris with other schemes will make this method return a rejected promise.
+     * *Note* that the lifecycle of the returned document is owned by the editor and not by the extension. That means an
+     * [`onDidClose`](#workspace.onDidCloseTextDocument)-event can occur at any time after opening it.
      *
      * ---
      *
@@ -1652,7 +1717,7 @@
      *
      * Opens an untitled text document. The editor will prompt the user for a file
      * path when the document is to be saved. The `options` parameter allows to
-     * specify the *language* of the document.
+     * specify the *language* and/or the *content* of the document.
      *
      * @param uri Identifies the resource to open.
      * @param fileName A name of a file on disk.
@@ -2189,8 +2254,8 @@
 </f></new>
 		<haxe_doc>Native JavaScript regular expressions.
 
-    For cross-platform regular expressions, use Haxe `EReg` class or 
-    [regexp literals](https://haxe.org/manual/std-regex.html).</haxe_doc>
+	For cross-platform regular expressions, use Haxe `EReg` class or
+	[regexp literals](https://haxe.org/manual/std-regex.html).</haxe_doc>
 		<meta><m n=":native"><e>"RegExp"</e></m></meta>
 	</class>
 	<class path="js.RegExpMatch" params="" file="/home/travis/haxe/std/js/RegExp.hx" module="js.RegExp" extern="1">
@@ -2351,6 +2416,11 @@
 	</typedef>
 	<typedef path="vscode.Command" params="" file="src/vscode/Command.hx">
 		<a>
+			<tooltip>
+				<t path="Null"><c path="String"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* A tooltip for for command, when represented in the UI.</haxe_doc>
+			</tooltip>
 			<title>
 				<c path="String"/>
 				<haxe_doc>* Title of the command, like `save`.</haxe_doc>
@@ -2568,6 +2638,13 @@
 			<m n=":impl"/>
 		</meta>
 	</Interface>
+	<Struct public="1" set="null" static="1">
+		<x path="vscode.CompletionItemKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</Struct>
 	<Module public="1" set="null" static="1">
 		<x path="vscode.CompletionItemKind"/>
 		<meta>
@@ -2596,6 +2673,13 @@
 			<m n=":impl"/>
 		</meta>
 	</Value>
+	<Constant public="1" set="null" static="1">
+		<x path="vscode.CompletionItemKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</Constant>
 	<Enum public="1" set="null" static="1">
 		<x path="vscode.CompletionItemKind"/>
 		<meta>
@@ -2603,6 +2687,13 @@
 			<m n=":impl"/>
 		</meta>
 	</Enum>
+	<EnumMember public="1" set="null" static="1">
+		<x path="vscode.CompletionItemKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</EnumMember>
 	<Keyword public="1" set="null" static="1">
 		<x path="vscode.CompletionItemKind"/>
 		<meta>
@@ -2624,13 +2715,6 @@
 			<m n=":impl"/>
 		</meta>
 	</Color>
-	<File public="1" set="null" static="1">
-		<x path="vscode.CompletionItemKind"/>
-		<meta>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-	</File>
 	<Reference public="1" set="null" static="1">
 		<x path="vscode.CompletionItemKind"/>
 		<meta>
@@ -2638,6 +2722,13 @@
 			<m n=":impl"/>
 		</meta>
 	</Reference>
+	<File public="1" set="null" static="1">
+		<x path="vscode.CompletionItemKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</File>
 	<Folder public="1" set="null" static="1">
 		<x path="vscode.CompletionItemKind"/>
 		<meta>
@@ -2712,6 +2803,13 @@
 				<m n=":impl"/>
 			</meta>
 		</Interface>
+		<Struct public="1" set="null" static="1">
+			<x path="vscode.CompletionItemKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</Struct>
 		<Module public="1" set="null" static="1">
 			<x path="vscode.CompletionItemKind"/>
 			<meta>
@@ -2740,6 +2838,13 @@
 				<m n=":impl"/>
 			</meta>
 		</Value>
+		<Constant public="1" set="null" static="1">
+			<x path="vscode.CompletionItemKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</Constant>
 		<Enum public="1" set="null" static="1">
 			<x path="vscode.CompletionItemKind"/>
 			<meta>
@@ -2747,6 +2852,13 @@
 				<m n=":impl"/>
 			</meta>
 		</Enum>
+		<EnumMember public="1" set="null" static="1">
+			<x path="vscode.CompletionItemKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</EnumMember>
 		<Keyword public="1" set="null" static="1">
 			<x path="vscode.CompletionItemKind"/>
 			<meta>
@@ -2768,13 +2880,6 @@
 				<m n=":impl"/>
 			</meta>
 		</Color>
-		<File public="1" set="null" static="1">
-			<x path="vscode.CompletionItemKind"/>
-			<meta>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-		</File>
 		<Reference public="1" set="null" static="1">
 			<x path="vscode.CompletionItemKind"/>
 			<meta>
@@ -2782,6 +2887,13 @@
 				<m n=":impl"/>
 			</meta>
 		</Reference>
+		<File public="1" set="null" static="1">
+			<x path="vscode.CompletionItemKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</File>
 		<Folder public="1" set="null" static="1">
 			<x path="vscode.CompletionItemKind"/>
 			<meta>
@@ -2837,7 +2949,7 @@
 			</provideCompletionItems>
 		</a>
 		<haxe_doc>* The completion item provider interface defines the contract between extensions and
- * [IntelliSense](https://code.visualstudio.com/docs/editor/editingevolved#_intellisense).
+ * [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense).
  *
  * When computing *complete* completion items is expensive, providers can optionally implement
  * the `resolveCompletionItem`-function. In that case it is enough to return completion
@@ -3652,7 +3764,7 @@
      * signaled by returning `undefined`, `null`, or an empty array.</haxe_doc>
 </provideDocumentSymbols></a>
 		<haxe_doc>* The document symbol provider interface defines the contract between extensions and
- * the [go to symbol](https://code.visualstudio.com/docs/editor/editingevolved#_goto-symbol)-feature.</haxe_doc>
+ * the [go to symbol](https://code.visualstudio.com/docs/editor/editingevolved#_go-to-symbol)-feature.</haxe_doc>
 	</typedef>
 	<abstract path="vscode.EndOfLine" params="" file="src/vscode/EndOfLine.hx">
 		<this><x path="Int"/></this>
@@ -3969,7 +4081,7 @@
      * signaled by returning `undefined` or `null`.</haxe_doc>
 </provideHover></a>
 		<haxe_doc>* The hover provider interface defines the contract between extensions and
- * the [hover](https://code.visualstudio.com/docs/editor/editingevolved#_hover)-feature.</haxe_doc>
+ * the [hover](https://code.visualstudio.com/docs/editor/intellisense)-feature.</haxe_doc>
 	</typedef>
 	<typedef path="vscode.ImplementationProvider" params="" file="src/vscode/ImplementationProvider.hx">
 		<a><provideImplementation set="method">
@@ -4750,6 +4862,17 @@
 	<e>"Position"</e>
 </m></meta>
 	</class>
+	<typedef path="vscode.Progress" params="T" file="src/vscode/Progress.hx">
+		<a><report set="method">
+	<f a="value">
+		<c path="vscode.Progress.T"/>
+		<x path="Void"/>
+	</f>
+	<haxe_doc>* Report a progress update.
+     * @param value A progress item, like a message or an updated percentage value</haxe_doc>
+</report></a>
+		<haxe_doc>* Defines a generalized way of reporting progress updates.</haxe_doc>
+	</typedef>
 	<typedef path="vscode.ProviderResult" params="T" file="src/vscode/ProviderResult.hx">
 		<x path="haxe.extern.EitherType">
 			<c path="vscode.ProviderResult.T"/>
@@ -4784,6 +4907,19 @@
  * }
  * ```]]></haxe_doc>
 	</typedef>
+	<typedef path="vscode.QuickDiffProvider" params="" file="src/vscode/QuickDiffProvider.hx"><a><provideOriginalResource set="method">
+	<t path="Null"><f a="uri:token">
+	<c path="vscode.Uri"/>
+	<t path="vscode.CancellationToken"/>
+	<t path="vscode.ProviderResult"><c path="vscode.Uri"/></t>
+</f></t>
+	<meta><m n=":optional"/></meta>
+	<haxe_doc>* Provide a [uri](#Uri) to the original resource of any given resource uri.
+     *
+     * @param uri The uri of the resource open in a text editor.
+     * @param token A cancellation token.
+     * @return A thenable that resolves to uri of the matching original resource.</haxe_doc>
+</provideOriginalResource></a></typedef>
 	<typedef path="vscode.QuickPickItem" params="" file="src/vscode/QuickPickItem.hx">
 		<a>
 			<label>
@@ -5110,7 +5246,7 @@
      * signaled by returning `undefined` or `null`.</haxe_doc>
 </provideSignatureHelp></a>
 		<haxe_doc>* The signature help provider interface defines the contract between extensions and
- * the [parameter hints](https://code.visualstudio.com/docs/editor/editingevolved#_parameter-hints)-feature.</haxe_doc>
+ * the [parameter hints](https://code.visualstudio.com/docs/editor/intellisense)-feature.</haxe_doc>
 	</typedef>
 	<class path="vscode.SignatureInformation" params="" file="src/vscode/SignatureInformation.hx" extern="1">
 		<label public="1">
@@ -5226,12 +5362,177 @@
  * and `${3:foo}`. `$0` defines the final tab stop, it defaults to
  * the end of the snippet. Variables are defined with `$name` and
  * `${name:default value}`. The full snippet syntax is documented
- * [here](http://code.visualstudio.com/docs/customization/userdefinedsnippets#_creating-your-own-snippets).</haxe_doc>
+ * [here](http://code.visualstudio.com/docs/editor/userdefinedsnippets#_creating-your-own-snippets).</haxe_doc>
 		<meta><m n=":jsRequire">
 	<e>"vscode"</e>
 	<e>"SnippetString"</e>
 </m></meta>
 	</class>
+	<typedef path="vscode.SourceControl" params="" file="src/vscode/SourceControl.hx">
+		<a>
+			<statusBarCommands>
+				<t path="Null"><c path="Array"><t path="vscode.Command"/></c></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Optional status bar commands.
+     *
+     * These commands will be displayed in the editor's status bar.</haxe_doc>
+			</statusBarCommands>
+			<quickDiffProvider>
+				<t path="Null"><t path="vscode.QuickDiffProvider"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* An optional [quick diff provider](#QuickDiffProvider).</haxe_doc>
+			</quickDiffProvider>
+			<label set="null">
+				<c path="String"/>
+				<haxe_doc>* The human-readable label of this source control.</haxe_doc>
+			</label>
+			<id set="null">
+				<c path="String"/>
+				<haxe_doc>* The id of this source control.</haxe_doc>
+			</id>
+			<dispose set="method">
+				<f a=""><x path="Void"/></f>
+				<haxe_doc>* Dispose this source control.</haxe_doc>
+			</dispose>
+			<createResourceGroup set="method">
+				<f a="id:label">
+					<c path="String"/>
+					<c path="String"/>
+					<t path="vscode.SourceControlResourceGroup"/>
+				</f>
+				<haxe_doc>* Create a new [resource group](#SourceControlResourceGroup).</haxe_doc>
+			</createResourceGroup>
+			<count>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The UI-visible count of [resource states](#SourceControlResourceState) of
+     * this source control.
+     *
+     * Equals to the total number of [resource state](#SourceControlResourceState)
+     * of this source control, if undefined.</haxe_doc>
+			</count>
+			<commitTemplate>
+				<t path="Null"><c path="String"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Optional commit template string.
+     *
+     * The Source Control viewlet will populate the Source Control
+     * input with this value when appropriate.</haxe_doc>
+			</commitTemplate>
+			<acceptInputCommand>
+				<t path="Null"><t path="vscode.Command"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Optional accept input command.
+     *
+     * This command will be invoked when the user accepts the value
+     * in the Source Control input.</haxe_doc>
+			</acceptInputCommand>
+		</a>
+		<haxe_doc>* An source control is able to provide [resource states](#SourceControlResourceState)
+ * to the editor and interact with the editor in several source control related ways.</haxe_doc>
+	</typedef>
+	<typedef path="vscode.SourceControlInputBox" params="" file="src/vscode/SourceControlInputBox.hx">
+		<a><value>
+	<c path="String"/>
+	<haxe_doc>* Setter and getter for the contents of the input box.</haxe_doc>
+</value></a>
+		<haxe_doc>* Represents the input box in the Source Control viewlet.</haxe_doc>
+	</typedef>
+	<typedef path="vscode.SourceControlResourceDecorations" params="" file="src/vscode/SourceControlResourceDecorations.hx">
+		<a>
+			<strikeThrough set="null">
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Whether the [source control resource state](#SourceControlResourceState) should
+     * be striked-through in the UI.</haxe_doc>
+			</strikeThrough>
+			<light set="null">
+				<t path="Null"><t path="vscode.SourceControlResourceThemableDecorations"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The light theme decorations.</haxe_doc>
+			</light>
+			<iconPath set="null">
+				<t path="Null"><x path="haxe.extern.EitherType">
+	<c path="String"/>
+	<c path="vscode.Uri"/>
+</x></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The icon path for a specific
+     * [source control resource state](#SourceControlResourceState).</haxe_doc>
+			</iconPath>
+			<dark set="null">
+				<t path="Null"><t path="vscode.SourceControlResourceThemableDecorations"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The dark theme decorations.</haxe_doc>
+			</dark>
+		</a>
+		<haxe_doc>* The decorations for a [source control resource state](#SourceControlResourceState).
+ * Can be independently specified for light and dark themes.</haxe_doc>
+	</typedef>
+	<typedef path="vscode.SourceControlResourceGroup" params="" file="src/vscode/SourceControlResourceGroup.hx">
+		<a>
+			<resourceStates>
+				<c path="Array"><t path="vscode.SourceControlResourceState"/></c>
+				<haxe_doc>* This group's collection of
+     * [source control resource states](#SourceControlResourceState).</haxe_doc>
+			</resourceStates>
+			<label set="null">
+				<c path="String"/>
+				<haxe_doc>* The label of this source control resource group.</haxe_doc>
+			</label>
+			<id set="null">
+				<c path="String"/>
+				<haxe_doc>* The id of this source control resource group.</haxe_doc>
+			</id>
+			<hideWhenEmpty>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Whether this source control resource group is hidden when it contains
+     * no [source control resource states](#SourceControlResourceState).</haxe_doc>
+			</hideWhenEmpty>
+			<dispose set="method">
+				<f a=""><x path="Void"/></f>
+				<haxe_doc>* Dispose this source control resource group.</haxe_doc>
+			</dispose>
+		</a>
+		<haxe_doc>* A source control resource group is a collection of
+ * [source control resource states](#SourceControlResourceState).</haxe_doc>
+	</typedef>
+	<typedef path="vscode.SourceControlResourceState" params="" file="src/vscode/SourceControlResourceState.hx">
+		<a>
+			<resourceUri set="null">
+				<c path="vscode.Uri"/>
+				<haxe_doc>* The [uri](#Uri) of the underlying resource inside the workspace.</haxe_doc>
+			</resourceUri>
+			<decorations set="null">
+				<t path="Null"><t path="vscode.SourceControlResourceDecorations"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The [decorations](#SourceControlResourceDecorations) for this source control
+     * resource state.</haxe_doc>
+			</decorations>
+			<command set="null">
+				<t path="Null"><t path="vscode.Command"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The [command](#Command) which should be run when the resource
+     * state is open in the Source Control viewlet.</haxe_doc>
+			</command>
+		</a>
+		<haxe_doc>* An source control resource state represents the state of an underlying workspace
+ * resource within a certain [source control group](#SourceControlResourceGroup).</haxe_doc>
+	</typedef>
+	<typedef path="vscode.SourceControlResourceThemableDecorations" params="" file="src/vscode/SourceControlResourceThemableDecorations.hx">
+		<a><iconPath set="null">
+	<t path="Null"><x path="haxe.extern.EitherType">
+	<c path="String"/>
+	<c path="vscode.Uri"/>
+</x></t>
+	<meta><m n=":optional"/></meta>
+	<haxe_doc>* The icon path for a specific
+     * [source control resource state](#SourceControlResourceState).</haxe_doc>
+</iconPath></a>
+		<haxe_doc>* The theme-aware decorations for a
+ * [source control resource state](#SourceControlResourceState).</haxe_doc>
+	</typedef>
 	<abstract path="vscode.StatusBarAlignment" params="" file="src/vscode/StatusBarAlignment.hx">
 		<this><x path="Int"/></this>
 		<haxe_doc>* Represents the alignment of status bar items.</haxe_doc>
@@ -5481,6 +5782,20 @@
 			<m n=":impl"/>
 		</meta>
 	</Enum>
+	<EnumMember public="1" set="null" static="1">
+		<x path="vscode.SymbolKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</EnumMember>
+	<Struct public="1" set="null" static="1">
+		<x path="vscode.SymbolKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</Struct>
 	<Interface public="1" set="null" static="1">
 		<x path="vscode.SymbolKind"/>
 		<meta>
@@ -5639,6 +5954,20 @@
 				<m n=":impl"/>
 			</meta>
 		</Enum>
+		<EnumMember public="1" set="null" static="1">
+			<x path="vscode.SymbolKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</EnumMember>
+		<Struct public="1" set="null" static="1">
+			<x path="vscode.SymbolKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</Struct>
 		<Interface public="1" set="null" static="1">
 			<x path="vscode.SymbolKind"/>
 			<meta>
@@ -5890,8 +6219,13 @@
 			</isUntitled>
 			<isDirty set="null">
 				<x path="Bool"/>
-				<haxe_doc>* true if there are unpersisted changes.</haxe_doc>
+				<haxe_doc>* `true` if there are unpersisted changes.</haxe_doc>
 			</isDirty>
+			<isClosed set="null">
+				<x path="Bool"/>
+				<haxe_doc>* `true` if the document have been closed. A closed document isn't synchronized anymore
+     * and won't be re-used when the same resource is opened again.</haxe_doc>
+			</isClosed>
 			<getWordRangeAtPosition set="method">
 				<f a="position:?regex">
 					<c path="vscode.Position"/>
@@ -5925,6 +6259,11 @@
 				<haxe_doc>* The file system path of the associated resource. Shorthand
      * notation for [TextDocument.uri.fsPath](#TextDocument.uri). Independent of the uri scheme.</haxe_doc>
 			</fileName>
+			<eol set="null">
+				<x path="vscode.EndOfLine"/>
+				<haxe_doc>* The [end of line](#EndOfLine) sequence that is predominately
+     * used in this document.</haxe_doc>
+			</eol>
 		</a>
 		<haxe_doc>* Represents a text document, such as a source file. Text documents have
  * [lines](#TextLine) and knowledge about an underlying resource like a file.</haxe_doc>
@@ -6172,6 +6511,16 @@
      * @param range A range.
      * @return A new text edit object.</haxe_doc>
 		</delete>
+		<setEndOfLine public="1" set="method" static="1">
+			<f a="eol">
+				<x path="vscode.EndOfLine"/>
+				<c path="vscode.TextEdit"/>
+			</f>
+			<haxe_doc>* Utility to create an eol-edit.
+     *
+     * @param eol An eol-sequence
+     * @return A new text edit object.</haxe_doc>
+		</setEndOfLine>
 		<range public="1">
 			<c path="vscode.Range"/>
 			<haxe_doc>* The range this edit applies to.</haxe_doc>
@@ -6180,6 +6529,13 @@
 			<c path="String"/>
 			<haxe_doc>* The string this edit will insert.</haxe_doc>
 		</newText>
+		<newEol public="1">
+			<x path="vscode.EndOfLine"/>
+			<haxe_doc>* The eol-sequence used in the document.
+     *
+     * *Note* that the eol-sequence will be applied to the
+     * whole document.</haxe_doc>
+		</newEol>
 		<new public="1" set="method">
 			<f a="range:newText">
 				<c path="vscode.Range"/>
