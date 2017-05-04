@@ -763,7 +763,24 @@
      * @param column A view column in which the editor should be shown. The default is the [one](#ViewColumn.One), other values
      * are adjusted to be __Min(column, columnCount + 1)__.
      * @param preserveFocus When `true` the editor will not take focus.
+     * @param options [Editor options](#ShowTextDocumentOptions) to configure the behavior of showing the [editor](#TextEditor).
      * @return A promise that resolves to an [editor](#TextEditor).</haxe_doc>
+			<overloads><showTextDocument public="1" set="method">
+	<f a="document:?options">
+		<t path="vscode.TextDocument"/>
+		<t path="vscode.TextDocumentShowOptions"/>
+		<t path="js.Thenable"><t path="vscode.TextEditor"/></t>
+	</f>
+	<haxe_doc>* Show the given document in a text editor. A [column](#ViewColumn) can be provided
+     * to control where the editor is being shown. Might change the [active editor](#window.activeTextEditor).
+     *
+     * @param document A text document to be shown.
+     * @param column A view column in which the editor should be shown. The default is the [one](#ViewColumn.One), other values
+     * are adjusted to be __Min(column, columnCount + 1)__.
+     * @param preserveFocus When `true` the editor will not take focus.
+     * @param options [Editor options](#ShowTextDocumentOptions) to configure the behavior of showing the [editor](#TextEditor).
+     * @return A promise that resolves to an [editor](#TextEditor).</haxe_doc>
+</showTextDocument></overloads>
 		</showTextDocument>
 		<createTextEditorDecorationType public="1" set="method">
 			<f a="options">
@@ -1086,13 +1103,36 @@
 				</f>
 				<t path="js.Thenable"><c path="withScmProgress.R"/></t>
 			</f>
-			<haxe_doc>* Show progress in the Source Control viewlet while running the given callback and while
-     * its returned promise isn't resolve or rejected.
+			<meta><m n=":deprecated"><e>"This function **deprecated**. Use `withProgress` instead"</e></m></meta>
+			<haxe_doc>* @deprecated This function **deprecated**. Use `withProgress` instead.
+     *
+     * ~~Show progress in the Source Control viewlet while running the given callback and while
+     * its returned promise isn't resolve or rejected.~~
      *
      * @param task A callback returning a promise. Progress increments can be reported with
      * the provided [progress](#Progress)-object.
      * @return The thenable the task did return.</haxe_doc>
 		</withScmProgress>
+		<withProgress public="1" params="R" set="method">
+			<f a="options:task">
+				<t path="vscode.ProgressOptions"/>
+				<f a="">
+					<t path="vscode.Progress"><a><message>
+	<t path="Null"><c path="String"/></t>
+	<meta><m n=":optional"/></meta>
+</message></a></t>
+					<t path="js.Thenable"><c path="withProgress.R"/></t>
+				</f>
+				<t path="js.Thenable"><c path="withProgress.R"/></t>
+			</f>
+			<haxe_doc>* Show progress in the editor. Progress is shown while running the given callback
+     * and while the promise it returned isn't resolved nor rejected. The location at which
+     * progress should show (and other details) is defined via the passed [`ProgressOptions`](#ProgressOptions).
+     *
+     * @param task A callback returning a promise. Progress state can be reported with
+     * the provided [progress](#Progress)-object.
+     * @return The thenable the task-callback returned.</haxe_doc>
+		</withProgress>
 		<createStatusBarItem public="1" set="method">
 			<f a="?alignment:?priority">
 				<x path="vscode.StatusBarAlignment"/>
@@ -2638,13 +2678,6 @@
 			<m n=":impl"/>
 		</meta>
 	</Interface>
-	<Struct public="1" set="null" static="1">
-		<x path="vscode.CompletionItemKind"/>
-		<meta>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-	</Struct>
 	<Module public="1" set="null" static="1">
 		<x path="vscode.CompletionItemKind"/>
 		<meta>
@@ -2673,13 +2706,6 @@
 			<m n=":impl"/>
 		</meta>
 	</Value>
-	<Constant public="1" set="null" static="1">
-		<x path="vscode.CompletionItemKind"/>
-		<meta>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-	</Constant>
 	<Enum public="1" set="null" static="1">
 		<x path="vscode.CompletionItemKind"/>
 		<meta>
@@ -2687,13 +2713,6 @@
 			<m n=":impl"/>
 		</meta>
 	</Enum>
-	<EnumMember public="1" set="null" static="1">
-		<x path="vscode.CompletionItemKind"/>
-		<meta>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-	</EnumMember>
 	<Keyword public="1" set="null" static="1">
 		<x path="vscode.CompletionItemKind"/>
 		<meta>
@@ -2736,6 +2755,48 @@
 			<m n=":impl"/>
 		</meta>
 	</Folder>
+	<EnumMember public="1" set="null" static="1">
+		<x path="vscode.CompletionItemKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</EnumMember>
+	<Constant public="1" set="null" static="1">
+		<x path="vscode.CompletionItemKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</Constant>
+	<Struct public="1" set="null" static="1">
+		<x path="vscode.CompletionItemKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</Struct>
+	<Event public="1" set="null" static="1">
+		<x path="vscode.CompletionItemKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</Event>
+	<Operator public="1" set="null" static="1">
+		<x path="vscode.CompletionItemKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</Operator>
+	<TypeParameter public="1" set="null" static="1">
+		<x path="vscode.CompletionItemKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</TypeParameter>
 	<meta>
 		<m n=":final"/>
 		<m n=":enum"/>
@@ -2803,13 +2864,6 @@
 				<m n=":impl"/>
 			</meta>
 		</Interface>
-		<Struct public="1" set="null" static="1">
-			<x path="vscode.CompletionItemKind"/>
-			<meta>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-		</Struct>
 		<Module public="1" set="null" static="1">
 			<x path="vscode.CompletionItemKind"/>
 			<meta>
@@ -2838,13 +2892,6 @@
 				<m n=":impl"/>
 			</meta>
 		</Value>
-		<Constant public="1" set="null" static="1">
-			<x path="vscode.CompletionItemKind"/>
-			<meta>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-		</Constant>
 		<Enum public="1" set="null" static="1">
 			<x path="vscode.CompletionItemKind"/>
 			<meta>
@@ -2852,13 +2899,6 @@
 				<m n=":impl"/>
 			</meta>
 		</Enum>
-		<EnumMember public="1" set="null" static="1">
-			<x path="vscode.CompletionItemKind"/>
-			<meta>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-		</EnumMember>
 		<Keyword public="1" set="null" static="1">
 			<x path="vscode.CompletionItemKind"/>
 			<meta>
@@ -2901,6 +2941,48 @@
 				<m n=":impl"/>
 			</meta>
 		</Folder>
+		<EnumMember public="1" set="null" static="1">
+			<x path="vscode.CompletionItemKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</EnumMember>
+		<Constant public="1" set="null" static="1">
+			<x path="vscode.CompletionItemKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</Constant>
+		<Struct public="1" set="null" static="1">
+			<x path="vscode.CompletionItemKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</Struct>
+		<Event public="1" set="null" static="1">
+			<x path="vscode.CompletionItemKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</Event>
+		<Operator public="1" set="null" static="1">
+			<x path="vscode.CompletionItemKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</Operator>
+		<TypeParameter public="1" set="null" static="1">
+			<x path="vscode.CompletionItemKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</TypeParameter>
 		<meta>
 			<m n=":final"/>
 			<m n=":enum"/>
@@ -3499,7 +3581,7 @@
  * its resource, or a glob-pattern that is applied to the [path](#TextDocument.fileName).
  *
  * @sample A language filter that applies to typescript files on disk: `{ language: 'typescript', scheme: 'file' }`
- * @sample A language filter that applies to all package.json paths: `{ language: 'json', pattern: '**∕project.json' }`</haxe_doc>
+ * @sample A language filter that applies to all package.json paths: `{ language: 'json', pattern: '**в€•package.json' }`</haxe_doc>
 	</typedef>
 	<typedef path="vscode.DocumentFormattingEditProvider" params="" file="src/vscode/DocumentFormattingEditProvider.hx">
 		<a><provideDocumentFormattingEdits set="method">
@@ -4226,6 +4308,14 @@
 	</typedef>
 	<typedef path="vscode.InputBoxOptions" params="" file="src/vscode/InputBoxOptions.hx">
 		<a>
+			<valueSelection>
+				<t path="Null"><c path="Array"><x path="Int"/></c></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Selection of the prefilled [`value`](#InputBoxOptions.value). Defined as tuple of two number where the
+     * first is the inclusive start index and the second the exclusive end index. When `undefined` the whole
+     * word will be selected, when empty (start equals end) only the cursor will be set,
+     * otherwise the defined range will be selected.</haxe_doc>
+			</valueSelection>
 			<value>
 				<t path="Null"><c path="String"/></t>
 				<meta><m n=":optional"/></meta>
@@ -4873,6 +4963,87 @@
 </report></a>
 		<haxe_doc>* Defines a generalized way of reporting progress updates.</haxe_doc>
 	</typedef>
+	<abstract path="vscode.ProgressLocation" params="" file="src/vscode/ProgressLocation.hx">
+		<this><x path="Int"/></this>
+		<haxe_doc>* A location in the editor at which progress information can be shown. It depends on the
+ * location how progress is visually represented.</haxe_doc>
+		<meta>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"ProgressLocation"</e>
+			</m>
+			<m n=":enum"/>
+		</meta>
+		<impl><class path="vscode._ProgressLocation.ProgressLocation_Impl_" params="" file="src/vscode/ProgressLocation.hx" private="1" module="vscode.ProgressLocation" extern="1">
+	<SourceControl public="1" set="null" static="1">
+		<x path="vscode.ProgressLocation"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Show progress for the source control viewlet, as overlay for the icon and as progress bar
+	 * inside the viewlet (when visible).</haxe_doc>
+	</SourceControl>
+	<Window public="1" set="null" static="1">
+		<x path="vscode.ProgressLocation"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Show progress in the status bar of the editor.</haxe_doc>
+	</Window>
+	<meta>
+		<m n=":final"/>
+		<m n=":enum"/>
+		<m n=":jsRequire">
+			<e>"vscode"</e>
+			<e>"ProgressLocation"</e>
+		</m>
+	</meta>
+</class></impl>
+	</abstract>
+	<class path="vscode._ProgressLocation.ProgressLocation_Impl_" params="" file="src/vscode/ProgressLocation.hx" private="1" module="vscode.ProgressLocation" extern="1">
+		<SourceControl public="1" set="null" static="1">
+			<x path="vscode.ProgressLocation"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Show progress for the source control viewlet, as overlay for the icon and as progress bar
+	 * inside the viewlet (when visible).</haxe_doc>
+		</SourceControl>
+		<Window public="1" set="null" static="1">
+			<x path="vscode.ProgressLocation"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Show progress in the status bar of the editor.</haxe_doc>
+		</Window>
+		<meta>
+			<m n=":final"/>
+			<m n=":enum"/>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"ProgressLocation"</e>
+			</m>
+		</meta>
+	</class>
+	<typedef path="vscode.ProgressOptions" params="" file="src/vscode/ProgressOptions.hx">
+		<a>
+			<title>
+				<t path="Null"><c path="String"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* A human-readable string which will be used to describe the
+	 * operation.</haxe_doc>
+			</title>
+			<location>
+				<x path="vscode.ProgressLocation"/>
+				<haxe_doc>* The location at which progress should show.</haxe_doc>
+			</location>
+		</a>
+		<haxe_doc>* Value-object describing where and how progress should show.</haxe_doc>
+	</typedef>
 	<typedef path="vscode.ProviderResult" params="T" file="src/vscode/ProviderResult.hx">
 		<x path="haxe.extern.EitherType">
 			<c path="vscode.ProviderResult.T"/>
@@ -5460,6 +5631,12 @@
 				<haxe_doc>* The icon path for a specific
      * [source control resource state](#SourceControlResourceState).</haxe_doc>
 			</iconPath>
+			<faded set="null">
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Whether the [source control resource state](#SourceControlResourceState) should
+     * be faded in the UI.</haxe_doc>
+			</faded>
 			<dark set="null">
 				<t path="Null"><t path="vscode.SourceControlResourceThemableDecorations"/></t>
 				<meta><m n=":optional"/></meta>
@@ -5782,20 +5959,6 @@
 			<m n=":impl"/>
 		</meta>
 	</Enum>
-	<EnumMember public="1" set="null" static="1">
-		<x path="vscode.SymbolKind"/>
-		<meta>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-	</EnumMember>
-	<Struct public="1" set="null" static="1">
-		<x path="vscode.SymbolKind"/>
-		<meta>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-	</Struct>
 	<Interface public="1" set="null" static="1">
 		<x path="vscode.SymbolKind"/>
 		<meta>
@@ -5873,6 +6036,41 @@
 			<m n=":impl"/>
 		</meta>
 	</Null>
+	<EnumMember public="1" set="null" static="1">
+		<x path="vscode.SymbolKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</EnumMember>
+	<Struct public="1" set="null" static="1">
+		<x path="vscode.SymbolKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</Struct>
+	<Event public="1" set="null" static="1">
+		<x path="vscode.SymbolKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</Event>
+	<Operator public="1" set="null" static="1">
+		<x path="vscode.SymbolKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</Operator>
+	<TypeParameter public="1" set="null" static="1">
+		<x path="vscode.SymbolKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+	</TypeParameter>
 	<meta>
 		<m n=":final"/>
 		<m n=":enum"/>
@@ -5954,20 +6152,6 @@
 				<m n=":impl"/>
 			</meta>
 		</Enum>
-		<EnumMember public="1" set="null" static="1">
-			<x path="vscode.SymbolKind"/>
-			<meta>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-		</EnumMember>
-		<Struct public="1" set="null" static="1">
-			<x path="vscode.SymbolKind"/>
-			<meta>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-		</Struct>
 		<Interface public="1" set="null" static="1">
 			<x path="vscode.SymbolKind"/>
 			<meta>
@@ -6045,6 +6229,41 @@
 				<m n=":impl"/>
 			</meta>
 		</Null>
+		<EnumMember public="1" set="null" static="1">
+			<x path="vscode.SymbolKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</EnumMember>
+		<Struct public="1" set="null" static="1">
+			<x path="vscode.SymbolKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</Struct>
+		<Event public="1" set="null" static="1">
+			<x path="vscode.SymbolKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</Event>
+		<Operator public="1" set="null" static="1">
+			<x path="vscode.SymbolKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</Operator>
+		<TypeParameter public="1" set="null" static="1">
+			<x path="vscode.SymbolKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+		</TypeParameter>
 		<meta>
 			<m n=":final"/>
 			<m n=":enum"/>
@@ -6116,7 +6335,7 @@
 				<haxe_doc>* A human-readable string which will be used to represent the terminal in the UI.</haxe_doc>
 			</name>
 		</a>
-		<haxe_doc>* Value-object describing what options formatting should use.</haxe_doc>
+		<haxe_doc>* Value-object describing what options a terminal should use.</haxe_doc>
 	</typedef>
 	<typedef path="vscode.TextDocument" params="" file="src/vscode/TextDocument.hx">
 		<a>
@@ -6411,6 +6630,29 @@
 			</m>
 		</meta>
 	</class>
+	<typedef path="vscode.TextDocumentShowOptions" params="" file="src/vscode/TextDocumentShowOptions.hx">
+		<a>
+			<viewColumn>
+				<t path="Null"><x path="vscode.ViewColumn"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* An optional view column in which the [editor](#TextEditor) should be shown.
+     * The default is the [one](#ViewColumn.One), other values are adjusted to
+     * be __Min(column, columnCount + 1)__.</haxe_doc>
+			</viewColumn>
+			<preview>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* An optional flag that controls if an [editor](#TextEditor)-tab will be replaced
+     * with the next editor or if it will be kept.</haxe_doc>
+			</preview>
+			<preserveFocus>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* An optional flag that when `true` will stop the [editor](#TextEditor) from taking focus.</haxe_doc>
+			</preserveFocus>
+		</a>
+		<haxe_doc>* Represents options to configure the behavior of showing a [document](#TextDocument) in an [editor](#TextEditor).</haxe_doc>
+	</typedef>
 	<typedef path="vscode.TextDocumentWillSaveEvent" params="" file="src/vscode/TextDocumentWillSaveEvent.hx">
 		<a>
 			<waitUntil set="method">
