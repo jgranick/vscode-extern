@@ -3581,7 +3581,7 @@
  * its resource, or a glob-pattern that is applied to the [path](#TextDocument.fileName).
  *
  * @sample A language filter that applies to typescript files on disk: `{ language: 'typescript', scheme: 'file' }`
- * @sample A language filter that applies to all package.json paths: `{ language: 'json', pattern: '**в€•package.json' }`</haxe_doc>
+ * @sample A language filter that applies to all package.json paths: `{ language: 'json', pattern: '**∕package.json' }`</haxe_doc>
 	</typedef>
 	<typedef path="vscode.DocumentFormattingEditProvider" params="" file="src/vscode/DocumentFormattingEditProvider.hx">
 		<a><provideDocumentFormattingEdits set="method">
