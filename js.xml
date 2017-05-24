@@ -293,7 +293,6 @@
 				<x path="Int"/>
 				<t path="Null"><x path="Int"/></t>
 			</f>
-			<meta><m n=":has_untyped"/></meta>
 			<haxe_doc>Returns the character code at position `index` of `this` String.
 
 		If `index` is negative or exceeds `this.length`, `null` is returned.
@@ -308,7 +307,6 @@
 				<x path="Int"/>
 				<c path="String"/>
 			</f>
-			<meta><m n=":has_untyped"/></meta>
 			<haxe_doc>Returns `len` characters of `this` String, starting at position `pos`.
 
 		If `len` is omitted, all characters from position `pos` to the end of
@@ -1828,6 +1826,16 @@
 			<t path="vscode.Event"><x path="Void"/></t>
 			<haxe_doc>* An event that is emitted when the [configuration](#WorkspaceConfiguration) changed.</haxe_doc>
 		</onDidChangeConfiguration>
+		<registerTaskProvider public="1" set="method">
+			<f a="provider">
+				<t path="vscode.TaskProvider"/>
+				<c path="vscode.Disposable"/>
+			</f>
+			<haxe_doc>* Register a task provider.
+     *
+     * @param provider A task provider.
+     * @return A [disposable](#Disposable) that unregisters this provider when being disposed.</haxe_doc>
+		</registerTaskProvider>
 	</class>
 	<abstract path="haxe.Function" params="" file="/home/travis/haxe/std/haxe/Constraints.hx" module="haxe.Constraints">
 		<this><d/></this>
@@ -1867,6 +1875,21 @@
 	It is intended to be used as a type parameter constraint. If used as a real
 	type, the underlying type will be `Dynamic`.]]></haxe_doc>
 		<impl><class path="haxe._Constraints.Constructible_Impl_" params="" file="/home/travis/haxe/std/haxe/Constraints.hx" private="1" module="haxe.Constraints"><meta>
+	<m n=":keep"/>
+	<m n=":final"/>
+</meta></class></impl>
+	</abstract>
+	<abstract path="haxe.DynamicAccess" params="T" file="/home/travis/haxe/std/haxe/DynamicAccess.hx">
+		<from><icast><d><c path="haxe.DynamicAccess.T"/></d></icast></from>
+		<this><d><c path="haxe.DynamicAccess.T"/></d></this>
+		<to><icast><d><c path="haxe.DynamicAccess.T"/></d></icast></to>
+		<haxe_doc>DynamicAccess is an abstract type for working with anonymous structures
+	that are intended to hold collections of objects by the string key.
+
+	For example, these types of structures are often created from JSON.
+
+	Basically, it wraps `Reflect` calls in a `Map`-like interface.</haxe_doc>
+		<impl><class path="haxe._DynamicAccess.DynamicAccess_Impl_" params="" file="/home/travis/haxe/std/haxe/DynamicAccess.hx" private="1" module="haxe.DynamicAccess"><meta>
 	<m n=":keep"/>
 	<m n=":final"/>
 </meta></class></impl>
@@ -2053,27 +2076,6 @@
 	If the first argument to any of the methods is null, the result is
 	unspecified.</haxe_doc>
 	</class>
-	<typedef path="haxe.PosInfos" params="" file="/home/travis/haxe/std/haxe/PosInfos.hx">
-		<a>
-			<methodName><c path="String"/></methodName>
-			<lineNumber><x path="Int"/></lineNumber>
-			<fileName><c path="String"/></fileName>
-			<customParams>
-				<t path="Null"><c path="Array"><d/></c></t>
-				<meta><m n=":optional"/></meta>
-			</customParams>
-			<className><c path="String"/></className>
-		</a>
-		<haxe_doc>PosInfos is a magic type which can be used to generate position information
-	into the output for debugging use.
-
-	If a function has a final optional argument of this type, i.e.
-	(..., ?pos:haxe.PosInfos), each call to that function which does not assign
-	a value to that argument has its position added as call argument.
-
-	This can be used to track positions of calls in e.g. a unit testing
-	framework.</haxe_doc>
-	</typedef>
 	<abstract path="haxe.extern.EitherType" params="T1:T2" file="/home/travis/haxe/std/haxe/extern/EitherType.hx">
 		<from>
 			<icast><c path="haxe.extern.EitherType.T2"/></icast>
@@ -2170,6 +2172,175 @@
 </f></new>
 		<meta><m n=":native"><e>"URIError"</e></m></meta>
 	</class>
+	<class path="js.Function" params="" file="/home/travis/haxe/std/js/Function.hx" extern="1">
+		<length public="1" set="null">
+			<x path="Int"/>
+			<haxe_doc>Specifies the number of arguments expected by the function.</haxe_doc>
+		</length>
+		<name public="1">
+			<c path="String"/>
+			<haxe_doc>The name of the function.</haxe_doc>
+		</name>
+		<apply public="1" set="method">
+			<f a="thisArg:argsArray">
+				<d/>
+				<c path="Array"><d/></c>
+				<d/>
+			</f>
+			<haxe_doc>Calls a function and sets its this to the provided value, arguments can be passed as an Array object.</haxe_doc>
+		</apply>
+		<call public="1" set="method">
+			<f a="thisArg:args">
+				<d/>
+				<x path="haxe.extern.Rest"><d/></x>
+				<d/>
+			</f>
+			<haxe_doc>Calls (executes) a function and sets its this to the provided value, arguments can be passed as they are.</haxe_doc>
+		</call>
+		<bind public="1" set="method">
+			<f a="thisArg:args">
+				<d/>
+				<x path="haxe.extern.Rest"><d/></x>
+				<c path="js.Function"/>
+			</f>
+			<haxe_doc>Creates a new function which, when called, has its this set to the provided value,
+		with a given sequence of arguments preceding any provided when the new function was called.</haxe_doc>
+		</bind>
+		<toString public="1" set="method">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>Returns a string representing the source code of the function.</haxe_doc>
+		</toString>
+		<new public="1" set="method">
+			<f a="arg:rest">
+				<c path="String"/>
+				<x path="haxe.extern.Rest"><c path="String"/></x>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Creates a new Function object.</haxe_doc>
+		</new>
+		<meta><m n=":native"><e>"Function"</e></m></meta>
+	</class>
+	<class path="js.Object" params="" file="/home/travis/haxe/std/js/Object.hx" extern="1">
+		<assign public="1" params="T" set="method" static="1"><f a="target:sources">
+	<c path="assign.T"/>
+	<x path="haxe.extern.Rest"><a/></x>
+	<c path="assign.T"/>
+</f></assign>
+		<create public="1" params="T" set="method" static="1"><f a="proto:?propertiesObject">
+	<a/>
+	<x path="haxe.DynamicAccess"><t path="js.ObjectPropertyDescriptor"/></x>
+	<c path="create.T"/>
+</f></create>
+		<defineProperties public="1" params="T" set="method" static="1"><f a="obj:props">
+	<c path="defineProperties.T"/>
+	<x path="haxe.DynamicAccess"><t path="js.ObjectPropertyDescriptor"/></x>
+	<c path="defineProperties.T"/>
+</f></defineProperties>
+		<defineProperty public="1" params="T" set="method" static="1"><f a="obj:prop:descriptor">
+	<c path="defineProperty.T"/>
+	<c path="String"/>
+	<t path="js.ObjectPropertyDescriptor"/>
+	<c path="defineProperty.T"/>
+</f></defineProperty>
+		<freeze public="1" params="T" set="method" static="1"><f a="obj">
+	<c path="freeze.T"/>
+	<c path="freeze.T"/>
+</f></freeze>
+		<getOwnPropertyDescriptor public="1" set="method" static="1"><f a="obj:prop">
+	<a/>
+	<c path="String"/>
+	<t path="Null"><t path="js.ObjectPropertyDescriptor"/></t>
+</f></getOwnPropertyDescriptor>
+		<getOwnPropertyNames public="1" set="method" static="1"><f a="obj">
+	<a/>
+	<c path="Array"><c path="String"/></c>
+</f></getOwnPropertyNames>
+		<getOwnPropertySymbols public="1" set="method" static="1"><f a="obj">
+	<a/>
+	<c path="Array"><c path="js.Symbol"/></c>
+</f></getOwnPropertySymbols>
+		<getPrototypeOf public="1" params="TProto" set="method" static="1"><f a="obj">
+	<a/>
+	<t path="Null"><c path="getPrototypeOf.TProto"/></t>
+</f></getPrototypeOf>
+		<is public="1" params="T" set="method" static="1"><f a="value1:value2">
+	<c path="is.T"/>
+	<c path="is.T"/>
+	<x path="Bool"/>
+</f></is>
+		<isExtensible public="1" set="method" static="1"><f a="obj">
+	<a/>
+	<x path="Bool"/>
+</f></isExtensible>
+		<isFrozen public="1" set="method" static="1"><f a="obj">
+	<a/>
+	<x path="Bool"/>
+</f></isFrozen>
+		<isSealed public="1" set="method" static="1"><f a="obj">
+	<a/>
+	<x path="Bool"/>
+</f></isSealed>
+		<keys public="1" set="method" static="1"><f a="obj">
+	<a/>
+	<c path="Array"><c path="String"/></c>
+</f></keys>
+		<preventExtensions public="1" params="T" set="method" static="1"><f a="obj">
+	<c path="preventExtensions.T"/>
+	<c path="preventExtensions.T"/>
+</f></preventExtensions>
+		<seal public="1" params="T" set="method" static="1"><f a="obj">
+	<c path="seal.T"/>
+	<c path="seal.T"/>
+</f></seal>
+		<setPrototypeOf public="1" params="T" set="method" static="1"><f a="obj:prototype">
+	<c path="setPrototypeOf.T"/>
+	<t path="Null"><a/></t>
+	<c path="setPrototypeOf.T"/>
+</f></setPrototypeOf>
+		<prototype public="1" set="null" static="1"><t path="js.ObjectPrototype"/></prototype>
+		<new public="1" set="method"><f a="?value">
+	<x path="Any"/>
+	<x path="Void"/>
+</f></new>
+		<meta><m n=":native"><e>"Object"</e></m></meta>
+	</class>
+	<typedef path="js.ObjectPrototype" params="" file="/home/travis/haxe/std/js/Object.hx" module="js.Object"><a>
+	<valueOf set="null"><c path="js.Function"/></valueOf>
+	<toString set="null"><c path="js.Function"/></toString>
+	<toLocaleString set="null"><c path="js.Function"/></toLocaleString>
+	<propertyIsEnumerable set="null"><c path="js.Function"/></propertyIsEnumerable>
+	<isPrototypeOf set="null"><c path="js.Function"/></isPrototypeOf>
+	<hasOwnProperty set="null"><c path="js.Function"/></hasOwnProperty>
+</a></typedef>
+	<typedef path="js.ObjectPropertyDescriptor" params="" file="/home/travis/haxe/std/js/Object.hx" module="js.Object"><a>
+	<writable>
+		<t path="Null"><x path="Bool"/></t>
+		<meta><m n=":optional"/></meta>
+	</writable>
+	<value>
+		<t path="Null"><x path="Any"/></t>
+		<meta><m n=":optional"/></meta>
+	</value>
+	<set>
+		<t path="Null"><f a="">
+	<x path="Any"/>
+	<x path="Void"/>
+</f></t>
+		<meta><m n=":optional"/></meta>
+	</set>
+	<get>
+		<t path="Null"><f a=""><x path="Any"/></f></t>
+		<meta><m n=":optional"/></meta>
+	</get>
+	<enumerable>
+		<t path="Null"><x path="Bool"/></t>
+		<meta><m n=":optional"/></meta>
+	</enumerable>
+	<configurable>
+		<t path="Null"><x path="Bool"/></t>
+		<meta><m n=":optional"/></meta>
+	</configurable>
+</a></typedef>
 	<class path="js.Promise" params="T" file="/home/travis/haxe/std/js/Promise.hx" extern="1">
 		<resolve public="1" params="T" set="method" static="1">
 			<f a="?value">
@@ -2303,6 +2474,155 @@
 		<index public="1"><x path="Int"/></index>
 		<input public="1"><c path="String"/></input>
 	</class>
+	<class path="js.Symbol" params="" file="/home/travis/haxe/std/js/Symbol.hx" extern="1">
+		<for_ public="1" set="method" static="1">
+			<f a="key">
+				<c path="String"/>
+				<c path="js.Symbol"/>
+			</f>
+			<meta><m n=":native"><e>"for"</e></m></meta>
+		</for_>
+		<keyFor public="1" set="method" static="1"><f a="sym">
+	<c path="js.Symbol"/>
+	<t path="Null"><c path="String"/></t>
+</f></keyFor>
+		<toString public="1" set="method"><f a=""><c path="String"/></f></toString>
+		<new public="1" set="method">
+			<f a="?description">
+				<c path="String"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":selfCall"/></meta>
+		</new>
+		<meta><m n=":native"><e>"Symbol"</e></m></meta>
+	</class>
+	<abstract path="vscode.ApplyToKind" params="" file="src/vscode/ApplyToKind.hx">
+		<this><x path="Int"/></this>
+		<haxe_doc>* Controls to which kind of documents problems are applied.</haxe_doc>
+		<meta>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"ApplyToKind"</e>
+			</m>
+			<m n=":enum"/>
+		</meta>
+		<impl><class path="vscode._ApplyToKind.ApplyToKind_Impl_" params="" file="src/vscode/ApplyToKind.hx" private="1" module="vscode.ApplyToKind" extern="1">
+	<AllDocuments public="1" get="inline" set="null" expr="cast 1" line="11" static="1">
+		<x path="vscode.ApplyToKind"/>
+		<meta>
+			<m n=":value"><e>cast 1</e></m>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Problems are applied to all documents.</haxe_doc>
+	</AllDocuments>
+	<OpenDocuments public="1" get="inline" set="null" expr="cast 2" line="16" static="1">
+		<x path="vscode.ApplyToKind"/>
+		<meta>
+			<m n=":value"><e>cast 2</e></m>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Problems are applied to open documents only.</haxe_doc>
+	</OpenDocuments>
+	<ClosedDocuments public="1" get="inline" set="null" expr="cast 3" line="21" static="1">
+		<x path="vscode.ApplyToKind"/>
+		<meta>
+			<m n=":value"><e>cast 3</e></m>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Problems are applied to closed documents only.</haxe_doc>
+	</ClosedDocuments>
+	<meta>
+		<m n=":final"/>
+		<m n=":enum"/>
+		<m n=":jsRequire">
+			<e>"vscode"</e>
+			<e>"ApplyToKind"</e>
+		</m>
+	</meta>
+</class></impl>
+	</abstract>
+	<class path="vscode._ApplyToKind.ApplyToKind_Impl_" params="" file="src/vscode/ApplyToKind.hx" private="1" module="vscode.ApplyToKind" extern="1">
+		<AllDocuments public="1" get="inline" set="null" expr="cast 1" line="11" static="1">
+			<x path="vscode.ApplyToKind"/>
+			<meta>
+				<m n=":value"><e>cast 1</e></m>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Problems are applied to all documents.</haxe_doc>
+		</AllDocuments>
+		<OpenDocuments public="1" get="inline" set="null" expr="cast 2" line="16" static="1">
+			<x path="vscode.ApplyToKind"/>
+			<meta>
+				<m n=":value"><e>cast 2</e></m>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Problems are applied to open documents only.</haxe_doc>
+		</OpenDocuments>
+		<ClosedDocuments public="1" get="inline" set="null" expr="cast 3" line="21" static="1">
+			<x path="vscode.ApplyToKind"/>
+			<meta>
+				<m n=":value"><e>cast 3</e></m>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Problems are applied to closed documents only.</haxe_doc>
+		</ClosedDocuments>
+		<meta>
+			<m n=":final"/>
+			<m n=":enum"/>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"ApplyToKind"</e>
+			</m>
+		</meta>
+	</class>
+	<typedef path="vscode.BackgroundMonitor" params="" file="src/vscode/BackgroundMonitor.hx">
+		<a>
+			<endsPattern>
+				<x path="haxe.extern.EitherType">
+					<c path="js.RegExp"/>
+					<t path="vscode.BackgroundPattern"/>
+				</x>
+				<haxe_doc>* If matched in the output the end of a background activity is signaled.</haxe_doc>
+			</endsPattern>
+			<beginsPattern>
+				<x path="haxe.extern.EitherType">
+					<c path="js.RegExp"/>
+					<t path="vscode.BackgroundPattern"/>
+				</x>
+				<haxe_doc>* If matched in the output the start of a background activity is signaled.</haxe_doc>
+			</beginsPattern>
+			<activeOnStart>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* If set to true the monitor is in active mode when the task
+     * starts. This is equals of issuing a line that matches the
+     * beginPattern.</haxe_doc>
+			</activeOnStart>
+		</a>
+		<haxe_doc>* A description to control the activity of a problem matcher
+ * watching a background task.</haxe_doc>
+	</typedef>
+	<typedef path="vscode.BackgroundPattern" params="" file="src/vscode/BackgroundPattern.hx">
+		<a>
+			<regexp>
+				<c path="js.RegExp"/>
+				<haxe_doc>* The actual regular expression</haxe_doc>
+			</regexp>
+			<file>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The match group index of the filename. If provided the expression
+     * is matched for that file only.</haxe_doc>
+			</file>
+		</a>
+		<haxe_doc>* A background monitor pattern</haxe_doc>
+	</typedef>
 	<typedef path="vscode.CancellationToken" params="" file="src/vscode/CancellationToken.hx">
 		<a>
 			<onCancellationRequested>
@@ -4064,6 +4384,95 @@
  * An instance of an `ExtensionContext` is provided as the first
  * parameter to the `activate`-call of an extension.</haxe_doc>
 	</typedef>
+	<abstract path="vscode.FileLocationKind" params="" file="src/vscode/FileLocationKind.hx">
+		<this><x path="Int"/></this>
+		<haxe_doc>* The way how the file location is interpreted</haxe_doc>
+		<meta>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"FileLocationKind"</e>
+			</m>
+			<m n=":enum"/>
+		</meta>
+		<impl><class path="vscode._FileLocationKind.FileLocationKind_Impl_" params="" file="src/vscode/FileLocationKind.hx" private="1" module="vscode.FileLocationKind" extern="1">
+	<Auto public="1" get="inline" set="null" expr="cast 1" line="13" static="1">
+		<x path="vscode.FileLocationKind"/>
+		<meta>
+			<m n=":value"><e>cast 1</e></m>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* VS Code should decide based on whether the file path found in the
+     * output is absolute or relative. A relative file path will be treated
+     * relative to the workspace root.</haxe_doc>
+	</Auto>
+	<Relative public="1" get="inline" set="null" expr="cast 2" line="18" static="1">
+		<x path="vscode.FileLocationKind"/>
+		<meta>
+			<m n=":value"><e>cast 2</e></m>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Always treat the file path relative.</haxe_doc>
+	</Relative>
+	<Absolute public="1" get="inline" set="null" expr="cast 3" line="23" static="1">
+		<x path="vscode.FileLocationKind"/>
+		<meta>
+			<m n=":value"><e>cast 3</e></m>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Always treat the file path absolute.</haxe_doc>
+	</Absolute>
+	<meta>
+		<m n=":final"/>
+		<m n=":enum"/>
+		<m n=":jsRequire">
+			<e>"vscode"</e>
+			<e>"FileLocationKind"</e>
+		</m>
+	</meta>
+</class></impl>
+	</abstract>
+	<class path="vscode._FileLocationKind.FileLocationKind_Impl_" params="" file="src/vscode/FileLocationKind.hx" private="1" module="vscode.FileLocationKind" extern="1">
+		<Auto public="1" get="inline" set="null" expr="cast 1" line="13" static="1">
+			<x path="vscode.FileLocationKind"/>
+			<meta>
+				<m n=":value"><e>cast 1</e></m>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* VS Code should decide based on whether the file path found in the
+     * output is absolute or relative. A relative file path will be treated
+     * relative to the workspace root.</haxe_doc>
+		</Auto>
+		<Relative public="1" get="inline" set="null" expr="cast 2" line="18" static="1">
+			<x path="vscode.FileLocationKind"/>
+			<meta>
+				<m n=":value"><e>cast 2</e></m>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Always treat the file path relative.</haxe_doc>
+		</Relative>
+		<Absolute public="1" get="inline" set="null" expr="cast 3" line="23" static="1">
+			<x path="vscode.FileLocationKind"/>
+			<meta>
+				<m n=":value"><e>cast 3</e></m>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Always treat the file path absolute.</haxe_doc>
+		</Absolute>
+		<meta>
+			<m n=":final"/>
+			<m n=":enum"/>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"FileLocationKind"</e>
+			</m>
+		</meta>
+	</class>
 	<class path="vscode.FileSystemWatcher" params="" file="src/vscode/FileSystemWatcher.hx" extern="1">
 		<extends path="vscode.Disposable"/>
 		<ignoreCreateEvents public="1">
@@ -4566,6 +4975,10 @@
  * @see [showWarningMessage](#window.showWarningMessage)
  * @see [showErrorMessage](#window.showErrorMessage)</haxe_doc>
 	</typedef>
+	<typedef path="vscode.MultiLineProblemPattern" params="" file="src/vscode/MultiLineProblemPattern.hx">
+		<c path="Array"><t path="vscode.ProblemPattern"/></c>
+		<haxe_doc>* A multi line problem pattern.</haxe_doc>
+	</typedef>
 	<typedef path="vscode.OnEnterRule" params="" file="src/vscode/OnEnterRule.hx">
 		<a>
 			<beforeText>
@@ -4952,6 +5365,254 @@
 	<e>"Position"</e>
 </m></meta>
 	</class>
+	<typedef path="vscode.ProblemMatcher" params="" file="src/vscode/ProblemMatcher.hx">
+		<a>
+			<severity>
+				<t path="Null"><x path="vscode.DiagnosticSeverity"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The default severity of a detected problem in the output. Used
+     * if the `ProblemPattern` doesn't define a severity match group.</haxe_doc>
+			</severity>
+			<pattern>
+				<t path="Null"><x path="haxe.extern.EitherType">
+	<t path="vscode.ProblemPattern"/>
+	<t path="vscode.MultiLineProblemPattern"/>
+</x></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The actual pattern used by the problem matcher.</haxe_doc>
+			</pattern>
+			<owner>
+				<t path="Null"><c path="String"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The owner of a problem. Defaults to a generated id
+     * if omitted.</haxe_doc>
+			</owner>
+			<fileLocation>
+				<t path="Null"><x path="haxe.extern.EitherType">
+	<x path="vscode.FileLocationKind"/>
+	<c path="String"/>
+</x></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* How a file location recognized by a matcher should be interpreted. If omitted the file location
+     * if `FileLocationKind.Auto`.</haxe_doc>
+			</fileLocation>
+			<backgound>
+				<t path="Null"><t path="vscode.BackgroundMonitor"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* A background monitor for tasks that are running in the background.</haxe_doc>
+			</backgound>
+			<applyTo>
+				<t path="Null"><x path="vscode.ApplyToKind"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The type of documents problems detected by this matcher
+     * apply to. Default to `ApplyToKind.AllDocuments` if omitted.</haxe_doc>
+			</applyTo>
+		</a>
+		<haxe_doc>* Defines a problem matcher</haxe_doc>
+	</typedef>
+	<typedef path="vscode.ProblemMatchers" params="" file="src/vscode/ProblemMatchers.hx">
+		<x path="haxe.extern.EitherType">
+			<c path="String"/>
+			<x path="haxe.extern.EitherType">
+				<t path="vscode.ProblemMatcher"/>
+				<x path="haxe.extern.EitherType">
+					<c path="Array"><c path="String"/></c>
+					<c path="Array"><t path="vscode.ProblemMatcher"/></c>
+				</x>
+			</x>
+		</x>
+		<haxe_doc>* The ProblemMatchers type definition.</haxe_doc>
+	</typedef>
+	<typedef path="vscode.ProblemPattern" params="" file="src/vscode/ProblemPattern.hx">
+		<a>
+			<severity>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The match group index of the problem's severity.
+     *
+     * Defaults to undefined. In this case the problem matcher's severity
+     * is used.</haxe_doc>
+			</severity>
+			<regexp>
+				<c path="js.RegExp"/>
+				<haxe_doc>* The regular expression to find a problem in the console output of an
+     * executed task.</haxe_doc>
+			</regexp>
+			<message>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The match group index of the message. If omitted it defaults
+     * to 4 if location is specified. Otherwise it defaults to 5.</haxe_doc>
+			</message>
+			<loop>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Specifies if the last pattern in a multi line problem matcher should
+     * loop as long as it does match a line consequently. Only valid on the
+     * last problem pattern in a multi line problem matcher.</haxe_doc>
+			</loop>
+			<location>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The match group index of the problems's location. Valid location
+     * patterns are: (line), (line,column) and (startLine,startColumn,endLine,endColumn).
+     * If omitted the line and colum properties are used.</haxe_doc>
+			</location>
+			<line>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The match group index of the problem's line in the source file.
+     *
+     * Defaults to 2 if omitted.</haxe_doc>
+			</line>
+			<file>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The match group index of the filename.
+     *
+     * Defaults to 1 if omitted.</haxe_doc>
+			</file>
+			<endLine>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The match group index of the problem's end line in the source file.
+     *
+     * Defaults to undefined. No end line is captured.</haxe_doc>
+			</endLine>
+			<endCharacter>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The match group index of the problem's end character in the source file.
+     *
+     * Defaults to undefined. No end column is captured.</haxe_doc>
+			</endCharacter>
+			<code>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The match group index of the problems's code.
+     *
+     * Defaults to undefined. No code is captured.</haxe_doc>
+			</code>
+			<character>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The match group index of the problem's character in the source file.
+     *
+     * Defaults to 3 if omitted.</haxe_doc>
+			</character>
+		</a>
+		<haxe_doc>* Defines a problem pattern</haxe_doc>
+	</typedef>
+	<typedef path="vscode.ProcessOptions" params="" file="src/vscode/ProcessOptions.hx"><a>
+	<env>
+		<t path="Null"><x path="haxe.DynamicAccess"><c path="String"/></x></t>
+		<meta><m n=":optional"/></meta>
+		<haxe_doc>* The additional environment of the executed program or shell. If omitted
+     * the parent process' environment is used. If provided it is merged with
+     * the parent process' environment.</haxe_doc>
+	</env>
+	<cwd>
+		<t path="Null"><c path="String"/></t>
+		<meta><m n=":optional"/></meta>
+		<haxe_doc>* The current working directory of the executed program or shell.
+     * If omitted VSCode's current workspace root is used.</haxe_doc>
+	</cwd>
+</a></typedef>
+	<class path="vscode.ProcessTask" params="" file="src/vscode/ProcessTask.hx" extern="1">
+		<name public="1" set="null">
+			<c path="String"/>
+			<haxe_doc>* The task's name</haxe_doc>
+		</name>
+		<identifier public="1">
+			<c path="String"/>
+			<haxe_doc>* The task's identifier. If omitted the name is
+     * used as an identifier.</haxe_doc>
+		</identifier>
+		<isBackground public="1">
+			<x path="Bool"/>
+			<haxe_doc>* Whether the task is a background task or not.</haxe_doc>
+		</isBackground>
+		<process public="1" set="null">
+			<c path="String"/>
+			<haxe_doc>* The process to be executed.</haxe_doc>
+		</process>
+		<args public="1">
+			<c path="Array"><c path="String"/></c>
+			<haxe_doc>* The arguments passed to the process. Defaults to an empty array.</haxe_doc>
+		</args>
+		<group public="1">
+			<x path="vscode.TaskGroup"/>
+			<meta><m n=":optional"/></meta>
+			<haxe_doc>* The task group this tasks belongs to. Defaults to undefined meaning
+     * that the task doesn't belong to any special group.</haxe_doc>
+		</group>
+		<options public="1">
+			<t path="vscode.ProcessOptions"/>
+			<haxe_doc>* The process options used when the process is executed.
+     * Defaults to an empty object literal.</haxe_doc>
+		</options>
+		<terminal public="1">
+			<t path="vscode.TerminalBehaviour"/>
+			<haxe_doc>* The terminal options. Defaults to an empty object literal.</haxe_doc>
+		</terminal>
+		<problemMatchers public="1">
+			<x path="haxe.extern.EitherType">
+				<c path="Array"><c path="String"/></c>
+				<c path="Array"><t path="vscode.ProblemMatcher"/></c>
+			</x>
+			<haxe_doc>* The problem matchers attached to the task. Defaults to an empty
+     * array.</haxe_doc>
+		</problemMatchers>
+		<new public="1" set="method">
+			<f a="name:process:?problemMatchers">
+				<c path="String"/>
+				<c path="String"/>
+				<t path="vscode.ProblemMatchers"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>* Creates a process task.
+     *
+     * @param name the task's name. Is presented in the user interface.
+     * @param process the process to start.
+     * @param problemMatchers the problem matchers to use.</haxe_doc>
+			<overloads>
+				<new public="1" set="method">
+					<f a="name:process:args:?problemMatchers">
+						<c path="String"/>
+						<c path="String"/>
+						<c path="Array"><c path="String"/></c>
+						<t path="vscode.ProblemMatchers"/>
+						<x path="Void"/>
+					</f>
+					<haxe_doc>* Creates a process task.
+     *
+     * @param name the task's name. Is presented in the user interface.
+     * @param process the process to start.
+     * @param problemMatchers the problem matchers to use.</haxe_doc>
+				</new>
+				<new public="1" set="method">
+					<f a="name:process:args:options:?problemMatchers">
+						<c path="String"/>
+						<c path="String"/>
+						<c path="Array"><c path="String"/></c>
+						<t path="vscode.ProcessOptions"/>
+						<t path="vscode.ProblemMatchers"/>
+						<x path="Void"/>
+					</f>
+					<haxe_doc>* Creates a process task.
+     *
+     * @param name the task's name. Is presented in the user interface.
+     * @param process the process to start.
+     * @param problemMatchers the problem matchers to use.</haxe_doc>
+				</new>
+			</overloads>
+		</new>
+		<haxe_doc>* A task that starts an external process.</haxe_doc>
+		<meta><m n=":jsRequire">
+	<e>"vscode"</e>
+	<e>"ProcessTask"</e>
+</m></meta>
+	</class>
 	<typedef path="vscode.Progress" params="T" file="src/vscode/Progress.hx">
 		<a><report set="method">
 	<f a="value">
@@ -5332,6 +5993,93 @@
 		<haxe_doc>* The rename provider interface defines the contract between extensions and
  * the [rename](https://code.visualstudio.com/docs/editor/editingevolved#_rename-symbol)-feature.</haxe_doc>
 	</typedef>
+	<abstract path="vscode.RevealKind" params="" file="src/vscode/RevealKind.hx">
+		<this><x path="Int"/></this>
+		<haxe_doc>* Controls the behaviour of the terminal's visibility.</haxe_doc>
+		<meta>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"RevealKind"</e>
+			</m>
+			<m n=":enum"/>
+		</meta>
+		<impl><class path="vscode._RevealKind.RevealKind_Impl_" params="" file="src/vscode/RevealKind.hx" private="1" module="vscode.RevealKind" extern="1">
+	<Always public="1" get="inline" set="null" expr="cast 1" line="11" static="1">
+		<x path="vscode.RevealKind"/>
+		<meta>
+			<m n=":value"><e>cast 1</e></m>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Always brings the terminal to front if the task is executed.</haxe_doc>
+	</Always>
+	<Silent public="1" get="inline" set="null" expr="cast 2" line="17" static="1">
+		<x path="vscode.RevealKind"/>
+		<meta>
+			<m n=":value"><e>cast 2</e></m>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Only brings the terminal to front if a problem is detected executing the task
+     * (e.g. the task couldn't be started because).</haxe_doc>
+	</Silent>
+	<Never public="1" get="inline" set="null" expr="cast 3" line="22" static="1">
+		<x path="vscode.RevealKind"/>
+		<meta>
+			<m n=":value"><e>cast 3</e></m>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* The terminal never comes to front when the task is executed.</haxe_doc>
+	</Never>
+	<meta>
+		<m n=":final"/>
+		<m n=":enum"/>
+		<m n=":jsRequire">
+			<e>"vscode"</e>
+			<e>"RevealKind"</e>
+		</m>
+	</meta>
+</class></impl>
+	</abstract>
+	<class path="vscode._RevealKind.RevealKind_Impl_" params="" file="src/vscode/RevealKind.hx" private="1" module="vscode.RevealKind" extern="1">
+		<Always public="1" get="inline" set="null" expr="cast 1" line="11" static="1">
+			<x path="vscode.RevealKind"/>
+			<meta>
+				<m n=":value"><e>cast 1</e></m>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Always brings the terminal to front if the task is executed.</haxe_doc>
+		</Always>
+		<Silent public="1" get="inline" set="null" expr="cast 2" line="17" static="1">
+			<x path="vscode.RevealKind"/>
+			<meta>
+				<m n=":value"><e>cast 2</e></m>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Only brings the terminal to front if a problem is detected executing the task
+     * (e.g. the task couldn't be started because).</haxe_doc>
+		</Silent>
+		<Never public="1" get="inline" set="null" expr="cast 3" line="22" static="1">
+			<x path="vscode.RevealKind"/>
+			<meta>
+				<m n=":value"><e>cast 3</e></m>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* The terminal never comes to front when the task is executed.</haxe_doc>
+		</Never>
+		<meta>
+			<m n=":final"/>
+			<m n=":enum"/>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"RevealKind"</e>
+			</m>
+		</meta>
+	</class>
 	<class path="vscode.Selection" params="" file="src/vscode/Selection.hx" extern="1">
 		<extends path="vscode.Range"/>
 		<anchor public="1">
@@ -5376,6 +6124,136 @@
 		<meta><m n=":jsRequire">
 	<e>"vscode"</e>
 	<e>"Selection"</e>
+</m></meta>
+	</class>
+	<typedef path="vscode.ShellOptions" params="" file="src/vscode/ShellOptions.hx"><x path="haxe.extern.EitherType">
+	<a>
+		<shellArgs>
+			<t path="Null"><c path="Array"><c path="String"/></c></t>
+			<meta><m n=":optional"/></meta>
+			<haxe_doc>* The arguments to be passed to the shell executable used to run the task.</haxe_doc>
+		</shellArgs>
+		<executable>
+			<c path="String"/>
+			<haxe_doc>* The shell executable.</haxe_doc>
+		</executable>
+		<env>
+			<t path="Null"><x path="haxe.DynamicAccess"><c path="String"/></x></t>
+			<meta><m n=":optional"/></meta>
+			<haxe_doc>* The additional environment of the executed shell. If omitted
+     * the parent process' environment is used. If provided it is merged with
+     * the parent process' environment.</haxe_doc>
+		</env>
+		<cwd>
+			<t path="Null"><c path="String"/></t>
+			<meta><m n=":optional"/></meta>
+			<haxe_doc>* The current working directory of the executed shell.
+     * If omitted VSCode's current workspace root is used.</haxe_doc>
+		</cwd>
+	</a>
+	<x path="haxe.extern.EitherType">
+		<a>
+			<env>
+				<t path="Null"><x path="haxe.DynamicAccess"><c path="String"/></x></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The additional environment of the executed shell. If omitted
+     * the parent process' environment is used. If provided it is merged with
+     * the parent process' environment.</haxe_doc>
+			</env>
+			<cwd>
+				<c path="String"/>
+				<haxe_doc>* The current working directory of the executed shell.
+     * If omitted VSCode's current workspace root is used.</haxe_doc>
+			</cwd>
+		</a>
+		<a>
+			<env>
+				<x path="haxe.DynamicAccess"><c path="String"/></x>
+				<haxe_doc>* The additional environment of the executed shell. If omitted
+     * the parent process' environment is used. If provided it is merged with
+     * the parent process' environment.</haxe_doc>
+			</env>
+			<cwd>
+				<t path="Null"><c path="String"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The current working directory of the executed shell.
+     * If omitted VSCode's current workspace root is used.</haxe_doc>
+			</cwd>
+		</a>
+	</x>
+</x></typedef>
+	<class path="vscode.ShellTask" params="" file="src/vscode/ShellTask.hx" extern="1">
+		<name public="1" set="null">
+			<c path="String"/>
+			<haxe_doc>* The task's name</haxe_doc>
+		</name>
+		<identifier public="1">
+			<c path="String"/>
+			<haxe_doc>* The task's identifier. If omitted the name is
+     * used as an identifier.</haxe_doc>
+		</identifier>
+		<isBackground public="1">
+			<x path="Bool"/>
+			<haxe_doc>* Whether the task is a background task or not.</haxe_doc>
+		</isBackground>
+		<commandLine public="1" set="null">
+			<c path="String"/>
+			<haxe_doc>* The command line to execute.</haxe_doc>
+		</commandLine>
+		<group public="1">
+			<x path="vscode.TaskGroup"/>
+			<meta><m n=":optional"/></meta>
+			<haxe_doc>* The task group this tasks belongs to. Defaults to undefined meaning
+     * that the task doesn't belong to any special group.</haxe_doc>
+		</group>
+		<options public="1">
+			<t path="vscode.ShellOptions"/>
+			<haxe_doc>* The shell options used when the shell is executed. Defaults to an
+     * empty object literal.</haxe_doc>
+		</options>
+		<terminal public="1">
+			<t path="vscode.TerminalBehaviour"/>
+			<haxe_doc>* The terminal options. Defaults to an empty object literal.</haxe_doc>
+		</terminal>
+		<problemMatchers public="1">
+			<c path="Array"><x path="haxe.extern.EitherType">
+	<c path="String"/>
+	<t path="vscode.ProblemMatcher"/>
+</x></c>
+			<haxe_doc>* The problem matchers attached to the task. Defaults to an empty
+     * array.</haxe_doc>
+		</problemMatchers>
+		<new public="1" set="method">
+			<f a="name:commandLine:?problemMatchers">
+				<c path="String"/>
+				<c path="String"/>
+				<t path="vscode.ProblemMatchers"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>* Creates a shell task.
+     *
+     * @param name the task's name. Is presented in the user interface.
+     * @param commandLine the command line to execute.
+     * @param problemMatchers the problem matchers to use.</haxe_doc>
+			<overloads><new public="1" set="method">
+	<f a="name:commandLine:options:?problemMatchers">
+		<c path="String"/>
+		<c path="String"/>
+		<t path="vscode.ShellOptions"/>
+		<t path="vscode.ProblemMatchers"/>
+		<x path="Void"/>
+	</f>
+	<haxe_doc>* Creates a shell task.
+     *
+     * @param name the task's name. Is presented in the user interface.
+     * @param commandLine the command line to execute.
+     * @param problemMatchers the problem matchers to use.</haxe_doc>
+</new></overloads>
+		</new>
+		<haxe_doc>* A task that executes a shell command.</haxe_doc>
+		<meta><m n=":jsRequire">
+	<e>"vscode"</e>
+	<e>"ShellTask"</e>
 </m></meta>
 	</class>
 	<class path="vscode.SignatureHelp" params="" file="src/vscode/SignatureHelp.hx" extern="1">
@@ -6273,6 +7151,125 @@
 			</m>
 		</meta>
 	</class>
+	<typedef path="vscode.Task" params="" file="src/vscode/Task.hx"><x path="haxe.extern.EitherType">
+	<c path="vscode.ProcessTask"/>
+	<c path="vscode.ShellTask"/>
+</x></typedef>
+	<abstract path="vscode.TaskGroup" params="" file="src/vscode/TaskGroup.hx">
+		<this><c path="String"/></this>
+		<meta>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"TaskGroup"</e>
+			</m>
+			<m n=":enum"/>
+		</meta>
+		<impl><class path="vscode._TaskGroup.TaskGroup_Impl_" params="" file="src/vscode/TaskGroup.hx" private="1" module="vscode.TaskGroup" extern="1">
+	<Clean public="1" get="inline" set="null" expr="cast &quot;clean&quot;" line="8" static="1">
+		<x path="vscode.TaskGroup"/>
+		<meta>
+			<m n=":value"><e>cast "clean"</e></m>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* The clean task group</haxe_doc>
+	</Clean>
+	<Build public="1" get="inline" set="null" expr="cast &quot;build&quot;" line="13" static="1">
+		<x path="vscode.TaskGroup"/>
+		<meta>
+			<m n=":value"><e>cast "build"</e></m>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* The build task group</haxe_doc>
+	</Build>
+	<RebuildAll public="1" get="inline" set="null" expr="cast &quot;rebuildAll&quot;" line="18" static="1">
+		<x path="vscode.TaskGroup"/>
+		<meta>
+			<m n=":value"><e>cast "rebuildAll"</e></m>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* The rebuild all task group</haxe_doc>
+	</RebuildAll>
+	<Test public="1" get="inline" set="null" expr="cast &quot;test&quot;" line="23" static="1">
+		<x path="vscode.TaskGroup"/>
+		<meta>
+			<m n=":value"><e>cast "test"</e></m>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* The test task group</haxe_doc>
+	</Test>
+	<meta>
+		<m n=":final"/>
+		<m n=":enum"/>
+		<m n=":jsRequire">
+			<e>"vscode"</e>
+			<e>"TaskGroup"</e>
+		</m>
+	</meta>
+</class></impl>
+	</abstract>
+	<class path="vscode._TaskGroup.TaskGroup_Impl_" params="" file="src/vscode/TaskGroup.hx" private="1" module="vscode.TaskGroup" extern="1">
+		<Clean public="1" get="inline" set="null" expr="cast &quot;clean&quot;" line="8" static="1">
+			<x path="vscode.TaskGroup"/>
+			<meta>
+				<m n=":value"><e>cast "clean"</e></m>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* The clean task group</haxe_doc>
+		</Clean>
+		<Build public="1" get="inline" set="null" expr="cast &quot;build&quot;" line="13" static="1">
+			<x path="vscode.TaskGroup"/>
+			<meta>
+				<m n=":value"><e>cast "build"</e></m>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* The build task group</haxe_doc>
+		</Build>
+		<RebuildAll public="1" get="inline" set="null" expr="cast &quot;rebuildAll&quot;" line="18" static="1">
+			<x path="vscode.TaskGroup"/>
+			<meta>
+				<m n=":value"><e>cast "rebuildAll"</e></m>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* The rebuild all task group</haxe_doc>
+		</RebuildAll>
+		<Test public="1" get="inline" set="null" expr="cast &quot;test&quot;" line="23" static="1">
+			<x path="vscode.TaskGroup"/>
+			<meta>
+				<m n=":value"><e>cast "test"</e></m>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* The test task group</haxe_doc>
+		</Test>
+		<meta>
+			<m n=":final"/>
+			<m n=":enum"/>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"TaskGroup"</e>
+			</m>
+		</meta>
+	</class>
+	<typedef path="vscode.TaskProvider" params="" file="src/vscode/TaskProvider.hx">
+		<a><provideTasks set="method">
+	<f a="token">
+		<t path="vscode.CancellationToken"/>
+		<t path="vscode.ProviderResult"><c path="Array"><t path="vscode.Task"/></c></t>
+	</f>
+	<haxe_doc>* Provides additional tasks.
+     * @param token A cancellation token.
+     * @return a #TaskSet</haxe_doc>
+</provideTasks></a>
+		<haxe_doc>* A task provider allows to add tasks to the task service.
+ * A task provider is registerd via #workspace.registerTaskProvider.</haxe_doc>
+	</typedef>
 	<typedef path="vscode.Terminal" params="" file="src/vscode/Terminal.hx">
 		<a>
 			<show set="method">
@@ -6316,6 +7313,22 @@
 			</dispose>
 		</a>
 		<haxe_doc>* An individual terminal instance within the integrated terminal.</haxe_doc>
+	</typedef>
+	<typedef path="vscode.TerminalBehaviour" params="" file="src/vscode/TerminalBehaviour.hx">
+		<a>
+			<reveal>
+				<t path="Null"><x path="vscode.RevealKind"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Controls whether the terminal executing a task is brought to front or not.
+     * Defaults to `RevealKind.Always`.</haxe_doc>
+			</reveal>
+			<echo>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Controls whether the command is echoed in the terminal or not.</haxe_doc>
+			</echo>
+		</a>
+		<haxe_doc>* Controls terminal specific behaviour.</haxe_doc>
 	</typedef>
 	<typedef path="vscode.TerminalOptions" params="" file="src/vscode/TerminalOptions.hx">
 		<a>
