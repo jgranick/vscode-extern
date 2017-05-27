@@ -2496,133 +2496,6 @@
 		</new>
 		<meta><m n=":native"><e>"Symbol"</e></m></meta>
 	</class>
-	<abstract path="vscode.ApplyToKind" params="" file="src/vscode/ApplyToKind.hx">
-		<this><x path="Int"/></this>
-		<haxe_doc>* Controls to which kind of documents problems are applied.</haxe_doc>
-		<meta>
-			<m n=":jsRequire">
-				<e>"vscode"</e>
-				<e>"ApplyToKind"</e>
-			</m>
-			<m n=":enum"/>
-		</meta>
-		<impl><class path="vscode._ApplyToKind.ApplyToKind_Impl_" params="" file="src/vscode/ApplyToKind.hx" private="1" module="vscode.ApplyToKind" extern="1">
-	<AllDocuments public="1" get="inline" set="null" expr="cast 1" line="11" static="1">
-		<x path="vscode.ApplyToKind"/>
-		<meta>
-			<m n=":value"><e>cast 1</e></m>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-		<haxe_doc>* Problems are applied to all documents.</haxe_doc>
-	</AllDocuments>
-	<OpenDocuments public="1" get="inline" set="null" expr="cast 2" line="16" static="1">
-		<x path="vscode.ApplyToKind"/>
-		<meta>
-			<m n=":value"><e>cast 2</e></m>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-		<haxe_doc>* Problems are applied to open documents only.</haxe_doc>
-	</OpenDocuments>
-	<ClosedDocuments public="1" get="inline" set="null" expr="cast 3" line="21" static="1">
-		<x path="vscode.ApplyToKind"/>
-		<meta>
-			<m n=":value"><e>cast 3</e></m>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-		<haxe_doc>* Problems are applied to closed documents only.</haxe_doc>
-	</ClosedDocuments>
-	<meta>
-		<m n=":final"/>
-		<m n=":enum"/>
-		<m n=":jsRequire">
-			<e>"vscode"</e>
-			<e>"ApplyToKind"</e>
-		</m>
-	</meta>
-</class></impl>
-	</abstract>
-	<class path="vscode._ApplyToKind.ApplyToKind_Impl_" params="" file="src/vscode/ApplyToKind.hx" private="1" module="vscode.ApplyToKind" extern="1">
-		<AllDocuments public="1" get="inline" set="null" expr="cast 1" line="11" static="1">
-			<x path="vscode.ApplyToKind"/>
-			<meta>
-				<m n=":value"><e>cast 1</e></m>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-			<haxe_doc>* Problems are applied to all documents.</haxe_doc>
-		</AllDocuments>
-		<OpenDocuments public="1" get="inline" set="null" expr="cast 2" line="16" static="1">
-			<x path="vscode.ApplyToKind"/>
-			<meta>
-				<m n=":value"><e>cast 2</e></m>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-			<haxe_doc>* Problems are applied to open documents only.</haxe_doc>
-		</OpenDocuments>
-		<ClosedDocuments public="1" get="inline" set="null" expr="cast 3" line="21" static="1">
-			<x path="vscode.ApplyToKind"/>
-			<meta>
-				<m n=":value"><e>cast 3</e></m>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-			<haxe_doc>* Problems are applied to closed documents only.</haxe_doc>
-		</ClosedDocuments>
-		<meta>
-			<m n=":final"/>
-			<m n=":enum"/>
-			<m n=":jsRequire">
-				<e>"vscode"</e>
-				<e>"ApplyToKind"</e>
-			</m>
-		</meta>
-	</class>
-	<typedef path="vscode.BackgroundMonitor" params="" file="src/vscode/BackgroundMonitor.hx">
-		<a>
-			<endsPattern>
-				<x path="haxe.extern.EitherType">
-					<c path="js.RegExp"/>
-					<t path="vscode.BackgroundPattern"/>
-				</x>
-				<haxe_doc>* If matched in the output the end of a background activity is signaled.</haxe_doc>
-			</endsPattern>
-			<beginsPattern>
-				<x path="haxe.extern.EitherType">
-					<c path="js.RegExp"/>
-					<t path="vscode.BackgroundPattern"/>
-				</x>
-				<haxe_doc>* If matched in the output the start of a background activity is signaled.</haxe_doc>
-			</beginsPattern>
-			<activeOnStart>
-				<t path="Null"><x path="Bool"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* If set to true the monitor is in active mode when the task
-     * starts. This is equals of issuing a line that matches the
-     * beginPattern.</haxe_doc>
-			</activeOnStart>
-		</a>
-		<haxe_doc>* A description to control the activity of a problem matcher
- * watching a background task.</haxe_doc>
-	</typedef>
-	<typedef path="vscode.BackgroundPattern" params="" file="src/vscode/BackgroundPattern.hx">
-		<a>
-			<regexp>
-				<c path="js.RegExp"/>
-				<haxe_doc>* The actual regular expression</haxe_doc>
-			</regexp>
-			<file>
-				<t path="Null"><x path="Int"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The match group index of the filename. If provided the expression
-     * is matched for that file only.</haxe_doc>
-			</file>
-		</a>
-		<haxe_doc>* A background monitor pattern</haxe_doc>
-	</typedef>
 	<typedef path="vscode.CancellationToken" params="" file="src/vscode/CancellationToken.hx">
 		<a>
 			<onCancellationRequested>
@@ -4384,95 +4257,6 @@
  * An instance of an `ExtensionContext` is provided as the first
  * parameter to the `activate`-call of an extension.</haxe_doc>
 	</typedef>
-	<abstract path="vscode.FileLocationKind" params="" file="src/vscode/FileLocationKind.hx">
-		<this><x path="Int"/></this>
-		<haxe_doc>* The way how the file location is interpreted</haxe_doc>
-		<meta>
-			<m n=":jsRequire">
-				<e>"vscode"</e>
-				<e>"FileLocationKind"</e>
-			</m>
-			<m n=":enum"/>
-		</meta>
-		<impl><class path="vscode._FileLocationKind.FileLocationKind_Impl_" params="" file="src/vscode/FileLocationKind.hx" private="1" module="vscode.FileLocationKind" extern="1">
-	<Auto public="1" get="inline" set="null" expr="cast 1" line="13" static="1">
-		<x path="vscode.FileLocationKind"/>
-		<meta>
-			<m n=":value"><e>cast 1</e></m>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-		<haxe_doc>* VS Code should decide based on whether the file path found in the
-     * output is absolute or relative. A relative file path will be treated
-     * relative to the workspace root.</haxe_doc>
-	</Auto>
-	<Relative public="1" get="inline" set="null" expr="cast 2" line="18" static="1">
-		<x path="vscode.FileLocationKind"/>
-		<meta>
-			<m n=":value"><e>cast 2</e></m>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-		<haxe_doc>* Always treat the file path relative.</haxe_doc>
-	</Relative>
-	<Absolute public="1" get="inline" set="null" expr="cast 3" line="23" static="1">
-		<x path="vscode.FileLocationKind"/>
-		<meta>
-			<m n=":value"><e>cast 3</e></m>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-		<haxe_doc>* Always treat the file path absolute.</haxe_doc>
-	</Absolute>
-	<meta>
-		<m n=":final"/>
-		<m n=":enum"/>
-		<m n=":jsRequire">
-			<e>"vscode"</e>
-			<e>"FileLocationKind"</e>
-		</m>
-	</meta>
-</class></impl>
-	</abstract>
-	<class path="vscode._FileLocationKind.FileLocationKind_Impl_" params="" file="src/vscode/FileLocationKind.hx" private="1" module="vscode.FileLocationKind" extern="1">
-		<Auto public="1" get="inline" set="null" expr="cast 1" line="13" static="1">
-			<x path="vscode.FileLocationKind"/>
-			<meta>
-				<m n=":value"><e>cast 1</e></m>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-			<haxe_doc>* VS Code should decide based on whether the file path found in the
-     * output is absolute or relative. A relative file path will be treated
-     * relative to the workspace root.</haxe_doc>
-		</Auto>
-		<Relative public="1" get="inline" set="null" expr="cast 2" line="18" static="1">
-			<x path="vscode.FileLocationKind"/>
-			<meta>
-				<m n=":value"><e>cast 2</e></m>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-			<haxe_doc>* Always treat the file path relative.</haxe_doc>
-		</Relative>
-		<Absolute public="1" get="inline" set="null" expr="cast 3" line="23" static="1">
-			<x path="vscode.FileLocationKind"/>
-			<meta>
-				<m n=":value"><e>cast 3</e></m>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-			<haxe_doc>* Always treat the file path absolute.</haxe_doc>
-		</Absolute>
-		<meta>
-			<m n=":final"/>
-			<m n=":enum"/>
-			<m n=":jsRequire">
-				<e>"vscode"</e>
-				<e>"FileLocationKind"</e>
-			</m>
-		</meta>
-	</class>
 	<class path="vscode.FileSystemWatcher" params="" file="src/vscode/FileSystemWatcher.hx" extern="1">
 		<extends path="vscode.Disposable"/>
 		<ignoreCreateEvents public="1">
@@ -4975,10 +4759,6 @@
  * @see [showWarningMessage](#window.showWarningMessage)
  * @see [showErrorMessage](#window.showErrorMessage)</haxe_doc>
 	</typedef>
-	<typedef path="vscode.MultiLineProblemPattern" params="" file="src/vscode/MultiLineProblemPattern.hx">
-		<c path="Array"><t path="vscode.ProblemPattern"/></c>
-		<haxe_doc>* A multi line problem pattern.</haxe_doc>
-	</typedef>
 	<typedef path="vscode.OnEnterRule" params="" file="src/vscode/OnEnterRule.hx">
 		<a>
 			<beforeText>
@@ -5365,143 +5145,12 @@
 	<e>"Position"</e>
 </m></meta>
 	</class>
-	<typedef path="vscode.ProblemMatcher" params="" file="src/vscode/ProblemMatcher.hx">
-		<a>
-			<severity>
-				<t path="Null"><x path="vscode.DiagnosticSeverity"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The default severity of a detected problem in the output. Used
-     * if the `ProblemPattern` doesn't define a severity match group.</haxe_doc>
-			</severity>
-			<pattern>
-				<t path="Null"><x path="haxe.extern.EitherType">
-	<t path="vscode.ProblemPattern"/>
-	<t path="vscode.MultiLineProblemPattern"/>
-</x></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The actual pattern used by the problem matcher.</haxe_doc>
-			</pattern>
-			<owner>
-				<t path="Null"><c path="String"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The owner of a problem. Defaults to a generated id
-     * if omitted.</haxe_doc>
-			</owner>
-			<fileLocation>
-				<t path="Null"><x path="haxe.extern.EitherType">
-	<x path="vscode.FileLocationKind"/>
-	<c path="String"/>
-</x></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* How a file location recognized by a matcher should be interpreted. If omitted the file location
-     * if `FileLocationKind.Auto`.</haxe_doc>
-			</fileLocation>
-			<backgound>
-				<t path="Null"><t path="vscode.BackgroundMonitor"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* A background monitor for tasks that are running in the background.</haxe_doc>
-			</backgound>
-			<applyTo>
-				<t path="Null"><x path="vscode.ApplyToKind"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The type of documents problems detected by this matcher
-     * apply to. Default to `ApplyToKind.AllDocuments` if omitted.</haxe_doc>
-			</applyTo>
-		</a>
-		<haxe_doc>* Defines a problem matcher</haxe_doc>
-	</typedef>
 	<typedef path="vscode.ProblemMatchers" params="" file="src/vscode/ProblemMatchers.hx">
 		<x path="haxe.extern.EitherType">
 			<c path="String"/>
-			<x path="haxe.extern.EitherType">
-				<t path="vscode.ProblemMatcher"/>
-				<x path="haxe.extern.EitherType">
-					<c path="Array"><c path="String"/></c>
-					<c path="Array"><t path="vscode.ProblemMatcher"/></c>
-				</x>
-			</x>
+			<c path="Array"><c path="String"/></c>
 		</x>
 		<haxe_doc>* The ProblemMatchers type definition.</haxe_doc>
-	</typedef>
-	<typedef path="vscode.ProblemPattern" params="" file="src/vscode/ProblemPattern.hx">
-		<a>
-			<severity>
-				<t path="Null"><x path="Int"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The match group index of the problem's severity.
-     *
-     * Defaults to undefined. In this case the problem matcher's severity
-     * is used.</haxe_doc>
-			</severity>
-			<regexp>
-				<c path="js.RegExp"/>
-				<haxe_doc>* The regular expression to find a problem in the console output of an
-     * executed task.</haxe_doc>
-			</regexp>
-			<message>
-				<t path="Null"><x path="Int"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The match group index of the message. If omitted it defaults
-     * to 4 if location is specified. Otherwise it defaults to 5.</haxe_doc>
-			</message>
-			<loop>
-				<t path="Null"><x path="Bool"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* Specifies if the last pattern in a multi line problem matcher should
-     * loop as long as it does match a line consequently. Only valid on the
-     * last problem pattern in a multi line problem matcher.</haxe_doc>
-			</loop>
-			<location>
-				<t path="Null"><x path="Int"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The match group index of the problems's location. Valid location
-     * patterns are: (line), (line,column) and (startLine,startColumn,endLine,endColumn).
-     * If omitted the line and colum properties are used.</haxe_doc>
-			</location>
-			<line>
-				<t path="Null"><x path="Int"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The match group index of the problem's line in the source file.
-     *
-     * Defaults to 2 if omitted.</haxe_doc>
-			</line>
-			<file>
-				<t path="Null"><x path="Int"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The match group index of the filename.
-     *
-     * Defaults to 1 if omitted.</haxe_doc>
-			</file>
-			<endLine>
-				<t path="Null"><x path="Int"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The match group index of the problem's end line in the source file.
-     *
-     * Defaults to undefined. No end line is captured.</haxe_doc>
-			</endLine>
-			<endCharacter>
-				<t path="Null"><x path="Int"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The match group index of the problem's end character in the source file.
-     *
-     * Defaults to undefined. No end column is captured.</haxe_doc>
-			</endCharacter>
-			<code>
-				<t path="Null"><x path="Int"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The match group index of the problems's code.
-     *
-     * Defaults to undefined. No code is captured.</haxe_doc>
-			</code>
-			<character>
-				<t path="Null"><x path="Int"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The match group index of the problem's character in the source file.
-     *
-     * Defaults to 3 if omitted.</haxe_doc>
-			</character>
-		</a>
-		<haxe_doc>* Defines a problem pattern</haxe_doc>
 	</typedef>
 	<typedef path="vscode.ProcessOptions" params="" file="src/vscode/ProcessOptions.hx"><a>
 	<env>
@@ -5556,10 +5205,7 @@
 			<haxe_doc>* The terminal options. Defaults to an empty object literal.</haxe_doc>
 		</terminal>
 		<problemMatchers public="1">
-			<x path="haxe.extern.EitherType">
-				<c path="Array"><c path="String"/></c>
-				<c path="Array"><t path="vscode.ProblemMatcher"/></c>
-			</x>
+			<c path="Array"><c path="String"/></c>
 			<haxe_doc>* The problem matchers attached to the task. Defaults to an empty
      * array.</haxe_doc>
 		</problemMatchers>
@@ -6216,10 +5862,7 @@
 			<haxe_doc>* The terminal options. Defaults to an empty object literal.</haxe_doc>
 		</terminal>
 		<problemMatchers public="1">
-			<c path="Array"><x path="haxe.extern.EitherType">
-	<c path="String"/>
-	<t path="vscode.ProblemMatcher"/>
-</x></c>
+			<c path="Array"><c path="String"/></c>
 			<haxe_doc>* The problem matchers attached to the task. Defaults to an empty
      * array.</haxe_doc>
 		</problemMatchers>
