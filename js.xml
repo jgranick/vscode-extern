@@ -4433,6 +4433,10 @@
  *
  * To get an instance of a `FileSystemWatcher` use
  * [createFileSystemWatcher](#workspace.createFileSystemWatcher).</haxe_doc>
+		<meta><m n=":jsRequire">
+	<e>"vscode"</e>
+	<e>"FileSystemWatcher"</e>
+</m></meta>
 	</class>
 	<typedef path="vscode.FormattingOptions" params="" file="src/vscode/FormattingOptions.hx">
 		<a>
