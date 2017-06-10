@@ -8077,7 +8077,7 @@
 	<typedef path="vscode.TreeDataProvider" params="T" file="src/vscode/TreeDataProvider.hx">
 		<a>
 			<onDidChangeTreeData>
-				<t path="Null"><t path="vscode.Event"><c path="vscode.TreeDataProvider.T"/></t></t>
+				<t path="Null"><t path="vscode.Event"><t path="Null"><c path="vscode.TreeDataProvider.T"/></t></t></t>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional event to signal that an element or root has changed.
      * To signal that root has changed, do not pass any argument or pass `undefined` or `null`.</haxe_doc>
@@ -8776,7 +8776,11 @@
      *
      * @param name the task's name. Is presented in the user interface.
      * @param process the process to start.
-     * @param problemMatchers the problem matchers to use.</haxe_doc>
+     * @param args arguments to be passed to the process.
+     * @param options additional options for the started process.
+     * @param problemMatchers the problem matchers to use, like '$tsc'
+     *  or '$eslint'. Problem matchers can be contributed by an extension using
+     *  the `problemMatchers` extension point.</haxe_doc>
 			<overloads>
 				<new public="1" set="method">
 					<f a="name:process:args:?problemMatchers">
@@ -8793,7 +8797,11 @@
      *
      * @param name the task's name. Is presented in the user interface.
      * @param process the process to start.
-     * @param problemMatchers the problem matchers to use.</haxe_doc>
+     * @param args arguments to be passed to the process.
+     * @param options additional options for the started process.
+     * @param problemMatchers the problem matchers to use, like '$tsc'
+     *  or '$eslint'. Problem matchers can be contributed by an extension using
+     *  the `problemMatchers` extension point.</haxe_doc>
 				</new>
 				<new public="1" set="method">
 					<f a="name:process:args:options:?problemMatchers">
@@ -8811,7 +8819,11 @@
      *
      * @param name the task's name. Is presented in the user interface.
      * @param process the process to start.
-     * @param problemMatchers the problem matchers to use.</haxe_doc>
+     * @param args arguments to be passed to the process.
+     * @param options additional options for the started process.
+     * @param problemMatchers the problem matchers to use, like '$tsc'
+     *  or '$eslint'. Problem matchers can be contributed by an extension using
+     *  the `problemMatchers` extension point.</haxe_doc>
 				</new>
 			</overloads>
 		</new>
@@ -8894,7 +8906,10 @@
      *
      * @param name the task's name. Is presented in the user interface.
      * @param commandLine the command line to execute.
-     * @param problemMatchers the problem matchers to use.</haxe_doc>
+     * @param options additional options used when creating the shell.
+     * @param problemMatchers the problem matchers to use, like '$tsc'
+     *  or '$eslint'. Problem matchers can be contributed by an extension using
+     *  the `problemMatchers` extension point.</haxe_doc>
 			<overloads><new public="1" set="method">
 	<f a="name:commandLine:options:?problemMatchers">
 		<c path="String"/>
@@ -8910,7 +8925,10 @@
      *
      * @param name the task's name. Is presented in the user interface.
      * @param commandLine the command line to execute.
-     * @param problemMatchers the problem matchers to use.</haxe_doc>
+     * @param options additional options used when creating the shell.
+     * @param problemMatchers the problem matchers to use, like '$tsc'
+     *  or '$eslint'. Problem matchers can be contributed by an extension using
+     *  the `problemMatchers` extension point.</haxe_doc>
 </new></overloads>
 		</new>
 		<haxe_doc>* A task that executes a shell command.</haxe_doc>
