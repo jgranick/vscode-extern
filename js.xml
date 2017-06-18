@@ -53,7 +53,7 @@
 				<c path="Date"/>
 			</f>
 			<meta><m n=":has_untyped"/></meta>
-			<haxe_doc>Returns a Date from timestamp `t`.</haxe_doc>
+			<haxe_doc>Returns a Date from timestamp (in milliseconds) `t`.</haxe_doc>
 		</fromTime>
 		<fromString public="1" get="inline" set="null" line="46" static="1">
 			<f a="s">
