@@ -18,6 +18,247 @@
 </meta></class></impl>
 	</abstract>
 	<class path="Array" params="T" file="/home/travis/haxe/std/js/_std/Array.hx" extern="1">
+		<length public="1" set="null">
+			<x path="Int"/>
+			<haxe_doc>The length of `this` Array.</haxe_doc>
+		</length>
+		<concat public="1" set="method">
+			<f a="a">
+				<c path="Array"><c path="Array.T"/></c>
+				<c path="Array"><c path="Array.T"/></c>
+			</f>
+			<haxe_doc>Returns a new Array by appending the elements of `a` to the elements of
+		`this` Array.
+
+		This operation does not modify `this` Array.
+
+		If `a` is the empty Array `[]`, a copy of `this` Array is returned.
+
+		The length of the returned Array is equal to the sum of `this.length`
+		and `a.length`.
+
+		If `a` is `null`, the result is unspecified.</haxe_doc>
+		</concat>
+		<join public="1" set="method">
+			<f a="sep">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>Returns a string representation of `this` Array, with `sep` separating
+		each element.
+
+		The result of this operation is equal to `Std.string(this[0]) + sep +
+		Std.string(this[1]) + sep + ... + sep + Std.string(this[this.length-1])`
+
+		If `this` is the empty Array `[]`, the result is the empty String `""`.
+		If `this` has exactly one element, the result is equal to a call to
+		`Std.string(this[0])`.
+
+		If `sep` is null, the result is unspecified.</haxe_doc>
+		</join>
+		<pop public="1" set="method">
+			<f a=""><x path="Null"><c path="Array.T"/></x></f>
+			<haxe_doc>Removes the last element of `this` Array and returns it.
+
+		This operation modifies `this` Array in place.
+
+		If `this` has at least one element, `this.length` will decrease by 1.
+
+		If `this` is the empty Array `[]`, null is returned and the length
+		remains 0.</haxe_doc>
+		</pop>
+		<push public="1" set="method">
+			<f a="x">
+				<c path="Array.T"/>
+				<x path="Int"/>
+			</f>
+			<haxe_doc>Adds the element `x` at the end of `this` Array and returns the new
+		length of `this` Array.
+
+		This operation modifies `this` Array in place.
+
+		`this.length` increases by 1.</haxe_doc>
+		</push>
+		<reverse public="1" set="method">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc><![CDATA[Reverse the order of elements of `this` Array.
+
+		This operation modifies `this` Array in place.
+
+		If `this.length < 2`, `this` remains unchanged.]]></haxe_doc>
+		</reverse>
+		<shift public="1" set="method">
+			<f a=""><x path="Null"><c path="Array.T"/></x></f>
+			<haxe_doc>Removes the first element of `this` Array and returns it.
+
+		This operation modifies `this` Array in place.
+
+		If `this` has at least one element, `this`.length and the index of each
+		remaining element is decreased by 1.
+
+		If `this` is the empty Array `[]`, `null` is returned and the length
+		remains 0.</haxe_doc>
+		</shift>
+		<slice public="1" set="method">
+			<f a="pos:?end">
+				<x path="Int"/>
+				<x path="Int"/>
+				<c path="Array"><c path="Array.T"/></c>
+			</f>
+			<haxe_doc>Creates a shallow copy of the range of `this` Array, starting at and
+		including `pos`, up to but not including `end`.
+
+		This operation does not modify `this` Array.
+
+		The elements are not copied and retain their identity.
+
+		If `end` is omitted or exceeds `this.length`, it defaults to the end of
+		`this` Array.
+
+		If `pos` or `end` are negative, their offsets are calculated from the
+		end of `this` Array by `this.length + pos` and `this.length + end`
+		respectively. If this yields a negative value, 0 is used instead.
+
+		If `pos` exceeds `this.length` or if `end` is less than or equals
+		`pos`, the result is `[]`.</haxe_doc>
+		</slice>
+		<sort public="1" set="method">
+			<f a="f">
+				<f a=":">
+					<c path="Array.T"/>
+					<c path="Array.T"/>
+					<x path="Int"/>
+				</f>
+				<x path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[Sorts `this` Array according to the comparison function `f`, where
+		`f(x,y)` returns 0 if x == y, a positive Int if x > y and a
+		negative Int if x < y.
+
+		This operation modifies `this` Array in place.
+
+		The sort operation is not guaranteed to be stable, which means that the
+		order of equal elements may not be retained. For a stable Array sorting
+		algorithm, `haxe.ds.ArraySort.sort()` can be used instead.
+
+		If `f` is null, the result is unspecified.]]></haxe_doc>
+		</sort>
+		<splice public="1" set="method">
+			<f a="pos:len">
+				<x path="Int"/>
+				<x path="Int"/>
+				<c path="Array"><c path="Array.T"/></c>
+			</f>
+			<haxe_doc><![CDATA[Removes `len` elements from `this` Array, starting at and including
+		`pos`, an returns them.
+
+		This operation modifies `this` Array in place.
+
+		If `len` is < 0 or `pos` exceeds `this`.length, an empty Array [] is 
+		returned and `this` Array is unchanged.
+
+		If `pos` is negative, its value is calculated from the end	of `this`
+		Array by `this.length + pos`. If this yields a negative value, 0 is
+		used instead.
+
+		If the sum of the resulting values for `len` and `pos` exceed
+		`this.length`, this operation will affect the elements from `pos` to the
+		end of `this` Array.
+
+		The length of the returned Array is equal to the new length of `this`
+		Array subtracted from the original length of `this` Array. In other
+		words, each element of the original `this` Array either remains in
+		`this` Array or becomes an element of the returned Array.]]></haxe_doc>
+		</splice>
+		<toString public="1" set="method">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>Returns a string representation of `this` Array.
+
+		The result will include the individual elements' String representations
+		separated by comma. The enclosing [ ] may be missing on some platforms,
+		use `Std.string()` to get a String representation that is consistent
+		across platforms.</haxe_doc>
+		</toString>
+		<unshift public="1" set="method">
+			<f a="x">
+				<c path="Array.T"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Adds the element `x` at the start of `this` Array.
+
+		This operation modifies `this` Array in place.
+
+		`this.length` and the index of each Array element increases by 1.</haxe_doc>
+		</unshift>
+		<indexOf public="1" set="method">
+			<f a="x:?fromIndex">
+				<c path="Array.T"/>
+				<x path="Int"/>
+				<x path="Int"/>
+			</f>
+			<haxe_doc>Returns position of the first occurrence of `x` in `this` Array, searching front to back.
+
+		If `x` is found by checking standard equality, the function returns its index.
+
+		If `x` is not found, the function returns -1.
+
+		If `fromIndex` is specified, it will be used as the starting index to search from,
+		otherwise search starts with zero index. If it is negative, it will be taken as the
+		offset from the end of `this` Array to compute the starting index. If given or computed
+		starting index is less than 0, the whole array will be searched, if it is greater than
+		or equal to the length of `this` Array, the function returns -1.</haxe_doc>
+		</indexOf>
+		<lastIndexOf public="1" set="method">
+			<f a="x:?fromIndex">
+				<c path="Array.T"/>
+				<x path="Int"/>
+				<x path="Int"/>
+			</f>
+			<haxe_doc>Returns position of the last occurrence of `x` in `this` Array, searching back to front.
+
+		If `x` is found by checking standard equality, the function returns its index.
+
+		If `x` is not found, the function returns -1.
+
+		If `fromIndex` is specified, it will be used as the starting index to search from,
+		otherwise search starts with the last element index. If it is negative, it will be
+		taken as the offset from the end of `this` Array to compute the starting index. If
+		given or computed starting index is greater than or equal to the length of `this` Array,
+		the whole array will be searched, if it is less than 0, the function returns -1.</haxe_doc>
+		</lastIndexOf>
+		<map public="1" params="S" set="method">
+			<f a="f">
+				<f a="">
+					<c path="Array.T"/>
+					<c path="map.S"/>
+				</f>
+				<c path="Array"><c path="map.S"/></c>
+			</f>
+			<haxe_doc>Creates a new Array by applying function `f` to all elements of `this`.
+
+		The order of elements is preserved.
+
+		If `f` is null, the result is unspecified.</haxe_doc>
+		</map>
+		<filter public="1" set="method">
+			<f a="f">
+				<f a="">
+					<c path="Array.T"/>
+					<x path="Bool"/>
+				</f>
+				<c path="Array"><c path="Array.T"/></c>
+			</f>
+			<haxe_doc>Returns an Array containing those elements of `this` for which `f`
+		returned true.
+
+		The individual elements are not duplicated and retain their identity.
+
+		If `f` is null, the result is unspecified.</haxe_doc>
+		</filter>
+		<new public="1" set="method">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>Creates a new Array.</haxe_doc>
+		</new>
 		<haxe_doc>An Array is a storage for values. You can access it using indexes or
 	with its API.
 
@@ -291,7 +532,7 @@
 		<charCodeAt public="1" get="inline" set="null" line="35">
 			<f a="index">
 				<x path="Int"/>
-				<t path="Null"><x path="Int"/></t>
+				<x path="Null"><x path="Int"/></x>
 			</f>
 			<haxe_doc>Returns the character code at position `index` of `this` String.
 
@@ -397,15 +638,21 @@
 			<m n=":runtimeValue"/>
 		</meta>
 	</abstract>
-	<typedef path="Null" params="T" file="/home/travis/haxe/std/StdTypes.hx" module="StdTypes">
-		<c path="Null.T"/>
+	<abstract path="Null" params="T" file="/home/travis/haxe/std/StdTypes.hx" module="StdTypes">
+		<from><icast><c path="Null.T"/></icast></from>
+		<this><x path="Null"><c path="Null.T"/></x></this>
+		<to><icast><c path="Null.T"/></icast></to>
 		<haxe_doc>`Null` can be useful in two cases. In order to document some methods
 	that accept or can return a `null` value, or for the Flash compiler and AS3
 	generator to distinguish between base values that can be `null` and others that
 	can't.
 
 	@see https://haxe.org/manual/types-nullability.html</haxe_doc>
-	</typedef>
+		<meta>
+			<m n=":forward"/>
+			<m n=":coreType"/>
+		</meta>
+	</abstract>
 	<abstract path="Bool" params="" file="/home/travis/haxe/std/StdTypes.hx" module="StdTypes">
 		<this><x path="Bool"/></this>
 		<haxe_doc><![CDATA[The standard Boolean type, which can either be `true` or `false`.
@@ -682,7 +929,7 @@
 			<f a="command:rest">
 				<c path="String"/>
 				<x path="haxe.extern.Rest"><x path="Any"/></x>
-				<t path="js.Thenable"><t path="Null"><c path="executeCommand.T"/></t></t>
+				<t path="js.Thenable"><x path="Null"><c path="executeCommand.T"/></x></t>
 			</f>
 			<haxe_doc>* Executes the command denoted by the given command identifier.
      *
@@ -711,7 +958,7 @@
 	</class>
 	<class path="VscodeWindow" params="" file="src/Vscode.hx" module="Vscode" extern="1">
 		<activeTextEditor public="1">
-			<t path="Null"><t path="vscode.TextEditor"/></t>
+			<x path="Null"><t path="vscode.TextEditor"/></x>
 			<haxe_doc>* The currently active editor or `undefined`. The active editor is the one
      * that currently has focus or, when none has focus, the one that has changed
      * input most recently.</haxe_doc>
@@ -795,7 +1042,7 @@
 				<c path="String"/>
 				<t path="vscode.MessageOptions"/>
 				<x path="haxe.extern.Rest"><c path="String"/></x>
-				<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
+				<t path="js.Thenable"><x path="Null"><c path="String"/></x></t>
 			</f>
 			<haxe_doc>* Show an information message.
      *
@@ -810,7 +1057,7 @@
 					<f a="message:items">
 						<c path="String"/>
 						<x path="haxe.extern.Rest"><c path="showInformationMessage.T"/></x>
-						<t path="js.Thenable"><t path="Null"><c path="showInformationMessage.T"/></t></t>
+						<t path="js.Thenable"><x path="Null"><c path="showInformationMessage.T"/></x></t>
 					</f>
 					<haxe_doc>* Show an information message.
      *
@@ -826,7 +1073,7 @@
 						<c path="String"/>
 						<t path="vscode.MessageOptions"/>
 						<x path="haxe.extern.Rest"><c path="showInformationMessage.T"/></x>
-						<t path="js.Thenable"><t path="Null"><c path="showInformationMessage.T"/></t></t>
+						<t path="js.Thenable"><x path="Null"><c path="showInformationMessage.T"/></x></t>
 					</f>
 					<haxe_doc>* Show an information message.
      *
@@ -841,7 +1088,7 @@
 					<f a="message:items">
 						<c path="String"/>
 						<x path="haxe.extern.Rest"><c path="String"/></x>
-						<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
+						<t path="js.Thenable"><x path="Null"><c path="String"/></x></t>
 					</f>
 					<haxe_doc>* Show an information message.
      *
@@ -859,7 +1106,7 @@
 				<c path="String"/>
 				<t path="vscode.MessageOptions"/>
 				<x path="haxe.extern.Rest"><c path="String"/></x>
-				<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
+				<t path="js.Thenable"><x path="Null"><c path="String"/></x></t>
 			</f>
 			<haxe_doc>* Show a warning message.
      *
@@ -874,7 +1121,7 @@
 					<f a="message:items">
 						<c path="String"/>
 						<x path="haxe.extern.Rest"><c path="showWarningMessage.T"/></x>
-						<t path="js.Thenable"><t path="Null"><c path="showWarningMessage.T"/></t></t>
+						<t path="js.Thenable"><x path="Null"><c path="showWarningMessage.T"/></x></t>
 					</f>
 					<haxe_doc>* Show a warning message.
      *
@@ -890,7 +1137,7 @@
 						<c path="String"/>
 						<t path="vscode.MessageOptions"/>
 						<x path="haxe.extern.Rest"><c path="showWarningMessage.T"/></x>
-						<t path="js.Thenable"><t path="Null"><c path="showWarningMessage.T"/></t></t>
+						<t path="js.Thenable"><x path="Null"><c path="showWarningMessage.T"/></x></t>
 					</f>
 					<haxe_doc>* Show a warning message.
      *
@@ -905,7 +1152,7 @@
 					<f a="message:items">
 						<c path="String"/>
 						<x path="haxe.extern.Rest"><c path="String"/></x>
-						<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
+						<t path="js.Thenable"><x path="Null"><c path="String"/></x></t>
 					</f>
 					<haxe_doc>* Show a warning message.
      *
@@ -923,7 +1170,7 @@
 				<c path="String"/>
 				<t path="vscode.MessageOptions"/>
 				<x path="haxe.extern.Rest"><c path="String"/></x>
-				<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
+				<t path="js.Thenable"><x path="Null"><c path="String"/></x></t>
 			</f>
 			<haxe_doc>* Show an error message.
      *
@@ -938,7 +1185,7 @@
 					<f a="message:items">
 						<c path="String"/>
 						<x path="haxe.extern.Rest"><c path="showErrorMessage.T"/></x>
-						<t path="js.Thenable"><t path="Null"><c path="showErrorMessage.T"/></t></t>
+						<t path="js.Thenable"><x path="Null"><c path="showErrorMessage.T"/></x></t>
 					</f>
 					<haxe_doc>* Show an error message.
      *
@@ -954,7 +1201,7 @@
 						<c path="String"/>
 						<t path="vscode.MessageOptions"/>
 						<x path="haxe.extern.Rest"><c path="showErrorMessage.T"/></x>
-						<t path="js.Thenable"><t path="Null"><c path="showErrorMessage.T"/></t></t>
+						<t path="js.Thenable"><x path="Null"><c path="showErrorMessage.T"/></x></t>
 					</f>
 					<haxe_doc>* Show an error message.
      *
@@ -969,7 +1216,7 @@
 					<f a="message:items">
 						<c path="String"/>
 						<x path="haxe.extern.Rest"><c path="String"/></x>
-						<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
+						<t path="js.Thenable"><x path="Null"><c path="String"/></x></t>
 					</f>
 					<haxe_doc>* Show an error message.
      *
@@ -990,7 +1237,7 @@
 				</x>
 				<t path="vscode.QuickPickOptions"/>
 				<t path="vscode.CancellationToken"/>
-				<t path="js.Thenable"><t path="Null"><c path="showQuickPick.T"/></t></t>
+				<t path="js.Thenable"><x path="Null"><c path="showQuickPick.T"/></x></t>
 			</f>
 			<haxe_doc>* Shows a selection list.
      *
@@ -1006,7 +1253,7 @@
 		</x>
 		<t path="vscode.QuickPickOptions"/>
 		<t path="vscode.CancellationToken"/>
-		<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
+		<t path="js.Thenable"><x path="Null"><c path="String"/></x></t>
 	</f>
 	<haxe_doc>* Shows a selection list.
      *
@@ -1020,7 +1267,7 @@
 			<f a="?options:?token">
 				<t path="vscode.InputBoxOptions"/>
 				<t path="vscode.CancellationToken"/>
-				<t path="js.Thenable"><t path="Null"><c path="String"/></t></t>
+				<t path="js.Thenable"><x path="Null"><c path="String"/></x></t>
 			</f>
 			<haxe_doc>* Opens an input box to ask the user for input.
      *
@@ -1116,7 +1363,7 @@
 				<t path="vscode.ProgressOptions"/>
 				<f a="">
 					<t path="vscode.Progress"><a><message>
-	<t path="Null"><c path="String"/></t>
+	<x path="Null"><c path="String"/></x>
 	<meta><m n=":optional"/></meta>
 </message></a></t>
 					<t path="js.Thenable"><c path="withProgress.R"/></t>
@@ -1188,7 +1435,7 @@
 		<getExtension public="1" params="T" set="method">
 			<f a="extensionId">
 				<c path="String"/>
-				<t path="Null"><t path="vscode.Extension"><c path="getExtension.T"/></t></t>
+				<x path="Null"><t path="vscode.Extension"><c path="getExtension.T"/></t></x>
 			</f>
 			<haxe_doc>* Get an extension by its full identifier in the form of: `publisher.name`.
      *
@@ -1596,7 +1843,7 @@
      * @return A new file system watcher instance.</haxe_doc>
 		</createFileSystemWatcher>
 		<rootPath public="1" set="null">
-			<t path="Null"><c path="String"/></t>
+			<x path="Null"><c path="String"/></x>
 			<haxe_doc>* The folder that is open in the editor. `undefined` when no folder
      * has been opened.
      *
@@ -1703,11 +1950,11 @@
 					<f a="?options">
 						<a>
 							<language>
-								<t path="Null"><c path="String"/></t>
+								<x path="Null"><c path="String"/></x>
 								<meta><m n=":optional"/></meta>
 							</language>
 							<content>
-								<t path="Null"><c path="String"/></t>
+								<x path="Null"><c path="String"/></x>
 								<meta><m n=":optional"/></meta>
 							</content>
 						</a>
@@ -1800,7 +2047,9 @@
 		</onDidCloseTextDocument>
 		<onDidChangeTextDocument public="1" set="null">
 			<t path="vscode.Event"><t path="vscode.TextDocumentChangeEvent"/></t>
-			<haxe_doc>* An event that is emitted when a [text document](#TextDocument) is changed.</haxe_doc>
+			<haxe_doc>* An event that is emitted when a [text document](#TextDocument) is changed. This usually happens
+     * when the [contents](#TextDocument.getText) changes but also when other things like the
+     * [dirty](TextDocument#isDirty)-state changes.</haxe_doc>
 		</onDidChangeTextDocument>
 		<onWillSaveTextDocument public="1" set="null">
 			<t path="vscode.Event"><t path="vscode.TextDocumentWillSaveEvent"/></t>
@@ -1838,30 +2087,20 @@
 			<t path="vscode.Event"><x path="Void"/></t>
 			<haxe_doc>* An event that is emitted when the [configuration](#WorkspaceConfiguration) changed.</haxe_doc>
 		</onDidChangeConfiguration>
-	</class>
-	<class path="VscodeProposed" params="" file="src/VscodeProposed.hx" extern="1">
-		<workspace public="1" set="null" static="1">
-			<c path="VscodeWorkspaceProposed"/>
-			<haxe_doc>* Namespace for dealing with the current workspace. A workspace is the representation
-     * of the folder that has been opened. There is no workspace when just a file but not a
-     * folder has been opened.
+		<registerTaskProvider public="1" set="method">
+			<f a="type:provider">
+				<c path="String"/>
+				<t path="vscode.TaskProvider"/>
+				<c path="vscode.Disposable"/>
+			</f>
+			<haxe_doc>* Register a task provider.
      *
-     * The workspace offers support for [listening](#workspace.createFileSystemWatcher) to fs
-     * events and for [finding](#workspace.findFiles) files. Both perform well and run _outside_
-     * the editor-process so that they should be always used instead of nodejs-equivalents.</haxe_doc>
-		</workspace>
-		<meta><m n=":jsRequire"><e>"vscode"</e></m></meta>
-	</class>
-	<class path="VscodeWorkspaceProposed" params="" file="src/VscodeProposed.hx" module="VscodeProposed" extern="1"><registerTaskProvider public="1" set="method">
-	<f a="provider">
-		<t path="vscode.proposed.TaskProvider"/>
-		<c path="vscode.Disposable"/>
-	</f>
-	<haxe_doc>* Register a task provider.
-     *
+     * @param type The task kind type this provider is registered for.
      * @param provider A task provider.
      * @return A [disposable](#Disposable) that unregisters this provider when being disposed.</haxe_doc>
-</registerTaskProvider></class>
+		</registerTaskProvider>
+	</class>
+	<class path="VscodeProposed" params="" file="src/VscodeProposed.hx" extern="1"><meta><m n=":jsRequire"><e>"vscode"</e></m></meta></class>
 	<abstract path="haxe.Function" params="" file="/home/travis/haxe/std/haxe/Constraints.hx" module="haxe.Constraints">
 		<this><d/></this>
 		<haxe_doc>This type unifies with any function type.
@@ -2274,7 +2513,7 @@
 		<getOwnPropertyDescriptor public="1" set="method" static="1"><f a="obj:prop">
 	<a/>
 	<c path="String"/>
-	<t path="Null"><t path="js.ObjectPropertyDescriptor"/></t>
+	<x path="Null"><t path="js.ObjectPropertyDescriptor"/></x>
 </f></getOwnPropertyDescriptor>
 		<getOwnPropertyNames public="1" set="method" static="1"><f a="obj">
 	<a/>
@@ -2286,7 +2525,7 @@
 </f></getOwnPropertySymbols>
 		<getPrototypeOf public="1" params="TProto" set="method" static="1"><f a="obj">
 	<a/>
-	<t path="Null"><c path="getPrototypeOf.TProto"/></t>
+	<x path="Null"><c path="getPrototypeOf.TProto"/></x>
 </f></getPrototypeOf>
 		<is public="1" params="T" set="method" static="1"><f a="value1:value2">
 	<c path="is.T"/>
@@ -2319,7 +2558,7 @@
 </f></seal>
 		<setPrototypeOf public="1" params="T" set="method" static="1"><f a="obj:prototype">
 	<c path="setPrototypeOf.T"/>
-	<t path="Null"><a/></t>
+	<x path="Null"><a/></x>
 	<c path="setPrototypeOf.T"/>
 </f></setPrototypeOf>
 		<prototype public="1" set="null" static="1"><t path="js.ObjectPrototype"/></prototype>
@@ -2339,30 +2578,30 @@
 </a></typedef>
 	<typedef path="js.ObjectPropertyDescriptor" params="" file="/home/travis/haxe/std/js/Object.hx" module="js.Object"><a>
 	<writable>
-		<t path="Null"><x path="Bool"/></t>
+		<x path="Null"><x path="Bool"/></x>
 		<meta><m n=":optional"/></meta>
 	</writable>
 	<value>
-		<t path="Null"><x path="Any"/></t>
+		<x path="Null"><x path="Any"/></x>
 		<meta><m n=":optional"/></meta>
 	</value>
 	<set>
-		<t path="Null"><f a="">
+		<x path="Null"><f a="">
 	<x path="Any"/>
 	<x path="Void"/>
-</f></t>
+</f></x>
 		<meta><m n=":optional"/></meta>
 	</set>
 	<get>
-		<t path="Null"><f a=""><x path="Any"/></f></t>
+		<x path="Null"><f a=""><x path="Any"/></f></x>
 		<meta><m n=":optional"/></meta>
 	</get>
 	<enumerable>
-		<t path="Null"><x path="Bool"/></t>
+		<x path="Null"><x path="Bool"/></x>
 		<meta><m n=":optional"/></meta>
 	</enumerable>
 	<configurable>
-		<t path="Null"><x path="Bool"/></t>
+		<x path="Null"><x path="Bool"/></x>
 		<meta><m n=":optional"/></meta>
 	</configurable>
 </a></typedef>
@@ -2396,10 +2635,10 @@
 	<c path="js.Promise"><d/></c>
 </f></race>
 		<then public="1" params="TOut" set="method"><f a="fulfillCallback:?rejectCallback">
-	<t path="Null"><t path="js.PromiseCallback">
+	<x path="Null"><t path="js.PromiseCallback">
 	<c path="js.Promise.T"/>
 	<c path="then.TOut"/>
-</t></t>
+</t></x>
 	<x path="haxe.extern.EitherType">
 		<f a="">
 			<d/>
@@ -2476,7 +2715,7 @@
 		<lastIndex public="1"><x path="Int"/></lastIndex>
 		<exec public="1" set="method"><f a="str">
 	<c path="String"/>
-	<t path="Null"><c path="js.RegExpMatch"/></t>
+	<x path="Null"><c path="js.RegExpMatch"/></x>
 </f></exec>
 		<test public="1" set="method"><f a="str">
 	<c path="String"/>
@@ -2509,7 +2748,7 @@
 		</for_>
 		<keyFor public="1" set="method" static="1"><f a="sym">
 	<c path="js.Symbol"/>
-	<t path="Null"><c path="String"/></t>
+	<x path="Null"><c path="String"/></x>
 </f></keyFor>
 		<toString public="1" set="method"><f a=""><c path="String"/></f></toString>
 		<new public="1" set="method">
@@ -2601,7 +2840,7 @@
 			<haxe_doc>* The range in which this code lens is valid. Should only span a single line.</haxe_doc>
 		</range>
 		<command public="1">
-			<t path="Null"><t path="vscode.Command"/></t>
+			<x path="Null"><t path="vscode.Command"/></x>
 			<haxe_doc>* The command this code lens represents.</haxe_doc>
 		</command>
 		<isResolved public="1" set="null">
@@ -2635,11 +2874,11 @@
 	<typedef path="vscode.CodeLensProvider" params="" file="src/vscode/CodeLensProvider.hx">
 		<a>
 			<resolveCodeLens set="method">
-				<t path="Null"><f a="codeLens:token">
+				<x path="Null"><f a="codeLens:token">
 	<c path="vscode.CodeLens"/>
 	<t path="vscode.CancellationToken"/>
 	<t path="vscode.ProviderResult"><c path="vscode.CodeLens"/></t>
-</f></t>
+</f></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* This function will be called for each visible code lens, usually when scrolling and after
      * calls to [compute](#CodeLensProvider.provideCodeLenses)-lenses.
@@ -2664,7 +2903,7 @@
      * signaled by returning `undefined`, `null`, or an empty array.</haxe_doc>
 			</provideCodeLenses>
 			<onDidChangeCodeLenses>
-				<t path="Null"><t path="vscode.Event"><x path="Void"/></t></t>
+				<x path="Null"><t path="vscode.Event"><x path="Void"/></t></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional event to signal that the code lenses from this provider have changed.</haxe_doc>
 			</onDidChangeCodeLenses>
@@ -2675,7 +2914,7 @@
 	<typedef path="vscode.Command" params="" file="src/vscode/Command.hx">
 		<a>
 			<tooltip>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* A tooltip for for command, when represented in the UI.</haxe_doc>
 			</tooltip>
@@ -2689,7 +2928,7 @@
      * @see [commands.registerCommand](#commands.registerCommand).</haxe_doc>
 			</command>
 			<arguments>
-				<t path="Null"><c path="Array"><x path="Any"/></c></t>
+				<x path="Null"><c path="Array"><x path="Any"/></c></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Arguments that the command handler should be
      * invoked with.</haxe_doc>
@@ -2703,12 +2942,12 @@
 	<typedef path="vscode.CommentRule" params="" file="src/vscode/CommentRule.hx">
 		<a>
 			<lineComment>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The line comment token, like `// this is a comment`</haxe_doc>
 			</lineComment>
 			<blockComment>
-				<t path="Null"><t path="vscode.CharacterPair"/></t>
+				<x path="Null"><t path="vscode.CharacterPair"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc><![CDATA[* The block comment character pair, like `/* block comment *&#47;`]]></haxe_doc>
 			</blockComment>
@@ -2723,42 +2962,42 @@
      * this completion.</haxe_doc>
 		</label>
 		<kind public="1">
-			<t path="Null"><x path="vscode.CompletionItemKind"/></t>
+			<x path="Null"><x path="vscode.CompletionItemKind"/></x>
 			<haxe_doc>* The kind of this completion item. Based on the kind
      * an icon is chosen by the editor.</haxe_doc>
 		</kind>
 		<detail public="1">
-			<t path="Null"><c path="String"/></t>
+			<x path="Null"><c path="String"/></x>
 			<haxe_doc>* A human-readable string with additional information
      * about this item, like type or symbol information.</haxe_doc>
 		</detail>
 		<documentation public="1">
-			<t path="Null"><c path="String"/></t>
+			<x path="Null"><c path="String"/></x>
 			<haxe_doc>* A human-readable string that represents a doc-comment.</haxe_doc>
 		</documentation>
 		<sortText public="1">
-			<t path="Null"><c path="String"/></t>
+			<x path="Null"><c path="String"/></x>
 			<haxe_doc>* A string that should be used when comparing this item
      * with other items. When `falsy` the [label](#CompletionItem.label)
      * is used.</haxe_doc>
 		</sortText>
 		<filterText public="1">
-			<t path="Null"><c path="String"/></t>
+			<x path="Null"><c path="String"/></x>
 			<haxe_doc>* A string that should be used when filtering a set of
      * completion items. When `falsy` the [label](#CompletionItem.label)
      * is used.</haxe_doc>
 		</filterText>
 		<insertText public="1">
-			<t path="Null"><x path="haxe.extern.EitherType">
+			<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.SnippetString"/>
-</x></t>
+</x></x>
 			<haxe_doc>* A string or snippet that should be inserted in a document when selecting
      * this completion. When `falsy` the [label](#CompletionItem.label)
      * is used.</haxe_doc>
 		</insertText>
 		<range public="1">
-			<t path="Null"><c path="vscode.Range"/></t>
+			<x path="Null"><c path="vscode.Range"/></x>
 			<haxe_doc>* A range of text that should be replaced by this completion item.
      *
      * Defaults to a range from the start of the [current word](#TextDocument.getWordRangeAtPosition) to the
@@ -2768,13 +3007,13 @@
      * [contain](#Range.contains) the position at which completion has been [requested](#CompletionItemProvider.provideCompletionItems).</haxe_doc>
 		</range>
 		<commitCharacters public="1">
-			<t path="Null"><c path="Array"><c path="String"/></c></t>
+			<x path="Null"><c path="Array"><c path="String"/></c></x>
 			<haxe_doc>* An optional set of characters that when pressed while this completion is active will accept it first and
      * then type that character. *Note* that all commit characters should have `length=1` and that superfluous
      * characters will be ignored.</haxe_doc>
 		</commitCharacters>
 		<textEdit public="1">
-			<t path="Null"><c path="vscode.TextEdit"/></t>
+			<x path="Null"><c path="vscode.TextEdit"/></x>
 			<meta><m n=":deprecated"/></meta>
 			<haxe_doc>* @deprecated **Deprecated** in favor of `CompletionItem.insertText` and `CompletionItem.range`.
      *
@@ -2786,13 +3025,13 @@
      * line completions were [requested](#CompletionItemProvider.provideCompletionItems) at.~~</haxe_doc>
 		</textEdit>
 		<additionalTextEdits public="1">
-			<t path="Null"><c path="Array"><c path="vscode.TextEdit"/></c></t>
+			<x path="Null"><c path="Array"><c path="vscode.TextEdit"/></c></x>
 			<haxe_doc>* An optional array of additional [text edits](#TextEdit) that are applied when
      * selecting this completion. Edits must not overlap with the main [edit](#CompletionItem.textEdit)
      * nor with themselves.</haxe_doc>
 		</additionalTextEdits>
 		<command public="1">
-			<t path="Null"><t path="vscode.Command"/></t>
+			<x path="Null"><t path="vscode.Command"/></x>
 			<haxe_doc>* An optional [command](#Command) that is executed *after* inserting this completion. *Note* that
      * additional modifications to the current document should be described with the
      * [additionalTextEdits](#CompletionItem.additionalTextEdits)-property.</haxe_doc>
@@ -3213,11 +3452,11 @@
 	<typedef path="vscode.CompletionItemProvider" params="" file="src/vscode/CompletionItemProvider.hx">
 		<a>
 			<resolveCompletionItem set="method">
-				<t path="Null"><f a="item:token">
+				<x path="Null"><f a="item:token">
 	<c path="vscode.CompletionItem"/>
 	<t path="vscode.CancellationToken"/>
 	<t path="vscode.ProviderResult"><c path="vscode.CompletionItem"/></t>
-</f></t>
+</f></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Given a completion item fill in more data, like [doc-comment](#CompletionItem.documentation)
      * or [details](#CompletionItem.detail).
@@ -3263,7 +3502,7 @@
 	</typedef>
 	<class path="vscode.CompletionList" params="" file="src/vscode/CompletionList.hx" extern="1">
 		<isIncomplete public="1">
-			<t path="Null"><x path="Bool"/></t>
+			<x path="Null"><x path="Bool"/></x>
 			<haxe_doc>* This list it not complete. Further typing should result in recomputing
      * this list.</haxe_doc>
 		</isIncomplete>
@@ -3291,22 +3530,22 @@
 	</class>
 	<typedef path="vscode.DecorationInstanceRenderOptions" params="" file="src/vscode/DecorationInstanceRenderOptions.hx"><a>
 	<light>
-		<t path="Null"><t path="vscode.ThemableDecorationInstanceRenderOptions"/></t>
+		<x path="Null"><t path="vscode.ThemableDecorationInstanceRenderOptions"/></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* Overwrite options for light themes.</haxe_doc>
 	</light>
 	<dark>
-		<t path="Null"><t path="vscode.ThemableDecorationInstanceRenderOptions"/></t>
+		<x path="Null"><t path="vscode.ThemableDecorationInstanceRenderOptions"/></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* Overwrite options for dark themes.</haxe_doc>
 	</dark>
 	<before>
-		<t path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></t>
+		<x path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* Defines the rendering options of the attachment that is inserted before the decorated text</haxe_doc>
 	</before>
 	<after>
-		<t path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></t>
+		<x path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* Defines the rendering options of the attachment that is inserted after the decorated text</haxe_doc>
 	</after>
@@ -3314,7 +3553,7 @@
 	<typedef path="vscode.DecorationOptions" params="" file="src/vscode/DecorationOptions.hx">
 		<a>
 			<renderOptions>
-				<t path="Null"><t path="vscode.DecorationInstanceRenderOptions"/></t>
+				<x path="Null"><t path="vscode.DecorationInstanceRenderOptions"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Render options applied to the current decoration. For performance reasons, keep the
      * number of decoration specific options small, and use decoration types whereever possible.</haxe_doc>
@@ -3431,158 +3670,158 @@
 	<typedef path="vscode.DecorationRenderOptions" params="" file="src/vscode/DecorationRenderOptions.hx">
 		<a>
 			<textDecoration>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.</haxe_doc>
 			</textDecoration>
 			<rangeBehavior>
-				<t path="Null"><x path="vscode.DecorationRangeBehavior"/></t>
+				<x path="Null"><x path="vscode.DecorationRangeBehavior"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Customize the growing behavior of the decoration when edits occur at the edges of the decoration's range.
      * Defaults to `DecorationRangeBehavior.OpenOpen`.</haxe_doc>
 			</rangeBehavior>
 			<overviewRulerLane>
-				<t path="Null"><x path="vscode.OverviewRulerLane"/></t>
+				<x path="Null"><x path="vscode.OverviewRulerLane"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The position in the overview ruler where the decoration should be rendered.</haxe_doc>
 			</overviewRulerLane>
 			<overviewRulerColor>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.ThemeColor"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations.</haxe_doc>
 			</overviewRulerColor>
 			<outlineWidth>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'outline' for setting one or more of the individual outline properties.</haxe_doc>
 			</outlineWidth>
 			<outlineStyle>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'outline' for setting one or more of the individual outline properties.</haxe_doc>
 			</outlineStyle>
 			<outlineColor>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.ThemeColor"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'outline' for setting one or more of the individual outline properties.</haxe_doc>
 			</outlineColor>
 			<outline>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.</haxe_doc>
 			</outline>
 			<light>
-				<t path="Null"><t path="vscode.ThemableDecorationRenderOptions"/></t>
+				<x path="Null"><t path="vscode.ThemableDecorationRenderOptions"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Overwrite options for light themes.</haxe_doc>
 			</light>
 			<letterSpacing>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.</haxe_doc>
 			</letterSpacing>
 			<isWholeLine>
-				<t path="Null"><x path="Bool"/></t>
+				<x path="Null"><x path="Bool"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Should the decoration be rendered also on the whitespace after the line text.
      * Defaults to `false`.</haxe_doc>
 			</isWholeLine>
 			<gutterIconSize>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Specifies the size of the gutter icon.
      * Available values are 'auto', 'contain', 'cover' and any percentage value.
      * For further information: https://msdn.microsoft.com/en-us/library/jj127316(v=vs.85).aspx</haxe_doc>
 			</gutterIconSize>
 			<gutterIconPath>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.Uri"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An **absolute path** or an URI to an image to be rendered in the gutter.</haxe_doc>
 			</gutterIconPath>
 			<dark>
-				<t path="Null"><t path="vscode.ThemableDecorationRenderOptions"/></t>
+				<x path="Null"><t path="vscode.ThemableDecorationRenderOptions"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Overwrite options for dark themes.</haxe_doc>
 			</dark>
 			<cursor>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.</haxe_doc>
 			</cursor>
 			<color>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.ThemeColor"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.</haxe_doc>
 			</color>
 			<borderWidth>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'border' for setting one or more of the individual border properties.</haxe_doc>
 			</borderWidth>
 			<borderStyle>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'border' for setting one or more of the individual border properties.</haxe_doc>
 			</borderStyle>
 			<borderSpacing>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'border' for setting one or more of the individual border properties.</haxe_doc>
 			</borderSpacing>
 			<borderRadius>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'border' for setting one or more of the individual border properties.</haxe_doc>
 			</borderRadius>
 			<borderColor>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.ThemeColor"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'border' for setting one or more of the individual border properties.</haxe_doc>
 			</borderColor>
 			<border>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.</haxe_doc>
 			</border>
 			<before>
-				<t path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></t>
+				<x path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Defines the rendering options of the attachment that is inserted before the decorated text</haxe_doc>
 			</before>
 			<backgroundColor>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.ThemeColor"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Background color of the decoration. Use rgba() and define transparent background colors to play well with other decorations.
      * Alternativly a color from the color registry an be [referenced](#ColorIdentifier).</haxe_doc>
 			</backgroundColor>
 			<after>
-				<t path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></t>
+				<x path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Defines the rendering options of the attachment that is inserted after the decorated text</haxe_doc>
 			</after>
@@ -3670,7 +3909,7 @@
 			<set set="method">
 				<f a="uri:diagnostics">
 					<c path="vscode.Uri"/>
-					<t path="Null"><c path="Array"><c path="vscode.Diagnostic"/></c></t>
+					<x path="Null"><c path="Array"><c path="vscode.Diagnostic"/></c></x>
 					<x path="Void"/>
 				</f>
 				<haxe_doc>* Assign diagnostics for given resource. Will replace
@@ -3710,7 +3949,7 @@
 			<get set="method">
 				<f a="uri">
 					<c path="vscode.Uri"/>
-					<t path="Null"><c path="Array"><c path="vscode.Diagnostic"/></c></t>
+					<x path="Null"><c path="Array"><c path="vscode.Diagnostic"/></c></x>
 				</f>
 				<haxe_doc>* Get the diagnostics for a given resource. *Note* that you cannot
      * modify the diagnostics-array returned from this call.
@@ -3896,17 +4135,17 @@
 	<typedef path="vscode.DocumentFilter" params="" file="src/vscode/DocumentFilter.hx">
 		<a>
 			<scheme>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* A Uri [scheme](#Uri.scheme), like `file` or `untitled`.</haxe_doc>
 			</scheme>
 			<pattern>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* A glob pattern, like `*.{ts,js}`.</haxe_doc>
 			</pattern>
 			<language>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* A language id, like `typescript`.</haxe_doc>
 			</language>
@@ -3943,7 +4182,7 @@
 			<haxe_doc>* The range this highlight applies to.</haxe_doc>
 		</range>
 		<kind public="1">
-			<t path="Null"><x path="vscode.DocumentHighlightKind"/></t>
+			<x path="Null"><x path="vscode.DocumentHighlightKind"/></x>
 			<haxe_doc>* The highlight kind, default is [text](#DocumentHighlightKind.Text).</haxe_doc>
 		</kind>
 		<new public="1" set="method">
@@ -4070,7 +4309,7 @@
 			<haxe_doc>* The range this link applies to.</haxe_doc>
 		</range>
 		<target public="1">
-			<t path="Null"><c path="vscode.Uri"/></t>
+			<x path="Null"><c path="vscode.Uri"/></x>
 			<haxe_doc>* The uri this link points to.</haxe_doc>
 		</target>
 		<new public="1" set="method">
@@ -4094,11 +4333,11 @@
 	<typedef path="vscode.DocumentLinkProvider" params="" file="src/vscode/DocumentLinkProvider.hx">
 		<a>
 			<resolveDocumentLink>
-				<t path="Null"><f a=":">
+				<x path="Null"><f a=":">
 	<c path="vscode.DocumentLink"/>
 	<t path="vscode.CancellationToken"/>
 	<t path="vscode.ProviderResult"><c path="vscode.DocumentLink"/></t>
-</f></t>
+</f></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Given a link fill in its [target](#DocumentLink.target). This method is called when an incomplete
      * link is selected in the UI. Providers can implement this method and return incomple links
@@ -4249,7 +4488,7 @@
 	<typedef path="vscode.EnterAction" params="" file="src/vscode/EnterAction.hx">
 		<a>
 			<removeText>
-				<t path="Null"><x path="Int"/></t>
+				<x path="Null"><x path="Int"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Describes the number of characters to remove from the new line's indentation.</haxe_doc>
 			</removeText>
@@ -4258,7 +4497,7 @@
 				<haxe_doc>* Describe what to do with the indentation.</haxe_doc>
 			</indentAction>
 			<appendText>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Describes text to be appended after the new line and after the indentation.</haxe_doc>
 			</appendText>
@@ -4365,7 +4604,7 @@
      * extension is deactivated the disposables will be disposed.</haxe_doc>
 			</subscriptions>
 			<storagePath>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<haxe_doc>* An absolute file path of a workspace specific directory in which the extension
      * can store private state. The directory might not exist on disk and creation is
      * up to the extension. However, the parent directory is guaranteed to be existent.
@@ -4457,7 +4696,7 @@
 			<haxe_doc>* The contents of this hover.</haxe_doc>
 		</contents>
 		<range public="1">
-			<t path="Null"><c path="vscode.Range"/></t>
+			<x path="Null"><c path="vscode.Range"/></x>
 			<haxe_doc>* The range to which this hover applies. When missing, the
      * editor will use the range at the current position or the
      * current position itself.</haxe_doc>
@@ -4625,12 +4864,12 @@
 	<typedef path="vscode.IndentationRule" params="" file="src/vscode/IndentationRule.hx">
 		<a>
 			<unIndentedLinePattern>
-				<t path="Null"><c path="js.RegExp"/></t>
+				<x path="Null"><c path="js.RegExp"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* If a line matches this pattern, then its indentation should not be changed and it should not be evaluated against the other rules.</haxe_doc>
 			</unIndentedLinePattern>
 			<indentNextLinePattern>
-				<t path="Null"><c path="js.RegExp"/></t>
+				<x path="Null"><c path="js.RegExp"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* If a line matches this pattern, then **only the next line** after it should be indented once.</haxe_doc>
 			</indentNextLinePattern>
@@ -4648,7 +4887,7 @@
 	<typedef path="vscode.InputBoxOptions" params="" file="src/vscode/InputBoxOptions.hx">
 		<a>
 			<valueSelection>
-				<t path="Null"><c path="Array"><x path="Int"/></c></t>
+				<x path="Null"><c path="Array"><x path="Int"/></c></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Selection of the prefilled [`value`](#InputBoxOptions.value). Defined as tuple of two number where the
      * first is the inclusive start index and the second the exclusive end index. When `undefined` the whole
@@ -4656,15 +4895,15 @@
      * otherwise the defined range will be selected.</haxe_doc>
 			</valueSelection>
 			<value>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The value to prefill in the input box.</haxe_doc>
 			</value>
 			<validateInput>
-				<t path="Null"><f a="">
+				<x path="Null"><f a="">
 	<c path="String"/>
-	<t path="Null"><c path="String"/></t>
-</f></t>
+	<x path="Null"><c path="String"/></x>
+</f></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional function that will be called to validate input and to give a hint
      * to the user.
@@ -4674,22 +4913,22 @@
      * Return `undefined`, `null`, or the empty string when 'value' is valid.</haxe_doc>
 			</validateInput>
 			<prompt>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The text to display underneath the input box.</haxe_doc>
 			</prompt>
 			<placeHolder>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional string to show as place holder in the input box to guide the user what to type.</haxe_doc>
 			</placeHolder>
 			<password>
-				<t path="Null"><x path="Bool"/></t>
+				<x path="Null"><x path="Bool"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Set to `true` to show a password prompt that will not show the typed value.</haxe_doc>
 			</password>
 			<ignoreFocusOut>
-				<t path="Null"><x path="Bool"/></t>
+				<x path="Null"><x path="Bool"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Set to `true` to keep the input box open when focus moves to another part of the editor or to another window.</haxe_doc>
 			</ignoreFocusOut>
@@ -4699,7 +4938,7 @@
 	<typedef path="vscode.LanguageConfiguration" params="" file="src/vscode/LanguageConfiguration.hx">
 		<a>
 			<wordPattern>
-				<t path="Null"><c path="js.RegExp"/></t>
+				<x path="Null"><c path="js.RegExp"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc><![CDATA[* The language's word definition.
      * If the language supports Unicode identifiers (e.g. JavaScript), it is preferable
@@ -4708,38 +4947,38 @@
      *   /(-?\d*\.\d\w*)|([^\`\~\!\@\#\%\^\&\*\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\?\s]+)/g]]></haxe_doc>
 			</wordPattern>
 			<onEnterRules>
-				<t path="Null"><c path="Array"><t path="vscode.OnEnterRule"/></c></t>
+				<x path="Null"><c path="Array"><t path="vscode.OnEnterRule"/></c></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The language's rules to be evaluated when pressing Enter.</haxe_doc>
 			</onEnterRules>
 			<indentationRules>
-				<t path="Null"><t path="vscode.IndentationRule"/></t>
+				<x path="Null"><t path="vscode.IndentationRule"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The language's indentation settings.</haxe_doc>
 			</indentationRules>
 			<comments>
-				<t path="Null"><t path="vscode.CommentRule"/></t>
+				<x path="Null"><t path="vscode.CommentRule"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The language's comment settings.</haxe_doc>
 			</comments>
 			<brackets>
-				<t path="Null"><c path="Array"><t path="vscode.CharacterPair"/></c></t>
+				<x path="Null"><c path="Array"><t path="vscode.CharacterPair"/></c></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The language's brackets.
      * This configuration implicitly affects pressing Enter around these brackets.</haxe_doc>
 			</brackets>
 			<__electricCharacterSupport>
-				<t path="Null"><a>
+				<x path="Null"><a>
 	<docComment>
-		<t path="Null"><a>
+		<x path="Null"><a>
 	<scope><c path="String"/></scope>
 	<open><c path="String"/></open>
 	<lineStart><c path="String"/></lineStart>
 	<close>
-		<t path="Null"><c path="String"/></t>
+		<x path="Null"><c path="String"/></x>
 		<meta><m n=":optional"/></meta>
 	</close>
-</a></t>
+</a></x>
 		<meta>
 			<m n=":deprecated"/>
 			<m n=":optional"/>
@@ -4750,7 +4989,7 @@
          * @deprecated</haxe_doc>
 	</docComment>
 	<brackets>
-		<t path="Null"><x path="Any"/></t>
+		<x path="Null"><x path="Any"/></x>
 		<meta>
 			<m n=":deprecated"/>
 			<m n=":optional"/>
@@ -4759,7 +4998,7 @@
          * the editor.
          * @deprecated</haxe_doc>
 	</brackets>
-</a></t>
+</a></x>
 				<meta>
 					<m n=":deprecated"><e>"Will be replaced by a better API soon."</e></m>
 					<m n=":optional"/>
@@ -4769,14 +5008,14 @@
      * @deprecated Will be replaced by a better API soon.</haxe_doc>
 			</__electricCharacterSupport>
 			<__characterPairSupport>
-				<t path="Null"><a><autoClosingPairs><c path="Array"><a>
+				<x path="Null"><a><autoClosingPairs><c path="Array"><a>
 	<open><c path="String"/></open>
 	<notIn>
-		<t path="Null"><c path="Array"><c path="String"/></c></t>
+		<x path="Null"><c path="Array"><c path="String"/></c></x>
 		<meta><m n=":optional"/></meta>
 	</notIn>
 	<close><c path="String"/></close>
-</a></c></autoClosingPairs></a></t>
+</a></c></autoClosingPairs></a></x>
 				<meta>
 					<m n=":deprecated"><e>"Use the the autoClosingPairs property in the language configuration file instead."</e></m>
 					<m n=":optional"/>
@@ -4847,7 +5086,7 @@
 			<get params="T" set="method">
 				<f a="key">
 					<c path="String"/>
-					<t path="Null"><c path="get.T"/></t>
+					<x path="Null"><c path="get.T"/></x>
 				</f>
 				<haxe_doc>* Return a value.
      *
@@ -4880,7 +5119,7 @@
 				<haxe_doc>* A short title like 'Retry', 'Open Log' etc.</haxe_doc>
 			</title>
 			<isCloseAffordance>
-				<t path="Null"><x path="Bool"/></t>
+				<x path="Null"><x path="Bool"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Indicates that this item replaces the default
      * 'Close' action.</haxe_doc>
@@ -4895,7 +5134,7 @@
 	</typedef>
 	<typedef path="vscode.MessageOptions" params="" file="src/vscode/MessageOptions.hx">
 		<a><modal>
-	<t path="Null"><x path="Bool"/></t>
+	<x path="Null"><x path="Bool"/></x>
 	<meta><m n=":optional"/></meta>
 	<haxe_doc>* Indicates that this message should be modal.</haxe_doc>
 </modal></a>
@@ -4912,7 +5151,7 @@
 				<haxe_doc>* This rule will only execute if the text before the cursor matches this regular expression.</haxe_doc>
 			</beforeText>
 			<afterText>
-				<t path="Null"><c path="js.RegExp"/></t>
+				<x path="Null"><c path="js.RegExp"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* This rule will only execute if the text after the cursor matches this regular expression.</haxe_doc>
 			</afterText>
@@ -5107,7 +5346,7 @@
      * the UI.</haxe_doc>
 		</label>
 		<documentation public="1">
-			<t path="Null"><c path="String"/></t>
+			<x path="Null"><c path="String"/></x>
 			<haxe_doc>* The human-readable doc-comment of this signature. Will be shown
      * in the UI but can be omitted.</haxe_doc>
 		</documentation>
@@ -5221,11 +5460,11 @@
 	<f a="change">
 		<a>
 			<lineDelta>
-				<t path="Null"><x path="Int"/></t>
+				<x path="Null"><x path="Int"/></x>
 				<meta><m n=":optional"/></meta>
 			</lineDelta>
 			<characterDelta>
-				<t path="Null"><x path="Int"/></t>
+				<x path="Null"><x path="Int"/></x>
 				<meta><m n=":optional"/></meta>
 			</characterDelta>
 		</a>
@@ -5254,11 +5493,11 @@
 	<f a="change">
 		<a>
 			<line>
-				<t path="Null"><x path="Int"/></t>
+				<x path="Null"><x path="Int"/></x>
 				<meta><m n=":optional"/></meta>
 			</line>
 			<character>
-				<t path="Null"><x path="Int"/></t>
+				<x path="Null"><x path="Int"/></x>
 				<meta><m n=":optional"/></meta>
 			</character>
 		</a>
@@ -5291,6 +5530,70 @@
 	<e>"Position"</e>
 </m></meta>
 	</class>
+	<class path="vscode.ProcessExecution" params="" file="src/vscode/ProcessExecution.hx" extern="1">
+		<process public="1">
+			<c path="String"/>
+			<haxe_doc>* The process to be executed.</haxe_doc>
+		</process>
+		<args public="1">
+			<c path="Array"><c path="String"/></c>
+			<haxe_doc>* The arguments passed to the process. Defaults to an empty array.</haxe_doc>
+		</args>
+		<options public="1">
+			<x path="Null"><t path="vscode.ProcessExecutionOptions"/></x>
+			<haxe_doc>* The process options used when the process is executed.
+     * Defaults to undefined.</haxe_doc>
+		</options>
+		<new public="1" set="method">
+			<f a="process:?options">
+				<c path="String"/>
+				<t path="vscode.ProcessExecutionOptions"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>* Creates a process execution.
+     *
+     * @param process The process to start.
+     * @param args Arguments to be passed to the process.
+     * @param options Optional options for the started process.</haxe_doc>
+			<overloads><new public="1" set="method">
+	<f a="process:args:?options">
+		<c path="String"/>
+		<c path="Array"><c path="String"/></c>
+		<t path="vscode.ProcessExecutionOptions"/>
+		<x path="Void"/>
+	</f>
+	<haxe_doc>* Creates a process execution.
+     *
+     * @param process The process to start.
+     * @param args Arguments to be passed to the process.
+     * @param options Optional options for the started process.</haxe_doc>
+</new></overloads>
+		</new>
+		<haxe_doc>* The execution of a task happens as a external process
+ * without shell interaction.</haxe_doc>
+		<meta><m n=":jsRequire">
+	<e>"vscode"</e>
+	<e>"ProcessExecution"</e>
+</m></meta>
+	</class>
+	<typedef path="vscode.ProcessExecutionOptions" params="" file="src/vscode/ProcessExecutionOptions.hx">
+		<a>
+			<env>
+				<x path="Null"><x path="haxe.DynamicAccess"><c path="String"/></x></x>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The additional environment of the executed program or shell. If omitted
+     * the parent process' environment is used. If provided it is merged with
+     * the parent process' environment.</haxe_doc>
+			</env>
+			<cwd>
+				<x path="Null"><c path="String"/></x>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The current working directory of the executed program or shell.
+     * If omitted the tools current workspace root is used.</haxe_doc>
+			</cwd>
+		</a>
+		<haxe_doc>* Options for a process execution</haxe_doc>
+	</typedef>
 	<typedef path="vscode.Progress" params="T" file="src/vscode/Progress.hx">
 		<a><report set="method">
 	<f a="value">
@@ -5371,7 +5674,7 @@
 	<typedef path="vscode.ProgressOptions" params="" file="src/vscode/ProgressOptions.hx">
 		<a>
 			<title>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* A human-readable string which will be used to describe the
 	 * operation.</haxe_doc>
@@ -5418,11 +5721,11 @@
  * ```]]></haxe_doc>
 	</typedef>
 	<typedef path="vscode.QuickDiffProvider" params="" file="src/vscode/QuickDiffProvider.hx"><a><provideOriginalResource set="method">
-	<t path="Null"><f a="uri:token">
+	<x path="Null"><f a="uri:token">
 	<c path="vscode.Uri"/>
 	<t path="vscode.CancellationToken"/>
 	<t path="vscode.ProviderResult"><c path="vscode.Uri"/></t>
-</f></t>
+</f></x>
 	<meta><m n=":optional"/></meta>
 	<haxe_doc>* Provide a [uri](#Uri) to the original resource of any given resource uri.
      *
@@ -5437,7 +5740,7 @@
 				<haxe_doc>* A human readable string which is rendered prominent.</haxe_doc>
 			</label>
 			<detail>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* A human readable string which is rendered less prominent.</haxe_doc>
 			</detail>
@@ -5452,33 +5755,33 @@
 	<typedef path="vscode.QuickPickOptions" params="" file="src/vscode/QuickPickOptions.hx">
 		<a>
 			<placeHolder>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional string to show as place holder in the input box to guide the user what to pick on.</haxe_doc>
 			</placeHolder>
 			<onDidSelectItem>
-				<t path="Null"><f a="">
+				<x path="Null"><f a="">
 	<x path="haxe.extern.EitherType">
 		<t path="vscode.QuickPickItem"/>
 		<c path="String"/>
 	</x>
 	<x path="Any"/>
-</f></t>
+</f></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional function that is invoked whenever an item is selected.</haxe_doc>
 			</onDidSelectItem>
 			<matchOnDetail>
-				<t path="Null"><x path="Bool"/></t>
+				<x path="Null"><x path="Bool"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional flag to include the detail when filtering the picks.</haxe_doc>
 			</matchOnDetail>
 			<matchOnDescription>
-				<t path="Null"><x path="Bool"/></t>
+				<x path="Null"><x path="Bool"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional flag to include the description when filtering the picks.</haxe_doc>
 			</matchOnDescription>
 			<ignoreFocusOut>
-				<t path="Null"><x path="Bool"/></t>
+				<x path="Null"><x path="Bool"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Set to `true` to keep the picker open when focus moves to another part of the editor or to another window.</haxe_doc>
 			</ignoreFocusOut>
@@ -5530,7 +5833,7 @@
 		<intersection public="1" set="method">
 			<f a="range">
 				<c path="vscode.Range"/>
-				<t path="Null"><c path="vscode.Range"/></t>
+				<x path="Null"><c path="vscode.Range"/></x>
 			</f>
 			<haxe_doc>* Intersect `range` with this range and returns a new range or `undefined`
      * if the ranges have no overlap.
@@ -5565,11 +5868,11 @@
 	<f a="change">
 		<a>
 			<start>
-				<t path="Null"><c path="vscode.Position"/></t>
+				<x path="Null"><c path="vscode.Position"/></x>
 				<meta><m n=":optional"/></meta>
 			</start>
 			<end>
-				<t path="Null"><c path="vscode.Position"/></t>
+				<x path="Null"><c path="vscode.Position"/></x>
 				<meta><m n=":optional"/></meta>
 			</end>
 		</a>
@@ -5717,6 +6020,60 @@
 	<e>"Selection"</e>
 </m></meta>
 	</class>
+	<class path="vscode.ShellExecution" params="" file="src/vscode/ShellExecution.hx" extern="1">
+		<commandLine public="1">
+			<c path="String"/>
+			<haxe_doc>* The shell command line</haxe_doc>
+		</commandLine>
+		<options public="1">
+			<x path="Null"><t path="vscode.ShellExecutionOptions"/></x>
+			<haxe_doc>* The shell options used when the command line is executed in a shell.
+     * Defaults to undefined.</haxe_doc>
+		</options>
+		<new public="1" set="method">
+			<f a="commandLine:?options">
+				<c path="String"/>
+				<t path="vscode.ShellExecutionOptions"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>* Creates a process execution.
+     *
+     * @param commandLine The command line to execute.
+     * @param options Optional options for the started the shell.</haxe_doc>
+		</new>
+		<meta><m n=":jsRequire">
+	<e>"vscode"</e>
+	<e>"ShellExecution"</e>
+</m></meta>
+	</class>
+	<typedef path="vscode.ShellExecutionOptions" params="" file="src/vscode/ShellExecutionOptions.hx">
+		<a>
+			<shellArgs>
+				<x path="Null"><c path="Array"><c path="String"/></c></x>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The arguments to be passed to the shell executable used to run the task.</haxe_doc>
+			</shellArgs>
+			<executable>
+				<x path="Null"><c path="String"/></x>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The shell executable.</haxe_doc>
+			</executable>
+			<env>
+				<x path="Null"><x path="haxe.DynamicAccess"><c path="String"/></x></x>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The additional environment of the executed shell. If omitted
+     * the parent process' environment is used. If provided it is merged with
+     * the parent process' environment.</haxe_doc>
+			</env>
+			<cwd>
+				<x path="Null"><c path="String"/></x>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* The current working directory of the executed shell.
+     * If omitted the tools current workspace root is used.</haxe_doc>
+			</cwd>
+		</a>
+		<haxe_doc>* Options for a shell execution</haxe_doc>
+	</typedef>
 	<class path="vscode.SignatureHelp" params="" file="src/vscode/SignatureHelp.hx" extern="1">
 		<signatures public="1">
 			<c path="Array"><c path="vscode.SignatureInformation"/></c>
@@ -5765,7 +6122,7 @@
      * the UI.</haxe_doc>
 		</label>
 		<documentation public="1">
-			<t path="Null"><c path="String"/></t>
+			<x path="Null"><c path="String"/></x>
 			<haxe_doc>* The human-readable doc-comment of this signature. Will be shown
      * in the UI but can be omitted.</haxe_doc>
 		</documentation>
@@ -5881,14 +6238,14 @@
 	<typedef path="vscode.SourceControl" params="" file="src/vscode/SourceControl.hx">
 		<a>
 			<statusBarCommands>
-				<t path="Null"><c path="Array"><t path="vscode.Command"/></c></t>
+				<x path="Null"><c path="Array"><t path="vscode.Command"/></c></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Optional status bar commands.
      *
      * These commands will be displayed in the editor's status bar.</haxe_doc>
 			</statusBarCommands>
 			<quickDiffProvider>
-				<t path="Null"><t path="vscode.QuickDiffProvider"/></t>
+				<x path="Null"><t path="vscode.QuickDiffProvider"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional [quick diff provider](#QuickDiffProvider).</haxe_doc>
 			</quickDiffProvider>
@@ -5913,7 +6270,7 @@
 				<haxe_doc>* Create a new [resource group](#SourceControlResourceGroup).</haxe_doc>
 			</createResourceGroup>
 			<count>
-				<t path="Null"><x path="Int"/></t>
+				<x path="Null"><x path="Int"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The UI-visible count of [resource states](#SourceControlResourceState) of
      * this source control.
@@ -5922,7 +6279,7 @@
      * of this source control, if undefined.</haxe_doc>
 			</count>
 			<commitTemplate>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Optional commit template string.
      *
@@ -5930,7 +6287,7 @@
      * input with this value when appropriate.</haxe_doc>
 			</commitTemplate>
 			<acceptInputCommand>
-				<t path="Null"><t path="vscode.Command"/></t>
+				<x path="Null"><t path="vscode.Command"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Optional accept input command.
      *
@@ -5951,33 +6308,33 @@
 	<typedef path="vscode.SourceControlResourceDecorations" params="" file="src/vscode/SourceControlResourceDecorations.hx">
 		<a>
 			<strikeThrough set="null">
-				<t path="Null"><x path="Bool"/></t>
+				<x path="Null"><x path="Bool"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Whether the [source control resource state](#SourceControlResourceState) should
      * be striked-through in the UI.</haxe_doc>
 			</strikeThrough>
 			<light set="null">
-				<t path="Null"><t path="vscode.SourceControlResourceThemableDecorations"/></t>
+				<x path="Null"><t path="vscode.SourceControlResourceThemableDecorations"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The light theme decorations.</haxe_doc>
 			</light>
 			<iconPath set="null">
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.Uri"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The icon path for a specific
      * [source control resource state](#SourceControlResourceState).</haxe_doc>
 			</iconPath>
 			<faded set="null">
-				<t path="Null"><x path="Bool"/></t>
+				<x path="Null"><x path="Bool"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Whether the [source control resource state](#SourceControlResourceState) should
      * be faded in the UI.</haxe_doc>
 			</faded>
 			<dark set="null">
-				<t path="Null"><t path="vscode.SourceControlResourceThemableDecorations"/></t>
+				<x path="Null"><t path="vscode.SourceControlResourceThemableDecorations"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The dark theme decorations.</haxe_doc>
 			</dark>
@@ -6001,7 +6358,7 @@
 				<haxe_doc>* The id of this source control resource group.</haxe_doc>
 			</id>
 			<hideWhenEmpty>
-				<t path="Null"><x path="Bool"/></t>
+				<x path="Null"><x path="Bool"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Whether this source control resource group is hidden when it contains
      * no [source control resource states](#SourceControlResourceState).</haxe_doc>
@@ -6021,13 +6378,13 @@
 				<haxe_doc>* The [uri](#Uri) of the underlying resource inside the workspace.</haxe_doc>
 			</resourceUri>
 			<decorations set="null">
-				<t path="Null"><t path="vscode.SourceControlResourceDecorations"/></t>
+				<x path="Null"><t path="vscode.SourceControlResourceDecorations"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The [decorations](#SourceControlResourceDecorations) for this source control
      * resource state.</haxe_doc>
 			</decorations>
 			<command set="null">
-				<t path="Null"><t path="vscode.Command"/></t>
+				<x path="Null"><t path="vscode.Command"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The [command](#Command) which should be run when the resource
      * state is open in the Source Control viewlet.</haxe_doc>
@@ -6038,10 +6395,10 @@
 	</typedef>
 	<typedef path="vscode.SourceControlResourceThemableDecorations" params="" file="src/vscode/SourceControlResourceThemableDecorations.hx">
 		<a><iconPath set="null">
-	<t path="Null"><x path="haxe.extern.EitherType">
+	<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.Uri"/>
-</x></t>
+</x></x>
 	<meta><m n=":optional"/></meta>
 	<haxe_doc>* The icon path for a specific
      * [source control resource state](#SourceControlResourceState).</haxe_doc>
@@ -6115,7 +6472,7 @@
 	<typedef path="vscode.StatusBarItem" params="" file="src/vscode/StatusBarItem.hx">
 		<a>
 			<tooltip>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<haxe_doc>* The tooltip text when you hover over this entry.</haxe_doc>
 			</tooltip>
 			<text>
@@ -6146,15 +6503,15 @@
      * [hide](#StatusBarItem.hide).</haxe_doc>
 			</dispose>
 			<command>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<haxe_doc>* The identifier of a command to run on click. The command must be
      * [known](#commands.getCommands).</haxe_doc>
 			</command>
 			<color>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.ThemeColor"/>
-</x></t>
+</x></x>
 				<haxe_doc>* The foreground color for this entry.</haxe_doc>
 			</color>
 			<alignment set="null">
@@ -6615,6 +6972,336 @@
 			</m>
 		</meta>
 	</class>
+	<class path="vscode.Task" params="" file="src/vscode/Task.hx" extern="1">
+		<definition public="1">
+			<t path="vscode.TaskDefinition"/>
+			<haxe_doc>* The task's definition.</haxe_doc>
+		</definition>
+		<name public="1">
+			<c path="String"/>
+			<haxe_doc>* The task's name</haxe_doc>
+		</name>
+		<execution public="1">
+			<x path="haxe.extern.EitherType">
+				<c path="vscode.ProcessExecution"/>
+				<c path="vscode.ShellExecution"/>
+			</x>
+			<haxe_doc>* The task's execution engine</haxe_doc>
+		</execution>
+		<isBackground public="1">
+			<x path="Bool"/>
+			<haxe_doc>* Whether the task is a background task or not.</haxe_doc>
+		</isBackground>
+		<source public="1">
+			<c path="String"/>
+			<haxe_doc>* A human-readable string describing the source of this
+     * shell task, e.g. 'gulp' or 'npm'.</haxe_doc>
+		</source>
+		<group public="1">
+			<x path="Null"><c path="vscode.TaskGroup"/></x>
+			<haxe_doc>* The task group this tasks belongs to. See TaskGroup
+     * for a predefined set of available groups.
+     * Defaults to undefined meaning that the task doesn't
+     * belong to any special group.</haxe_doc>
+		</group>
+		<presentationOptions public="1">
+			<t path="vscode.TaskPresentationOptions"/>
+			<haxe_doc>* The presentation options. Defaults to an empty literal.</haxe_doc>
+		</presentationOptions>
+		<problemMatchers public="1">
+			<c path="Array"><c path="String"/></c>
+			<haxe_doc>* The problem matchers attached to the task. Defaults to an empty
+     * array.</haxe_doc>
+		</problemMatchers>
+		<new public="1" set="method">
+			<f a="taskDefinition:name:source:?execution:?problemMatchers">
+				<t path="vscode.TaskDefinition"/>
+				<c path="String"/>
+				<c path="String"/>
+				<x path="haxe.extern.EitherType">
+					<c path="vscode.ProcessExecution"/>
+					<c path="vscode.ShellExecution"/>
+				</x>
+				<x path="haxe.extern.EitherType">
+					<c path="String"/>
+					<c path="Array"><c path="String"/></c>
+				</x>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>* Creates a new task.
+     *
+     * @param definition The task definition as defined in the taskDefintions extension point.
+     * @param name The task's name. Is presented in the user interface.
+     * @param source The task's source (e.g. 'gulp', 'npm', ...). Is presented in the user interface.
+     * @param execution The process or shell execution.
+     * @param problemMatchers the names of problem matchers to use, like '$tsc'
+     *  or '$eslint'. Problem matchers can be contributed by an extension using
+     *  the `problemMatchers` extension point.</haxe_doc>
+		</new>
+		<haxe_doc>* A task to execute</haxe_doc>
+		<meta><m n=":jsRequire">
+	<e>"vscode"</e>
+	<e>"Task"</e>
+</m></meta>
+	</class>
+	<typedef path="vscode.TaskDefinition" params="" file="src/vscode/TaskDefinition.hx">
+		<a><type set="null">
+	<c path="String"/>
+	<haxe_doc>* The task definition descibing the task provided by an extension.
+     * Usually a task provider defines more properties to identify
+     * a task. They need to be defined in the package.json of the
+     * extension under the 'taskDefinitions' extension point. The npm
+     * task definition for example looks like this
+     * ```typescript
+     * interface NpmTaskDefinition extends TaskDefinition {
+     *     script: string;
+     * }
+     * ```</haxe_doc>
+</type></a>
+		<haxe_doc>* A structure that defines a task kind in the system.
+ * The value must be JSON-stringifyable.</haxe_doc>
+	</typedef>
+	<class path="vscode.TaskGroup" params="" file="src/vscode/TaskGroup.hx" extern="1">
+		<Clean public="1" static="1">
+			<c path="vscode.TaskGroup"/>
+			<haxe_doc>* The clean task group;</haxe_doc>
+		</Clean>
+		<Build public="1" static="1">
+			<c path="vscode.TaskGroup"/>
+			<haxe_doc>* The build task group;</haxe_doc>
+		</Build>
+		<Rebuild public="1" static="1">
+			<c path="vscode.TaskGroup"/>
+			<haxe_doc>* The rebuild all task group;</haxe_doc>
+		</Rebuild>
+		<Test public="1" static="1">
+			<c path="vscode.TaskGroup"/>
+			<haxe_doc>* The test all task group;</haxe_doc>
+		</Test>
+		<haxe_doc>* A grouping for tasks. The editor by default supports the
+ * 'Clean', 'Build', 'RebuildAll' and 'Test' group.</haxe_doc>
+		<meta><m n=":jsRequire">
+	<e>"vscode"</e>
+	<e>"TaskGroup"</e>
+</m></meta>
+	</class>
+	<abstract path="vscode.TaskPanelKind" params="" file="src/vscode/TaskPanelKind.hx">
+		<this><x path="Int"/></this>
+		<haxe_doc>* Controls how the task channel is used between tasks</haxe_doc>
+		<meta>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"TaskPanelKind"</e>
+			</m>
+			<m n=":enum"/>
+		</meta>
+		<impl><class path="vscode._TaskPanelKind.TaskPanelKind_Impl_" params="" file="src/vscode/TaskPanelKind.hx" private="1" module="vscode.TaskPanelKind" extern="1">
+	<Shared public="1" set="null" static="1">
+		<x path="vscode.TaskPanelKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Shares a panel with other tasks. This is the default.</haxe_doc>
+	</Shared>
+	<Dedicated public="1" set="null" static="1">
+		<x path="vscode.TaskPanelKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Uses a dedicated panel for this tasks. The panel is not
+	 * shared with other tasks.</haxe_doc>
+	</Dedicated>
+	<New public="1" set="null" static="1">
+		<x path="vscode.TaskPanelKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Creates a new panel whenever this task is executed.</haxe_doc>
+	</New>
+	<meta>
+		<m n=":final"/>
+		<m n=":enum"/>
+		<m n=":jsRequire">
+			<e>"vscode"</e>
+			<e>"TaskPanelKind"</e>
+		</m>
+	</meta>
+</class></impl>
+	</abstract>
+	<class path="vscode._TaskPanelKind.TaskPanelKind_Impl_" params="" file="src/vscode/TaskPanelKind.hx" private="1" module="vscode.TaskPanelKind" extern="1">
+		<Shared public="1" set="null" static="1">
+			<x path="vscode.TaskPanelKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Shares a panel with other tasks. This is the default.</haxe_doc>
+		</Shared>
+		<Dedicated public="1" set="null" static="1">
+			<x path="vscode.TaskPanelKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Uses a dedicated panel for this tasks. The panel is not
+	 * shared with other tasks.</haxe_doc>
+		</Dedicated>
+		<New public="1" set="null" static="1">
+			<x path="vscode.TaskPanelKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Creates a new panel whenever this task is executed.</haxe_doc>
+		</New>
+		<meta>
+			<m n=":final"/>
+			<m n=":enum"/>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"TaskPanelKind"</e>
+			</m>
+		</meta>
+	</class>
+	<typedef path="vscode.TaskPresentationOptions" params="" file="src/vscode/TaskPresentationOptions.hx">
+		<a>
+			<reveal>
+				<x path="Null"><x path="vscode.TaskRevealKind"/></x>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Controls whether the task output is reveal in the user interface.
+     * Defaults to `RevealKind.Always`.</haxe_doc>
+			</reveal>
+			<panel>
+				<x path="Null"><x path="vscode.TaskPanelKind"/></x>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Controls if the task panel is used for this task only (dedicated),
+     * shared between tasks (shared) or if a new panel is created on
+     * every task execution (new). Defaults to `TaskInstanceKind.Shared`</haxe_doc>
+			</panel>
+			<focus>
+				<x path="Null"><x path="Bool"/></x>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Controls whether the panel showing the task output is taking focus.</haxe_doc>
+			</focus>
+			<echo>
+				<x path="Null"><x path="Bool"/></x>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* Controls whether the command associated with the task is echoed
+     * in the user interface.</haxe_doc>
+			</echo>
+		</a>
+		<haxe_doc>* Controls how the task is presented in the UI.</haxe_doc>
+	</typedef>
+	<typedef path="vscode.TaskProvider" params="" file="src/vscode/TaskProvider.hx">
+		<a>
+			<resolveTask set="method">
+				<f a="task:?token">
+					<c path="vscode.Task"/>
+					<t path="vscode.CancellationToken"/>
+					<t path="vscode.ProviderResult"><c path="vscode.Task"/></t>
+				</f>
+				<haxe_doc>* Resolves a task the has no execution set.
+	 * @param task The task to resolve.
+	 * @param token A cancellation token.
+	 * @return the resolved task</haxe_doc>
+			</resolveTask>
+			<provideTasks set="method">
+				<f a="?token">
+					<t path="vscode.CancellationToken"/>
+					<t path="vscode.ProviderResult"><c path="Array"><c path="vscode.Task"/></c></t>
+				</f>
+				<haxe_doc>* Provides tasks.
+	 * @param token A cancellation token.
+	 * @return an array of tasks</haxe_doc>
+			</provideTasks>
+		</a>
+		<haxe_doc>* A task provider allows to add tasks to the task service.
+ * A task provider is registerd via #workspace.registerTaskProvider.</haxe_doc>
+	</typedef>
+	<abstract path="vscode.TaskRevealKind" params="" file="src/vscode/TaskRevealKind.hx">
+		<this><x path="Int"/></this>
+		<haxe_doc>* Controls the behaviour of the terminal's visibility.</haxe_doc>
+		<meta>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"TaskRevealKind"</e>
+			</m>
+			<m n=":enum"/>
+		</meta>
+		<impl><class path="vscode._TaskRevealKind.TaskRevealKind_Impl_" params="" file="src/vscode/TaskRevealKind.hx" private="1" module="vscode.TaskRevealKind" extern="1">
+	<Always public="1" set="null" static="1">
+		<x path="vscode.TaskRevealKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Always brings the terminal to front if the task is executed.</haxe_doc>
+	</Always>
+	<Silent public="1" set="null" static="1">
+		<x path="vscode.TaskRevealKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* Only brings the terminal to front if a problem is detected executing the task
+     * (e.g. the task couldn't be started because).</haxe_doc>
+	</Silent>
+	<Never public="1" set="null" static="1">
+		<x path="vscode.TaskRevealKind"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>* The terminal never comes to front when the task is executed.</haxe_doc>
+	</Never>
+	<meta>
+		<m n=":final"/>
+		<m n=":enum"/>
+		<m n=":jsRequire">
+			<e>"vscode"</e>
+			<e>"TaskRevealKind"</e>
+		</m>
+	</meta>
+</class></impl>
+	</abstract>
+	<class path="vscode._TaskRevealKind.TaskRevealKind_Impl_" params="" file="src/vscode/TaskRevealKind.hx" private="1" module="vscode.TaskRevealKind" extern="1">
+		<Always public="1" set="null" static="1">
+			<x path="vscode.TaskRevealKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Always brings the terminal to front if the task is executed.</haxe_doc>
+		</Always>
+		<Silent public="1" set="null" static="1">
+			<x path="vscode.TaskRevealKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* Only brings the terminal to front if a problem is detected executing the task
+     * (e.g. the task couldn't be started because).</haxe_doc>
+		</Silent>
+		<Never public="1" set="null" static="1">
+			<x path="vscode.TaskRevealKind"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>* The terminal never comes to front when the task is executed.</haxe_doc>
+		</Never>
+		<meta>
+			<m n=":final"/>
+			<m n=":enum"/>
+			<m n=":jsRequire">
+				<e>"vscode"</e>
+				<e>"TaskRevealKind"</e>
+			</m>
+		</meta>
+	</class>
 	<typedef path="vscode.Terminal" params="" file="src/vscode/Terminal.hx">
 		<a>
 			<show set="method">
@@ -6662,17 +7349,17 @@
 	<typedef path="vscode.TerminalOptions" params="" file="src/vscode/TerminalOptions.hx">
 		<a>
 			<shellPath>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* A path to a custom shell executable to be used in the terminal.</haxe_doc>
 			</shellPath>
 			<shellArgs>
-				<t path="Null"><c path="Array"><c path="String"/></c></t>
+				<x path="Null"><c path="Array"><c path="String"/></c></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Args for the custom shell executable, this does not work on Windows (see #8429)</haxe_doc>
 			</shellArgs>
 			<name>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* A human-readable string which will be used to represent the terminal in the UI.</haxe_doc>
 			</name>
@@ -6791,7 +7478,7 @@
 				<f a="position:?regex">
 					<c path="vscode.Position"/>
 					<c path="js.RegExp"/>
-					<t path="Null"><c path="vscode.Range"/></t>
+					<x path="Null"><c path="vscode.Range"/></x>
 				</f>
 				<haxe_doc>* Get a word-range at the given position. By default words are defined by
      * common separators, like space, -, _, etc. In addition, per languge custom
@@ -6880,7 +7567,7 @@
      * @return A string or a thenable that resolves to such.</haxe_doc>
 			</provideTextDocumentContent>
 			<onDidChange set="null">
-				<t path="Null"><t path="vscode.Event"><c path="vscode.Uri"/></t></t>
+				<x path="Null"><t path="vscode.Event"><c path="vscode.Uri"/></t></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An event to signal a resource has changed.</haxe_doc>
 			</onDidChange>
@@ -6977,20 +7664,20 @@
 	<typedef path="vscode.TextDocumentShowOptions" params="" file="src/vscode/TextDocumentShowOptions.hx">
 		<a>
 			<viewColumn>
-				<t path="Null"><x path="vscode.ViewColumn"/></t>
+				<x path="Null"><x path="vscode.ViewColumn"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional view column in which the [editor](#TextEditor) should be shown.
      * The default is the [one](#ViewColumn.One), other values are adjusted to
      * be __Min(column, columnCount + 1)__.</haxe_doc>
 			</viewColumn>
 			<preview>
-				<t path="Null"><x path="Bool"/></t>
+				<x path="Null"><x path="Bool"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional flag that controls if an [editor](#TextEditor)-tab will be replaced
      * with the next editor or if it will be kept.</haxe_doc>
 			</preview>
 			<preserveFocus>
-				<t path="Null"><x path="Bool"/></t>
+				<x path="Null"><x path="Bool"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional flag that when `true` will stop the [editor](#TextEditor) from taking focus.</haxe_doc>
 			</preserveFocus>
@@ -7143,7 +7830,7 @@
 	<typedef path="vscode.TextEditor" params="" file="src/vscode/TextEditor.hx">
 		<a>
 			<viewColumn>
-				<t path="Null"><x path="vscode.ViewColumn"/></t>
+				<x path="Null"><x path="vscode.ViewColumn"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The column in which this editor shows. Will be `undefined` in case this
      * isn't one of the three main editors, e.g an embedded editor.</haxe_doc>
@@ -7553,10 +8240,10 @@
 	<typedef path="vscode.TextEditorOptions" params="" file="src/vscode/TextEditorOptions.hx">
 		<a>
 			<tabSize>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<x path="Int"/>
 	<c path="String"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The size in spaces a tab takes. This is used for two purposes:
      *  - the rendering width of a tab character;
@@ -7566,24 +8253,24 @@
      * When setting a text editor's options, this property is optional and it can be a number or `"auto"`.</haxe_doc>
 			</tabSize>
 			<lineNumbers>
-				<t path="Null"><x path="vscode.TextEditorLineNumbersStyle"/></t>
+				<x path="Null"><x path="vscode.TextEditorLineNumbersStyle"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Render relative line numbers w.r.t. the current line number.
      * When getting a text editor's options, this property will always be present.
      * When setting a text editor's options, this property is optional.</haxe_doc>
 			</lineNumbers>
 			<insertSpaces>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<x path="Bool"/>
 	<c path="String"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* When pressing Tab insert [n](#TextEditorOptions.tabSize) spaces.
      * When getting a text editor's options, this property will always be a boolean (resolved).
      * When setting a text editor's options, this property is optional and it can be a boolean or `"auto"`.</haxe_doc>
 			</insertSpaces>
 			<cursorStyle>
-				<t path="Null"><x path="vscode.TextEditorCursorStyle"/></t>
+				<x path="Null"><x path="vscode.TextEditorCursorStyle"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The rendering style of the cursor in this editor.
      * When getting a text editor's options, this property will always be present.
@@ -7713,7 +8400,7 @@
 				<haxe_doc>* The new value for the [text editor's selections](#TextEditor.selections).</haxe_doc>
 			</selections>
 			<kind>
-				<t path="Null"><x path="vscode.TextEditorSelectionChangeKind"/></t>
+				<x path="Null"><x path="vscode.TextEditorSelectionChangeKind"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The [change kind](#TextEditorSelectionChangeKind) which has triggered this
      * event. Can be `undefined`.</haxe_doc>
@@ -7849,77 +8536,77 @@
 	</typedef>
 	<typedef path="vscode.ThemableDecorationAttachmentRenderOptions" params="" file="src/vscode/ThemableDecorationAttachmentRenderOptions.hx"><a>
 	<width>
-		<t path="Null"><c path="String"/></t>
+		<x path="Null"><c path="String"/></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* CSS styling property that will be applied to the decoration attachment.</haxe_doc>
 	</width>
 	<textDecoration>
-		<t path="Null"><c path="String"/></t>
+		<x path="Null"><c path="String"/></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* CSS styling property that will be applied to the decoration attachment.</haxe_doc>
 	</textDecoration>
 	<margin>
-		<t path="Null"><c path="String"/></t>
+		<x path="Null"><c path="String"/></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* CSS styling property that will be applied to the decoration attachment.</haxe_doc>
 	</margin>
 	<height>
-		<t path="Null"><c path="String"/></t>
+		<x path="Null"><c path="String"/></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* CSS styling property that will be applied to the decoration attachment.</haxe_doc>
 	</height>
 	<contentText>
-		<t path="Null"><c path="String"/></t>
+		<x path="Null"><c path="String"/></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.</haxe_doc>
 	</contentText>
 	<contentIconPath>
-		<t path="Null"><x path="haxe.extern.EitherType">
+		<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.Uri"/>
-</x></t>
+</x></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* An **absolute path** or an URI to an image to be rendered in the attachment. Either an icon
      * or a text can be shown, but not both.</haxe_doc>
 	</contentIconPath>
 	<color>
-		<t path="Null"><x path="haxe.extern.EitherType">
+		<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.ThemeColor"/>
-</x></t>
+</x></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* CSS styling property that will be applied to the decoration attachment.</haxe_doc>
 	</color>
 	<borderColor>
-		<t path="Null"><x path="haxe.extern.EitherType">
+		<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.ThemeColor"/>
-</x></t>
+</x></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.</haxe_doc>
 	</borderColor>
 	<border>
-		<t path="Null"><c path="String"/></t>
+		<x path="Null"><c path="String"/></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* CSS styling property that will be applied to the decoration attachment.</haxe_doc>
 	</border>
 	<backgroundColor>
-		<t path="Null"><x path="haxe.extern.EitherType">
+		<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.ThemeColor"/>
-</x></t>
+</x></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* CSS styling property that will be applied to the decoration attachment.</haxe_doc>
 	</backgroundColor>
 </a></typedef>
 	<typedef path="vscode.ThemableDecorationInstanceRenderOptions" params="" file="src/vscode/ThemableDecorationInstanceRenderOptions.hx"><a>
 	<before>
-		<t path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></t>
+		<x path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* Defines the rendering options of the attachment that is inserted before the decorated text</haxe_doc>
 	</before>
 	<after>
-		<t path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></t>
+		<x path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></x>
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>* Defines the rendering options of the attachment that is inserted after the decorated text</haxe_doc>
 	</after>
@@ -7927,131 +8614,131 @@
 	<typedef path="vscode.ThemableDecorationRenderOptions" params="" file="src/vscode/ThemableDecorationRenderOptions.hx">
 		<a>
 			<textDecoration>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.</haxe_doc>
 			</textDecoration>
 			<overviewRulerColor>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.ThemeColor"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations.</haxe_doc>
 			</overviewRulerColor>
 			<outlineWidth>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'outline' for setting one or more of the individual outline properties.</haxe_doc>
 			</outlineWidth>
 			<outlineStyle>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'outline' for setting one or more of the individual outline properties.</haxe_doc>
 			</outlineStyle>
 			<outlineColor>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.ThemeColor"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'outline' for setting one or more of the individual outline properties.</haxe_doc>
 			</outlineColor>
 			<outline>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.</haxe_doc>
 			</outline>
 			<letterSpacing>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.</haxe_doc>
 			</letterSpacing>
 			<gutterIconSize>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Specifies the size of the gutter icon.
      * Available values are 'auto', 'contain', 'cover' and any percentage value.
      * For further information: https://msdn.microsoft.com/en-us/library/jj127316(v=vs.85).aspx</haxe_doc>
 			</gutterIconSize>
 			<gutterIconPath>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.Uri"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An **absolute path** or an URI to an image to be rendered in the gutter.</haxe_doc>
 			</gutterIconPath>
 			<cursor>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.</haxe_doc>
 			</cursor>
 			<color>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.ThemeColor"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.</haxe_doc>
 			</color>
 			<borderWidth>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'border' for setting one or more of the individual border properties.</haxe_doc>
 			</borderWidth>
 			<borderStyle>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'border' for setting one or more of the individual border properties.</haxe_doc>
 			</borderStyle>
 			<borderSpacing>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'border' for setting one or more of the individual border properties.</haxe_doc>
 			</borderSpacing>
 			<borderRadius>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'border' for setting one or more of the individual border properties.</haxe_doc>
 			</borderRadius>
 			<borderColor>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.ThemeColor"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.
      * Better use 'border' for setting one or more of the individual border properties.</haxe_doc>
 			</borderColor>
 			<border>
-				<t path="Null"><c path="String"/></t>
+				<x path="Null"><c path="String"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* CSS styling property that will be applied to text enclosed by a decoration.</haxe_doc>
 			</border>
 			<before>
-				<t path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></t>
+				<x path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Defines the rendering options of the attachment that is inserted before the decorated text</haxe_doc>
 			</before>
 			<backgroundColor>
-				<t path="Null"><x path="haxe.extern.EitherType">
+				<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<c path="vscode.ThemeColor"/>
-</x></t>
+</x></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Background color of the decoration. Use rgba() and define transparent background colors to play well with other decorations.
      * Alternativly a color from the color registry an be [referenced](#ColorIdentifier).</haxe_doc>
 			</backgroundColor>
 			<after>
-				<t path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></t>
+				<x path="Null"><t path="vscode.ThemableDecorationAttachmentRenderOptions"/></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Defines the rendering options of the attachment that is inserted after the decorated text</haxe_doc>
 			</after>
@@ -8077,7 +8764,7 @@
 	<typedef path="vscode.TreeDataProvider" params="T" file="src/vscode/TreeDataProvider.hx">
 		<a>
 			<onDidChangeTreeData>
-				<t path="Null"><t path="vscode.Event"><t path="Null"><c path="vscode.TreeDataProvider.T"/></t></t></t>
+				<x path="Null"><t path="vscode.Event"><x path="Null"><c path="vscode.TreeDataProvider.T"/></x></t></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* An optional event to signal that an element or root has changed.
      * To signal that root has changed, do not pass any argument or pass `undefined` or `null`.</haxe_doc>
@@ -8114,7 +8801,7 @@
 			<haxe_doc>* A human-readable string describing this item</haxe_doc>
 		</label>
 		<iconPath public="1">
-			<t path="Null"><x path="haxe.extern.EitherType">
+			<x path="Null"><x path="haxe.extern.EitherType">
 	<c path="String"/>
 	<x path="haxe.extern.EitherType">
 		<c path="vscode.Uri"/>
@@ -8129,19 +8816,19 @@
 </x></dark>
 		</a>
 	</x>
-</x></t>
+</x></x>
 			<haxe_doc>* The icon path for the tree item</haxe_doc>
 		</iconPath>
 		<command public="1">
-			<t path="Null"><t path="vscode.Command"/></t>
+			<x path="Null"><t path="vscode.Command"/></x>
 			<haxe_doc>* The [command](#Command) which should be run when the tree item is selected.</haxe_doc>
 		</command>
 		<collapsibleState public="1">
-			<t path="Null"><x path="vscode.TreeItemCollapsibleState"/></t>
+			<x path="Null"><x path="vscode.TreeItemCollapsibleState"/></x>
 			<haxe_doc>* [TreeItemCollapsibleState](#TreeItemCollapsibleState) of the tree item.</haxe_doc>
 		</collapsibleState>
 		<contextValue public="1">
-			<t path="Null"><c path="String"/></t>
+			<x path="Null"><c path="String"/></x>
 			<haxe_doc>* Context value of the tree item. This can be used to contribute item specific actions in the tree.
      * For example, a tree item is given a context value as `folder`. When contributing actions to `view/item/context`
      * using `menus` extension point, you can specify context value for key `viewItem` in `when` expression like `viewItem == folder`.
@@ -8328,23 +9015,23 @@
 			<f a="change">
 				<a>
 					<scheme>
-						<t path="Null"><c path="String"/></t>
+						<x path="Null"><c path="String"/></x>
 						<meta><m n=":optional"/></meta>
 					</scheme>
 					<query>
-						<t path="Null"><c path="String"/></t>
+						<x path="Null"><c path="String"/></x>
 						<meta><m n=":optional"/></meta>
 					</query>
 					<path>
-						<t path="Null"><c path="String"/></t>
+						<x path="Null"><c path="String"/></x>
 						<meta><m n=":optional"/></meta>
 					</path>
 					<fragment>
-						<t path="Null"><c path="String"/></t>
+						<x path="Null"><c path="String"/></x>
 						<meta><m n=":optional"/></meta>
 					</fragment>
 					<authority>
-						<t path="Null"><c path="String"/></t>
+						<x path="Null"><c path="String"/></x>
 						<meta><m n=":optional"/></meta>
 					</authority>
 				</a>
@@ -8489,21 +9176,21 @@
 			<inspect params="T" set="method">
 				<f a="section">
 					<c path="String"/>
-					<t path="Null"><a>
+					<x path="Null"><a>
 	<workspaceValue>
-		<t path="Null"><c path="inspect.T"/></t>
+		<x path="Null"><c path="inspect.T"/></x>
 		<meta><m n=":optional"/></meta>
 	</workspaceValue>
 	<key><c path="String"/></key>
 	<globalValue>
-		<t path="Null"><c path="inspect.T"/></t>
+		<x path="Null"><c path="inspect.T"/></x>
 		<meta><m n=":optional"/></meta>
 	</globalValue>
 	<defaultValue>
-		<t path="Null"><c path="inspect.T"/></t>
+		<x path="Null"><c path="inspect.T"/></x>
 		<meta><m n=":optional"/></meta>
 	</defaultValue>
-</a></t>
+</a></x>
 				</f>
 				<haxe_doc>* Retrieve all information about a configuration setting. A configuration value
      * often consists of a *default* value, a global or installation-wide value, and
@@ -8530,7 +9217,7 @@
 			<get params="T" set="method">
 				<f a="section">
 					<c path="String"/>
-					<t path="Null"><c path="get.T"/></t>
+					<x path="Null"><c path="get.T"/></x>
 				</f>
 				<haxe_doc>* Return a value from this configuration.
      *
@@ -8677,11 +9364,11 @@
 	<typedef path="vscode.WorkspaceSymbolProvider" params="" file="src/vscode/WorkspaceSymbolProvider.hx">
 		<a>
 			<resolveWorkspaceSymbol>
-				<t path="Null"><f a=":">
+				<x path="Null"><f a=":">
 	<c path="vscode.SymbolInformation"/>
 	<t path="vscode.CancellationToken"/>
 	<t path="vscode.ProviderResult"><c path="vscode.SymbolInformation"/></t>
-</f></t>
+</f></x>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>* Given a symbol fill in its [location](#SymbolInformation.location). This method is called whenever a symbol
      * is selected in the UI. Providers can implement this method and return incomplete symbols from
@@ -8713,430 +9400,5 @@
 		</a>
 		<haxe_doc>* The workspace symbol provider interface defines the contract between extensions and
  * the [symbol search](https://code.visualstudio.com/docs/editor/editingevolved#_open-symbol-by-name)-feature.</haxe_doc>
-	</typedef>
-	<class path="vscode.proposed.ProcessTask" params="" file="src/vscode/proposed/ProcessTask.hx" extern="1">
-		<name public="1" set="null">
-			<c path="String"/>
-			<haxe_doc>* The task's name</haxe_doc>
-		</name>
-		<identifier public="1">
-			<t path="Null"><c path="String"/></t>
-			<haxe_doc>* The task's identifier. If omitted the internal identifier will
-     * be `${extensionName}:${name}`</haxe_doc>
-		</identifier>
-		<isBackground public="1">
-			<x path="Bool"/>
-			<haxe_doc>* Whether the task is a background task or not.</haxe_doc>
-		</isBackground>
-		<process public="1" set="null">
-			<c path="String"/>
-			<haxe_doc>* The process to be executed.</haxe_doc>
-		</process>
-		<args public="1">
-			<c path="Array"><c path="String"/></c>
-			<haxe_doc>* The arguments passed to the process. Defaults to an empty array.</haxe_doc>
-		</args>
-		<source public="1">
-			<t path="Null"><c path="String"/></t>
-			<haxe_doc>* A human-readable string describing the source of this
-     * shell task, e.g. 'gulp' or 'npm'.</haxe_doc>
-		</source>
-		<group public="1">
-			<t path="Null"><c path="String"/></t>
-			<haxe_doc>* The task group this tasks belongs to. See TaskGroup
-     * for a predefined set of available groups.
-     * Defaults to undefined meaning that the task doesn't
-     * belong to any special group.</haxe_doc>
-		</group>
-		<options public="1">
-			<t path="vscode.proposed.ProcessTaskOptions"/>
-			<haxe_doc>* The process options used when the process is executed.
-     * Defaults to an empty object literal.</haxe_doc>
-		</options>
-		<terminalBehavior public="1">
-			<t path="vscode.proposed.TaskTerminalBehavior"/>
-			<haxe_doc>* The terminal options. Defaults to an empty object literal.</haxe_doc>
-		</terminalBehavior>
-		<problemMatchers public="1">
-			<c path="Array"><c path="String"/></c>
-			<haxe_doc>* The problem matchers attached to the task. Defaults to an empty
-     * array.</haxe_doc>
-		</problemMatchers>
-		<new public="1" set="method">
-			<f a="name:process:?problemMatchers">
-				<c path="String"/>
-				<c path="String"/>
-				<x path="haxe.extern.EitherType">
-					<c path="String"/>
-					<c path="Array"><c path="String"/></c>
-				</x>
-				<x path="Void"/>
-			</f>
-			<haxe_doc>* Creates a process task.
-     *
-     * @param name the task's name. Is presented in the user interface.
-     * @param process the process to start.
-     * @param args arguments to be passed to the process.
-     * @param options additional options for the started process.
-     * @param problemMatchers the problem matchers to use, like '$tsc'
-     *  or '$eslint'. Problem matchers can be contributed by an extension using
-     *  the `problemMatchers` extension point.</haxe_doc>
-			<overloads>
-				<new public="1" set="method">
-					<f a="name:process:args:?problemMatchers">
-						<c path="String"/>
-						<c path="String"/>
-						<c path="Array"><c path="String"/></c>
-						<x path="haxe.extern.EitherType">
-							<c path="String"/>
-							<c path="Array"><c path="String"/></c>
-						</x>
-						<x path="Void"/>
-					</f>
-					<haxe_doc>* Creates a process task.
-     *
-     * @param name the task's name. Is presented in the user interface.
-     * @param process the process to start.
-     * @param args arguments to be passed to the process.
-     * @param options additional options for the started process.
-     * @param problemMatchers the problem matchers to use, like '$tsc'
-     *  or '$eslint'. Problem matchers can be contributed by an extension using
-     *  the `problemMatchers` extension point.</haxe_doc>
-				</new>
-				<new public="1" set="method">
-					<f a="name:process:args:options:?problemMatchers">
-						<c path="String"/>
-						<c path="String"/>
-						<c path="Array"><c path="String"/></c>
-						<t path="vscode.proposed.ProcessTaskOptions"/>
-						<x path="haxe.extern.EitherType">
-							<c path="String"/>
-							<c path="Array"><c path="String"/></c>
-						</x>
-						<x path="Void"/>
-					</f>
-					<haxe_doc>* Creates a process task.
-     *
-     * @param name the task's name. Is presented in the user interface.
-     * @param process the process to start.
-     * @param args arguments to be passed to the process.
-     * @param options additional options for the started process.
-     * @param problemMatchers the problem matchers to use, like '$tsc'
-     *  or '$eslint'. Problem matchers can be contributed by an extension using
-     *  the `problemMatchers` extension point.</haxe_doc>
-				</new>
-			</overloads>
-		</new>
-		<haxe_doc>* A task that starts an external process.</haxe_doc>
-		<meta><m n=":jsRequire">
-	<e>"vscode"</e>
-	<e>"ProcessTask"</e>
-</m></meta>
-	</class>
-	<typedef path="vscode.proposed.ProcessTaskOptions" params="" file="src/vscode/proposed/ProcessTaskOptions.hx"><a>
-	<env>
-		<t path="Null"><x path="haxe.DynamicAccess"><c path="String"/></x></t>
-		<meta><m n=":optional"/></meta>
-		<haxe_doc>* The additional environment of the executed program or shell. If omitted
-     * the parent process' environment is used. If provided it is merged with
-     * the parent process' environment.</haxe_doc>
-	</env>
-	<cwd>
-		<t path="Null"><c path="String"/></t>
-		<meta><m n=":optional"/></meta>
-		<haxe_doc>* The current working directory of the executed program or shell.
-     * If omitted VSCode's current workspace root is used.</haxe_doc>
-	</cwd>
-</a></typedef>
-	<class path="vscode.proposed.ShellTask" params="" file="src/vscode/proposed/ShellTask.hx" extern="1">
-		<name public="1" set="null">
-			<c path="String"/>
-			<haxe_doc>* The task's name</haxe_doc>
-		</name>
-		<identifier public="1">
-			<t path="Null"><c path="String"/></t>
-			<haxe_doc>* The task's identifier. If omitted the internal identifier will
-     * be `${extensionName}:${name}`</haxe_doc>
-		</identifier>
-		<isBackground public="1">
-			<x path="Bool"/>
-			<haxe_doc>* Whether the task is a background task or not.</haxe_doc>
-		</isBackground>
-		<commandLine public="1" set="null">
-			<c path="String"/>
-			<haxe_doc>* The command line to execute.</haxe_doc>
-		</commandLine>
-		<source public="1">
-			<t path="Null"><c path="String"/></t>
-			<haxe_doc>* A human-readable string describing the source of this
-     * shell task, e.g. 'gulp' or 'npm'.</haxe_doc>
-		</source>
-		<group public="1">
-			<t path="Null"><c path="String"/></t>
-			<haxe_doc>* The task group this tasks belongs to. See TaskGroup
-     * for a predefined set of available groups.
-     * Defaults to undefined meaning that the task doesn't
-     * belong to any special group.</haxe_doc>
-		</group>
-		<options public="1">
-			<t path="vscode.proposed.ShellTaskOptions"/>
-			<haxe_doc>* The shell options used when the shell is executed. Defaults to an
-     * empty object literal.</haxe_doc>
-		</options>
-		<terminalBehavior public="1">
-			<t path="vscode.proposed.TaskTerminalBehavior"/>
-			<haxe_doc>* The terminal options. Defaults to an empty object literal.</haxe_doc>
-		</terminalBehavior>
-		<problemMatchers public="1">
-			<c path="Array"><c path="String"/></c>
-			<haxe_doc>* The problem matchers attached to the task. Defaults to an empty
-     * array.</haxe_doc>
-		</problemMatchers>
-		<new public="1" set="method">
-			<f a="name:commandLine:?problemMatchers">
-				<c path="String"/>
-				<c path="String"/>
-				<x path="haxe.extern.EitherType">
-					<c path="String"/>
-					<c path="Array"><c path="String"/></c>
-				</x>
-				<x path="Void"/>
-			</f>
-			<haxe_doc>* Creates a shell task.
-     *
-     * @param name the task's name. Is presented in the user interface.
-     * @param commandLine the command line to execute.
-     * @param options additional options used when creating the shell.
-     * @param problemMatchers the problem matchers to use, like '$tsc'
-     *  or '$eslint'. Problem matchers can be contributed by an extension using
-     *  the `problemMatchers` extension point.</haxe_doc>
-			<overloads><new public="1" set="method">
-	<f a="name:commandLine:options:?problemMatchers">
-		<c path="String"/>
-		<c path="String"/>
-		<t path="vscode.proposed.ShellTaskOptions"/>
-		<x path="haxe.extern.EitherType">
-			<c path="String"/>
-			<c path="Array"><c path="String"/></c>
-		</x>
-		<x path="Void"/>
-	</f>
-	<haxe_doc>* Creates a shell task.
-     *
-     * @param name the task's name. Is presented in the user interface.
-     * @param commandLine the command line to execute.
-     * @param options additional options used when creating the shell.
-     * @param problemMatchers the problem matchers to use, like '$tsc'
-     *  or '$eslint'. Problem matchers can be contributed by an extension using
-     *  the `problemMatchers` extension point.</haxe_doc>
-</new></overloads>
-		</new>
-		<haxe_doc>* A task that executes a shell command.</haxe_doc>
-		<meta><m n=":jsRequire">
-	<e>"vscode"</e>
-	<e>"ShellTask"</e>
-</m></meta>
-	</class>
-	<typedef path="vscode.proposed.ShellTaskOptions" params="" file="src/vscode/proposed/ShellTaskOptions.hx"><x path="haxe.extern.EitherType">
-	<a>
-		<shellArgs>
-			<t path="Null"><c path="Array"><c path="String"/></c></t>
-			<meta><m n=":optional"/></meta>
-			<haxe_doc>* The arguments to be passed to the shell executable used to run the task.</haxe_doc>
-		</shellArgs>
-		<executable>
-			<c path="String"/>
-			<haxe_doc>* The shell executable.</haxe_doc>
-		</executable>
-		<env>
-			<t path="Null"><x path="haxe.DynamicAccess"><c path="String"/></x></t>
-			<meta><m n=":optional"/></meta>
-			<haxe_doc>* The additional environment of the executed shell. If omitted
-     * the parent process' environment is used. If provided it is merged with
-     * the parent process' environment.</haxe_doc>
-		</env>
-		<cwd>
-			<t path="Null"><c path="String"/></t>
-			<meta><m n=":optional"/></meta>
-			<haxe_doc>* The current working directory of the executed shell.
-     * If omitted VSCode's current workspace root is used.</haxe_doc>
-		</cwd>
-	</a>
-	<x path="haxe.extern.EitherType">
-		<a>
-			<env>
-				<t path="Null"><x path="haxe.DynamicAccess"><c path="String"/></x></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The additional environment of the executed shell. If omitted
-     * the parent process' environment is used. If provided it is merged with
-     * the parent process' environment.</haxe_doc>
-			</env>
-			<cwd>
-				<c path="String"/>
-				<haxe_doc>* The current working directory of the executed shell.
-     * If omitted VSCode's current workspace root is used.</haxe_doc>
-			</cwd>
-		</a>
-		<a>
-			<env>
-				<x path="haxe.DynamicAccess"><c path="String"/></x>
-				<haxe_doc>* The additional environment of the executed shell. If omitted
-     * the parent process' environment is used. If provided it is merged with
-     * the parent process' environment.</haxe_doc>
-			</env>
-			<cwd>
-				<t path="Null"><c path="String"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* The current working directory of the executed shell.
-     * If omitted VSCode's current workspace root is used.</haxe_doc>
-			</cwd>
-		</a>
-	</x>
-</x></typedef>
-	<typedef path="vscode.proposed.Task" params="" file="src/vscode/proposed/Task.hx"><x path="haxe.extern.EitherType">
-	<c path="vscode.proposed.ProcessTask"/>
-	<c path="vscode.proposed.ShellTask"/>
-</x></typedef>
-	<class path="vscode.proposed.TaskGroup" params="" file="src/vscode/proposed/TaskGroup.hx" extern="1">
-		<Clean public="1" get="inline" set="null" expr="&quot;clean&quot;" line="8" static="1">
-			<c path="String"/>
-			<meta><m n=":value"><e>"clean"</e></m></meta>
-			<haxe_doc>* The clean task group</haxe_doc>
-		</Clean>
-		<Build public="1" get="inline" set="null" expr="&quot;build&quot;" line="13" static="1">
-			<c path="String"/>
-			<meta><m n=":value"><e>"build"</e></m></meta>
-			<haxe_doc>* The build task group</haxe_doc>
-		</Build>
-		<RebuildAll public="1" get="inline" set="null" expr="&quot;rebuildAll&quot;" line="18" static="1">
-			<c path="String"/>
-			<meta><m n=":value"><e>"rebuildAll"</e></m></meta>
-			<haxe_doc>* The rebuild all task group</haxe_doc>
-		</RebuildAll>
-		<Test public="1" get="inline" set="null" expr="&quot;test&quot;" line="23" static="1">
-			<c path="String"/>
-			<meta><m n=":value"><e>"test"</e></m></meta>
-			<haxe_doc>* The test task group</haxe_doc>
-		</Test>
-		<meta><m n=":jsRequire">
-	<e>"vscode"</e>
-	<e>"TaskGroup"</e>
-</m></meta>
-	</class>
-	<typedef path="vscode.proposed.TaskProvider" params="" file="src/vscode/proposed/TaskProvider.hx">
-		<a><provideTasks set="method">
-	<f a="token">
-		<t path="vscode.CancellationToken"/>
-		<t path="vscode.ProviderResult"><c path="Array"><t path="vscode.proposed.Task"/></c></t>
-	</f>
-	<haxe_doc>* Provides additional tasks.
-     * @param token A cancellation token.
-     * @return a #TaskSet</haxe_doc>
-</provideTasks></a>
-		<haxe_doc>* A task provider allows to add tasks to the task service.
- * A task provider is registerd via #workspace.registerTaskProvider.</haxe_doc>
-	</typedef>
-	<abstract path="vscode.proposed.TaskRevealKind" params="" file="src/vscode/proposed/TaskRevealKind.hx">
-		<this><x path="Int"/></this>
-		<haxe_doc>* Controls the behaviour of the terminal's visibility.</haxe_doc>
-		<meta>
-			<m n=":jsRequire">
-				<e>"vscode"</e>
-				<e>"RevealKind"</e>
-			</m>
-			<m n=":enum"/>
-		</meta>
-		<impl><class path="vscode.proposed._TaskRevealKind.TaskRevealKind_Impl_" params="" file="src/vscode/proposed/TaskRevealKind.hx" private="1" module="vscode.proposed.TaskRevealKind" extern="1">
-	<Always public="1" get="inline" set="null" expr="cast 1" line="11" static="1">
-		<x path="vscode.proposed.TaskRevealKind"/>
-		<meta>
-			<m n=":value"><e>cast 1</e></m>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-		<haxe_doc>* Always brings the terminal to front if the task is executed.</haxe_doc>
-	</Always>
-	<Silent public="1" get="inline" set="null" expr="cast 2" line="17" static="1">
-		<x path="vscode.proposed.TaskRevealKind"/>
-		<meta>
-			<m n=":value"><e>cast 2</e></m>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-		<haxe_doc>* Only brings the terminal to front if a problem is detected executing the task
-     * (e.g. the task couldn't be started because).</haxe_doc>
-	</Silent>
-	<Never public="1" get="inline" set="null" expr="cast 3" line="22" static="1">
-		<x path="vscode.proposed.TaskRevealKind"/>
-		<meta>
-			<m n=":value"><e>cast 3</e></m>
-			<m n=":enum"/>
-			<m n=":impl"/>
-		</meta>
-		<haxe_doc>* The terminal never comes to front when the task is executed.</haxe_doc>
-	</Never>
-	<meta>
-		<m n=":final"/>
-		<m n=":enum"/>
-		<m n=":jsRequire">
-			<e>"vscode"</e>
-			<e>"RevealKind"</e>
-		</m>
-	</meta>
-</class></impl>
-	</abstract>
-	<class path="vscode.proposed._TaskRevealKind.TaskRevealKind_Impl_" params="" file="src/vscode/proposed/TaskRevealKind.hx" private="1" module="vscode.proposed.TaskRevealKind" extern="1">
-		<Always public="1" get="inline" set="null" expr="cast 1" line="11" static="1">
-			<x path="vscode.proposed.TaskRevealKind"/>
-			<meta>
-				<m n=":value"><e>cast 1</e></m>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-			<haxe_doc>* Always brings the terminal to front if the task is executed.</haxe_doc>
-		</Always>
-		<Silent public="1" get="inline" set="null" expr="cast 2" line="17" static="1">
-			<x path="vscode.proposed.TaskRevealKind"/>
-			<meta>
-				<m n=":value"><e>cast 2</e></m>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-			<haxe_doc>* Only brings the terminal to front if a problem is detected executing the task
-     * (e.g. the task couldn't be started because).</haxe_doc>
-		</Silent>
-		<Never public="1" get="inline" set="null" expr="cast 3" line="22" static="1">
-			<x path="vscode.proposed.TaskRevealKind"/>
-			<meta>
-				<m n=":value"><e>cast 3</e></m>
-				<m n=":enum"/>
-				<m n=":impl"/>
-			</meta>
-			<haxe_doc>* The terminal never comes to front when the task is executed.</haxe_doc>
-		</Never>
-		<meta>
-			<m n=":final"/>
-			<m n=":enum"/>
-			<m n=":jsRequire">
-				<e>"vscode"</e>
-				<e>"RevealKind"</e>
-			</m>
-		</meta>
-	</class>
-	<typedef path="vscode.proposed.TaskTerminalBehavior" params="" file="src/vscode/proposed/TaskTerminalBehavior.hx">
-		<a>
-			<reveal>
-				<t path="Null"><x path="vscode.proposed.TaskRevealKind"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* Controls whether the terminal executing a task is brought to front or not.
-     * Defaults to `RevealKind.Always`.</haxe_doc>
-			</reveal>
-			<echo>
-				<t path="Null"><x path="Bool"/></t>
-				<meta><m n=":optional"/></meta>
-				<haxe_doc>* Controls whether the command is echoed in the terminal or not.</haxe_doc>
-			</echo>
-		</a>
-		<haxe_doc>* Controls terminal specific behavior.</haxe_doc>
 	</typedef>
 </haxe>
