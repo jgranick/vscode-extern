@@ -819,6 +819,10 @@
      * score is used for determining the order in which providers are asked to participate.]]></haxe_doc>
 		</languages>
 		<scm public="1" set="null" static="1"><c path="VscodeScm"/></scm>
+		<debug public="1" set="null" static="1">
+			<c path="VscodeDebug"/>
+			<haxe_doc>* Namespace for dealing with debug sessions.</haxe_doc>
+		</debug>
 		<extensions public="1" set="null" static="1">
 			<c path="VscodeExtensions"/>
 			<haxe_doc>* Namespace for dealing with installed extensions. Extensions are represented
@@ -2099,6 +2103,20 @@
      * @param provider A task provider.
      * @return A [disposable](#Disposable) that unregisters this provider when being disposed.</haxe_doc>
 		</registerTaskProvider>
+	</class>
+	<class path="VscodeDebug" params="" file="src/Vscode.hx" module="Vscode" extern="1">
+		<onDidTerminateDebugSession public="1" set="null">
+			<t path="vscode.Event"><t path="vscode.DebugSession"/></t>
+			<haxe_doc>* An [event](#Event) which fires when a debug session has terminated.</haxe_doc>
+		</onDidTerminateDebugSession>
+		<createDebugSession public="1" set="method">
+			<f a="configuration">
+				<t path="vscode.DebugConfiguration"/>
+				<t path="js.Thenable"><t path="vscode.DebugSession"/></t>
+			</f>
+			<haxe_doc>* Create a new debug session based on the given configuration.
+     * @param configuration</haxe_doc>
+		</createDebugSession>
 	</class>
 	<class path="VscodeProposed" params="" file="src/VscodeProposed.hx" extern="1"><meta><m n=":jsRequire"><e>"vscode"</e></m></meta></class>
 	<abstract path="haxe.Function" params="" file="/home/travis/haxe/std/haxe/Constraints.hx" module="haxe.Constraints">
@@ -3528,6 +3546,45 @@
 	<e>"CompletionList"</e>
 </m></meta>
 	</class>
+	<typedef path="vscode.DebugConfiguration" params="" file="src/vscode/DebugConfiguration.hx">
+		<a>
+			<type>
+				<c path="String"/>
+				<haxe_doc>* The type for the debug session.</haxe_doc>
+			</type>
+			<request>
+				<c path="String"/>
+				<haxe_doc>* The request type of the debug session.</haxe_doc>
+			</request>
+			<name>
+				<x path="Null"><c path="String"/></x>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>* An optional name for the debug session.</haxe_doc>
+			</name>
+		</a>
+		<haxe_doc>* Configuration for a debug session.</haxe_doc>
+	</typedef>
+	<typedef path="vscode.DebugSession" params="" file="src/vscode/DebugSession.hx">
+		<a>
+			<type set="null">
+				<c path="String"/>
+				<haxe_doc>* The debug session's type from the debug configuration.</haxe_doc>
+			</type>
+			<readonly set="null">
+				<c path="String"/>
+				<haxe_doc>* The debug session's name from the debug configuration.</haxe_doc>
+			</readonly>
+			<customRequest set="method">
+				<f a="command:?args">
+					<c path="String"/>
+					<x path="Any"/>
+					<t path="js.Thenable"><x path="Any"/></t>
+				</f>
+				<haxe_doc>* Send a custom request to the debug adapter.</haxe_doc>
+			</customRequest>
+		</a>
+		<haxe_doc>* A debug session.</haxe_doc>
+	</typedef>
 	<typedef path="vscode.DecorationInstanceRenderOptions" params="" file="src/vscode/DecorationInstanceRenderOptions.hx"><a>
 	<light>
 		<x path="Null"><t path="vscode.ThemableDecorationInstanceRenderOptions"/></x>
